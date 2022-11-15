@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1098540645055",
+    "project_id": "lkk-mobile",
+    "storage_bucket": "lkk-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098540645055:android:26c38014d46930cf39640a",
+        "android_client_info": {
+          "package_name": "com.example.mkk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098540645055-r0qogb3h2db2ankipa8opbajju7fv2kn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCOvMhoCwSy-B8iVYDlBAcAX5AUAVGsVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098540645055-r0qogb3h2db2ankipa8opbajju7fv2kn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
