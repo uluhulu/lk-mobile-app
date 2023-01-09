@@ -72,7 +72,7 @@ class Client {
   final Manager? manager;
   @JsonKey(name: 'office_manager')
   final Manager? officeManager;
-  final Map<String, Cargo> cargo;
+  final Map<String, Cargo>? cargo;
 
   Client({
     required this.guid,
@@ -89,7 +89,7 @@ class Client {
     required this.companyGroupName,
     required this.manager,
     required this.officeManager,
-    required this.cargo,
+    this.cargo,
   });
 
   factory Client.fromJson(Map<String, dynamic> json) => _$ClientFromJson(json);
@@ -118,6 +118,7 @@ class Manager {
   final String? name;
   final String? email;
   final String? phone;
+  final String? mail;
   @JsonKey(name: 'phone_org')
   final String? phoneOrg;
   @JsonKey(name: 'phone_short')
@@ -132,6 +133,7 @@ class Manager {
     this.phoneOrg,
     this.phoneShort,
     this.phoneUser,
+    this.mail,
   });
 
   factory Manager.fromJson(Map<String, dynamic> json) =>

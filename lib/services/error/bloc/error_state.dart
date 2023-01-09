@@ -16,3 +16,9 @@ class AuthErrorS extends ErrorState {
   final String message;
   AuthErrorS({required this.message, this.title});
 }
+
+class ErrorServerS extends ErrorState {
+  final String? title;
+  final String message;
+  ErrorServerS({required this.message, this.title});
+}

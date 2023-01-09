@@ -14,5 +14,7 @@ prod_appbundle:
 	flutter build appbundle --release -v
 dev_android:
 	flutter build apk --release -v
-stg_android:
-	flutter build apk --release -v
+prod_ios:
+	flutter build ipa --release -v
+
+	

@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkk/core/utils/constants.dart';
+import 'package:mkk/presentation/pages/authorization/authorization_bloc/authorization_bloc.dart';
 import 'package:mkk/presentation/pages/banner/banner_bloc/banner_bloc.dart';
 import 'package:mkk/presentation/pages/loca_auth/widgets/pin_code_error_sheet.dart';
 import 'package:mkk/presentation/pages/loca_auth/widgets/pin_code_error_subtitle_widget.dart';
 import 'package:mkk/presentation/pages/loca_auth/widgets/pin_code_error_widget.dart';
+import 'package:mkk/presentation/pages/loca_auth/widgets/pin_code_new_error_content.dart';
 import 'package:mkk/presentation/pages/loca_auth/widgets/pin_code_subtitle_widget.dart';
+import 'package:mkk/presentation/widgets/modal/base_bottom_sheet_widget.dart';
 import '../../../../config/theme/elements/theme_data.dart';
 import '../local_auth_bloc/local_auth_bloc.dart';
 import '../validate_pin_bloc/validate_pin_bloc.dart';
@@ -27,6 +30,8 @@ class PinCodeWidget extends StatefulWidget {
   final WidgetFunction? leftButton;
   final WidgetFunction? rightButton;
   final PinEnteredFunction? pinEntered;
+  final bool needErrorPadding;
+  final bool isFirstSetPin;
   final bool isSetPin;
 
   const PinCodeWidget({
@@ -40,6 +45,8 @@ class PinCodeWidget extends StatefulWidget {
     this.buttonText,
     this.onPressed,
     this.incorrectCode,
+    this.needErrorPadding = true,
+    this.isFirstSetPin = false,
     required this.isSetPin,
   }) : super(key: key);
 
@@ -88,15 +95,17 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
       bloc: bloc,
       builder: (context, state) {
         bool hasError = false;
-        bool showErrorBanner = false;
+        bool redDot = false;
+
         pinLength = state.pin.length;
         hasError = state.hasError;
-        showErrorBanner = state.showErrorBanner;
+        redDot = state.redDot;
+
         dev.log('PinWidget(error: $hasError, pin: ${state.pin})');
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Spacer(flex: 4),
+            const Spacer(flex: 7),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               child: Text(
@@ -110,6 +119,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                 : const SizedBox.shrink(),
             PinErrorWidget(
               hasError: hasError,
+              needPadding: widget.needErrorPadding,
               incorrectCode: widget.incorrectCode ?? '',
             ),
             widget.errorSubtitleText != null
@@ -117,10 +127,13 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                     errorSubtitle: widget.errorSubtitleText,
                   )
                 : const SizedBox.shrink(),
-            const SizedBox(height: kPadding * 2),
-            buildPinDots(hasError),
-            const Spacer(flex: 3),
+            const Spacer(flex: 4),
+            //const SizedBox(height: kPadding * 3),
+            buildPinDots(redDot),
+            const Spacer(flex: 1),
             SizedBox(
+              //TODO: Исправвить разметку экрана (ломается на маленьких телефонах)
+              //Удалить height
               height: 400,
               child: Padding(
                 padding:
@@ -134,9 +147,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
               ),
             ),
             TextButton(
-              onPressed: () {
-                widget.onPressed?.call();
-              },
+              onPressed: widget.onPressed,
               child: widget.buttonText != null
                   ? Text(
                       widget.buttonText ?? '',
@@ -197,14 +208,14 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
     return rows;
   }
 
-  Widget buildPinDots(bool hasError) {
+  Widget buildPinDots(bool redDot) {
     List<Widget> children = [];
     for (var i = 0; i < maxPinLength; i++) {
-      if (i < pinLength) {
+      if (i < pinLength || redDot) {
         children.add(SvgPicture.asset(
-          hasError ? 'assets/icon/error_dot.svg' : 'assets/icon/dot_gr.svg',
-          width: 19,
-          height: 19,
+          redDot ? 'assets/icon/error_dot.svg' : 'assets/icon/dot_gr.svg',
+          width: 16,
+          height: 16,
         ));
       } else {
         children.add(SvgPicture.asset(
@@ -226,6 +237,20 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
   void _listener(BuildContext context, ValidatePinState state) {
     final bannerBloc = BlocProvider.of<BannerBloc>(context);
     final localAuthBloc = BlocProvider.of<LocalAuthBloc>(context);
+    final authBloc = BlocProvider.of<AuthorizationBloc>(context);
+    if (state.newErrorBanner == true && widget.isFirstSetPin) {
+      BaseBottomSheetWidget(
+        context: context,
+        isDismissible: false,
+        needMenu: false,
+        child: BlocProvider.value(
+          value: authBloc,
+          child: PinCodeNewErrorContent(
+            isSetPin: widget.isSetPin,
+          ),
+        ),
+      ).show();
+    }
     if (state.showErrorBanner == true) {
       showModalBottomSheet(
         context: context,

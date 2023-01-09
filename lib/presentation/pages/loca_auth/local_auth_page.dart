@@ -43,19 +43,31 @@ class _LocalAuthPageState extends State<LocalAuthPage> {
     return LoginScreenView(
         body: BlocProvider(
       create: (context) => bloc,
-      child: PinCodeWidget(
-        isSetPin: false,
-        titleText: S.of(context).enter_pin_code,
-        incorrectCode: S.of(context).incorrect_code,
-        buttonText: S.of(context).enter_for_log_pass,
-        onPressed: () {
-          context.read<AuthorizationBloc>().add(
-                AuthorizationDeleteLocalAuthE(),
-              );
-          //context.read<BannerBloc>().add(BannerSetPinShowedE());
+      child: BlocBuilder<ValidatePinBloc, ValidatePinState>(
+        builder: (context, state) {
+          return PinCodeWidget(
+            isFirstSetPin: true,
+            // needErrorPadding:
+            //     state.count == 3 || state.count == 4 ? false : true,
+            isSetPin: false,
+            titleText: S.of(context).enter_pin_code,
+            incorrectCode: S.of(context).incorrect_code,
+            errorSubtitleText: state.showNewErrorText
+                ? state.count == 3
+                    ? 'Осталось 2 попытки. Потом код сбросится, и вход будет доступен только по логину и паролю.'
+                    : 'Осталась 1 попытка. Потом код сбросится, и вход будет доступен только по логину и паролю.'
+                : null,
+            buttonText: S.of(context).enter_for_log_pass,
+            onPressed: () {
+              context.read<AuthorizationBloc>().add(
+                    AuthorizationDeleteLocalAuthE(),
+                  );
+              //context.read<BannerBloc>().add(BannerSetPinShowedE());
+            },
+            rightButton: rightButton,
+            pinEntered: pinEntered,
+          );
         },
-        rightButton: rightButton,
-        pinEntered: pinEntered,
       ),
     ));
   }

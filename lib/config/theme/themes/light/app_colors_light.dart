@@ -36,7 +36,7 @@ class AppColorsLight implements AppColors {
   Color splashColor = const Color.fromRGBO(242, 243, 244, 1);
 
   @override
-  Color? dividerColor = const Color.fromARGB(255, 236, 236, 236);
+  Color? dividerColor = const Color.fromARGB(255, 199, 196, 196);
 
   /// CUSTOM
   @override

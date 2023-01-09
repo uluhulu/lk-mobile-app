@@ -10,7 +10,7 @@ class DioStaticInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) {
     options.headers['Authorization'] =
-        'Bearer DiIpELdxaqSNvw8Mo4F6DxwYqKdzupBirUun5hU5Ic4nPdTjJlzwSTwNPj0YiKEv';
+        'Bearer VXfnb06pX8fxGrMJLDyXzSeJlOHdvGgUVb9wUArNQt3OMF0a9Y05QTw1dx95mxjy';
     handler.next(options);
   }
 }

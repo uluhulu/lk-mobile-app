@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1098540645055-r0qogb3h2db2ankipa8opbajju7fv2kn.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1098540645055</string>
+    <string name="google_api_key" translatable="false">AIzaSyBCOvMhoCwSy-B8iVYDlBAcAX5AUAVGsVU</string>
+    <string name="google_app_id" translatable="false">1:1098540645055:android:26c38014d46930cf39640a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBCOvMhoCwSy-B8iVYDlBAcAX5AUAVGsVU</string>
+    <string name="google_storage_bucket" translatable="false">lkk-mobile.appspot.com</string>
+    <string name="project_id" translatable="false">lkk-mobile</string>
+</resources>

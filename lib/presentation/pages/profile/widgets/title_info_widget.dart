@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/utils/constants.dart';
+import '../../../widgets/text/text_with_copy.dart';
+import '../../../widgets/text/copy_text_widget.dart';
 
 class TitleInfoWidget extends StatelessWidget {
   final String title;
-  final String subtitle;
+  final String? subtitle;
+  final TextStyle? style;
+  final VoidCallback? onTap;
   const TitleInfoWidget({
     Key? key,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
+    this.onTap,
+    this.style,
   }) : super(key: key);
 
   @override
@@ -16,15 +21,33 @@ class TitleInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.subtitle2,
-        ),
-        Text(
-          subtitle,
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        const SizedBox(height: kBasePadding),
+        subtitle == null
+            ? Padding(
+                padding: const EdgeInsets.only(bottom: kBasePadding),
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+              )
+            : Text(
+                title,
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+        subtitle == null
+            ? const SizedBox.shrink()
+            : subtitle == ''
+                ? const SizedBox(height: kBasePadding)
+                : Padding(
+                    padding: const EdgeInsets.only(bottom: kBasePadding),
+                    child: CopyTextWidget(
+                      onTap: onTap,
+                      copyData: subtitle,
+                      child: TextWithCopy(
+                        subtitle!,
+                        style: style ?? Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ),
+                  ),
       ],
     );
   }

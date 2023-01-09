@@ -8,8 +8,19 @@ import 'package:mkk/presentation/widgets/scaffold/screen_view.dart';
 import '../../../widgets/modal/base_bottom_sheet_widget.dart';
 import '../local_auth_bloc/local_auth_bloc.dart';
 
-class SetPinCodePage extends StatelessWidget {
+class SetPinCodePage extends StatefulWidget {
   const SetPinCodePage({super.key});
+
+  @override
+  State<SetPinCodePage> createState() => _SetPinCodePageState();
+}
+
+class _SetPinCodePageState extends State<SetPinCodePage> {
+  @override
+  initState() {
+    super.initState();
+    context.read<LocalAuthBloc>().add(LocalAuthInitializeE());
+  }
 
   @override
   Widget build(BuildContext context) {

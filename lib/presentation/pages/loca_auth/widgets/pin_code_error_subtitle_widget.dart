@@ -13,7 +13,7 @@ class PinCodeErrorSubTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: kPadding),
+      padding: const EdgeInsets.only(top: kPadding, bottom: kPadding * 2),
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.8,
         child: Text(

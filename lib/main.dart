@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'package:connection_notifier/connection_notifier.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:mkk/presentation/app_screen.dart';
 import 'package:mkk/presentation/pages/banner/banner_widget.dart';
@@ -10,7 +11,6 @@ import 'app/initialize/initialize_page.dart';
 import 'config/app_routes.dart';
 import 'config/theme/theme_bloc/theme_bloc.dart';
 import 'presentation/pages/loca_auth/local_auth_provider.dart';
-import 'services/appmetrica/appmetrica_service.dart';
 import 'services/error/bloc/error_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -138,37 +138,51 @@ class MyApp extends StatelessWidget {
             : MyThemeDataLight();
         return MyTheme(
           data: themeData,
-          child: LocalAuthProvider(
-            child: BannerProvider(
-              child: MaterialApp(
-                navigatorObservers: [
-                  routeObserver,
-                ],
+          child: ConnectionNotifier(
+            connectedText: 'Подключено',
+            hasIndicationIcon: false,
+            disconnectedText: 'Интернет недоступен',
+            localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: const Locale('ru', 'RU'),
+            child: LocalAuthProvider(
+              child: BannerProvider(
+                child: MaterialApp(
+                  navigatorObservers: [
+                    routeObserver,
+                  ],
 
-                localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: S.delegate.supportedLocales,
-                locale: const Locale('ru', 'RU'),
-                debugShowCheckedModeBanner: false,
-                title: 'mkk',
-                themeMode: theme.themeMode,
-                onGenerateRoute: AppRoutes.onGenerateRoute,
-                // darkTheme:
-                //     ThemeManager.createTheme(const AppThemeDark(), ThemeMode.dark),
-                theme: ThemeManager.createTheme(
-                    const AppThemeLight(), ThemeMode.light),
-                home: InitializePage(
-                  child: BlocProvider<ErrorBloc>.value(
-                    value: errorBloc,
-                    child: const AppScreen(),
+                  localizationsDelegates: const <
+                      LocalizationsDelegate<dynamic>>[
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  locale: const Locale('ru', 'RU'),
+                  debugShowCheckedModeBanner: false,
+                  title: 'ПУЛЬС. Личный кабинет',
+                  themeMode: theme.themeMode,
+                  onGenerateRoute: AppRoutes.onGenerateRoute,
+                  // darkTheme:
+                  //     ThemeManager.createTheme(const AppThemeDark(), ThemeMode.dark),
+                  theme: ThemeManager.createTheme(
+                      const AppThemeLight(), ThemeMode.light),
+                  home: InitializePage(
+                    child: BlocProvider<ErrorBloc>.value(
+                      value: errorBloc,
+                      child: const AppScreen(),
+                    ),
                   ),
+                  //
+                  // home: const AppScreen(),
                 ),
-                //
-                // home: const AppScreen(),
               ),
             ),
           ),

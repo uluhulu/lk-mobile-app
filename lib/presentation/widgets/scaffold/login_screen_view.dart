@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import '../../../services/platform.dart';
 
 class LoginScreenView extends StatelessWidget {
   final Widget body;
@@ -24,9 +23,10 @@ class LoginScreenView extends StatelessWidget {
       statusBarColor: Theme.of(context).scaffoldBackgroundColor,
       systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
       systemNavigationBarDividerColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.light,
-      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarIconBrightness: isApple() ? Brightness.light : Brightness.dark,
+      statusBarBrightness: isApple() ? Brightness.light : Brightness.dark,
+      systemNavigationBarIconBrightness:
+          isApple() ? Brightness.light : Brightness.dark,
       systemNavigationBarContrastEnforced: true,
       systemStatusBarContrastEnforced: true,
     );

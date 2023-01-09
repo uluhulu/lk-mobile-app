@@ -9,26 +9,8 @@ abstract class RestorePasswordEvent extends Equatable {
 
 class RestorePasswordFilialE extends RestorePasswordEvent {}
 
-class RestorePasswordSendE extends RestorePasswordEvent {
-  final String login;
-  final int filial;
+class RestorePasswordSendE extends RestorePasswordEvent {}
 
-  const RestorePasswordSendE({
-    required this.login,
-    required this.filial,
-  });
+class RestorePasswordCheckCodeE extends RestorePasswordEvent {}
 
-  @override
-  List<Object> get props => [login, filial];
-}
-
-class RestorePasswordToggleCompanyE extends RestorePasswordEvent {
-  final DictionaryData company;
-
-  const RestorePasswordToggleCompanyE({
-    required this.company,
-  });
-
-  @override
-  List<Object> get props => [company];
-}
+class RestorePasswordResetE extends RestorePasswordEvent {}

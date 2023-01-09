@@ -1,6 +1,6 @@
-import 'package:mkk/presentation/pages/authorization/view/login_page.dart';
+import 'package:mkk/presentation/pages/authorization/views/login_page.dart';
 import 'package:mkk/presentation/pages/banner/banner_bloc/banner_bloc.dart';
-import '../../widgets/loading_page.dart';
+import '../../widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'authorization_bloc/authorization_bloc.dart';
@@ -13,23 +13,24 @@ class AuthorizationBuilderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthorizationBloc, AuthorizationState>(
-      listener: (context, state) {
-        if (state is AuthorizationNeedLoginS) {
-          context.read<BannerBloc>().add(BannerInitializeE());
-        }
-      },
+    return BlocBuilder<AuthorizationBloc, AuthorizationState>(
+      // listener: (context, state) {
+      //   if (state is AuthorizationNeedLoginS) {
+      //     context.read<BannerBloc>().add(BannerInitializeE());
+      //   }
+      // },
       builder: (context, state) {
         if (state is AuthorizationLoadingS) {
-          return const LoadingPage();
+          return const LoadingWidget();
+        }
+        if (state is AuthorizationLocalNeedS) {
+          return LocalAuthPage(pin: state.pinCode);
         }
         if (state is AuthorizationSuccesS ||
             state is AuthorizationLocalSuccesS) {
           return AuthorizedProvider(child: child);
         }
-        if (state is AuthorizationLocalNeedS) {
-          return LocalAuthPage(pin: state.pinCode);
-        }
+
         return const LoginPage();
       },
     );

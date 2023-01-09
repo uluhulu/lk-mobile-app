@@ -51,5 +51,38 @@ class MyThemeDataDark implements MyThemeData {
   Color blueColor = const Color.fromARGB(255, 74, 150, 210);
 
   @override
-  Color orangeColor = const Color.fromARGB(255, 255, 189, 87);
+  Color orangeColor = const Color.fromARGB(255, 255, 124, 97);
+
+  @override
+  Color blueDetailCardColor = const Color.fromARGB(255, 0, 79, 159);
+
+  @override
+  Color deepBlueTextColor = const Color.fromARGB(255, 164, 194, 231);
+
+  @override
+  Color greyContainerColor = const Color.fromARGB(255, 247, 247, 247);
+
+  @override
+  Color markingStatusCardColor = const Color.fromARGB(255, 0, 177, 180);
+
+  @override
+  Color blackColor = const Color.fromARGB(255, 14, 14, 14);
+
+  @override
+  Color grey1 = const Color.fromARGB(1, 247, 247, 247);
+
+  @override
+  Color spaceGrey = const Color.fromARGB(255, 96, 96, 96);
+
+  @override
+  Color lightBlueColor = const Color.fromARGB(255, 134, 194, 235);
+
+  @override
+  Color deepBlueCardColor = const Color.fromARGB(255, 0, 110, 183);
+
+  @override
+  Color mainDividerColor = const Color.fromARGB(255, 236, 236, 236);
+
+  @override
+  Color yellowColor = const Color.fromARGB(255, 254, 198, 89);
 }

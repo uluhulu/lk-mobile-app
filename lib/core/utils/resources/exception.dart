@@ -7,12 +7,13 @@ import 'package:logger/logger.dart';
 
 abstract class Failure extends Equatable {
   final String message;
-  final IconData icon;
+  final Map<String, dynamic>? data;
 
-  const Failure(
-      [this.message = "Произошла ошибка", this.icon = Icons.error_outline]);
+  const Failure([this.message = "Произошла ошибка", this.data]);
+
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [message, data];
+
   @override
   bool? get stringify => true;
 }
@@ -21,9 +22,6 @@ class SomethingGoWrong extends Failure {
   final String message;
 
   const SomethingGoWrong(this.message);
-
-  @override
-  IconData get icon => Icons.error;
 }
 
 class DefaultFailure extends Failure {
@@ -62,14 +60,15 @@ class BadRequestHttpException implements Exception {
 
   @override
   String toString() {
-    final Map<String, String> data = response.data as Map<String, String>;
+    final Map<String, dynamic> data = response.data as Map<String, dynamic>;
     return data['message']!;
   }
 }
 
 class BadRequestHttpFailure extends Failure {
-  const BadRequestHttpFailure(String messageFromException)
-      : super(messageFromException);
+  const BadRequestHttpFailure(String messageFromException,
+      [Map<String, dynamic>? responses])
+      : super(messageFromException, responses);
 }
 
 /// Страница не найдена
@@ -148,7 +147,7 @@ class HttpValidateException implements Exception {
 
 class HttpValidateFailure extends Failure {
   const HttpValidateFailure(String messageFromException)
-      : super(messageFromException, Icons.error_outline);
+      : super(messageFromException);
 }
 
 /// Пустой ответ от сервера
@@ -161,25 +160,10 @@ class EmptyDataFailure extends Failure {
 ///for TimeOutException
 class TimeoutFailure extends Failure {
   TimeoutFailure()
-      : super('Превышено время ожидание. Повторите попытку позднее',
-            Icons.wifi_off);
+      : super('Превышено время ожидание. Повторите попытку позднее');
 }
 
 class NoInvestorException implements Exception {}
-
-class NotInvestorFailure implements Failure {
-  @override
-  IconData get icon => throw UnimplementedError();
-
-  @override
-  String get message => throw UnimplementedError();
-
-  @override
-  List<Object?> get props => [message];
-
-  @override
-  bool? get stringify => true;
-}
 
 Failure processExceptions(dynamic throwable, StackTrace s) {
   switch (throwable.runtimeType) {
@@ -192,7 +176,9 @@ Failure processExceptions(dynamic throwable, StackTrace s) {
           return UnauthorizedFailure();
         case BadRequestHttpException:
           return BadRequestHttpFailure(
-              (subError as BadRequestHttpException).toString());
+            (subError as BadRequestHttpException).toString(),
+            (subError).response.data,
+          );
         case NotFoundException:
           return NotFoundFailure();
         case ServerException:
@@ -214,8 +200,7 @@ Failure processExceptions(dynamic throwable, StackTrace s) {
               "Не обработанное исключение для dio error.err: брошен объект типа: ${throwable.error.runtimeType}");
           return UnexpectedFailure();
       }
-    case NoInvestorException:
-      return NotInvestorFailure();
+
     default:
       Logger().d(
           "Не обработанное исключение: брошен объект типа: ${throwable.runtimeType}");

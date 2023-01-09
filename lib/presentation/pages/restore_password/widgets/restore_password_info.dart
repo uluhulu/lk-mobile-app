@@ -31,7 +31,7 @@ class RestorePasswordInfo extends StatelessWidget {
                       ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      LaunchUrlHelper.launchEmail(S.of(context).puls_email);
+                      LaunchUrlHelper.launchHelpEmail(S.of(context).puls_email);
                     }),
             ],
           ),

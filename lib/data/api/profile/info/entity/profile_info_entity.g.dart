@@ -38,7 +38,7 @@ Client _$ClientFromJson(Map<String, dynamic> json) => Client(
       officeManager: json['office_manager'] == null
           ? null
           : Manager.fromJson(json['office_manager'] as Map<String, dynamic>),
-      cargo: (json['cargo'] as Map<String, dynamic>).map(
+      cargo: (json['cargo'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, Cargo.fromJson(e as Map<String, dynamic>)),
       ),
     );
@@ -50,6 +50,7 @@ Manager _$ManagerFromJson(Map<String, dynamic> json) => Manager(
       phoneOrg: json['phone_org'] as String?,
       phoneShort: json['phone_short'] as String?,
       phoneUser: json['phone_user'] as String?,
+      mail: json['mail'] as String?,
     );
 
 Cargo _$CargoFromJson(Map<String, dynamic> json) => Cargo(

@@ -32,7 +32,7 @@ class ActErrorWidget extends StatelessWidget {
             ),
             const SizedBox(height: kPadding),
             Text(
-              'Ошибка!',
+              S.of(context).error,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             ),
@@ -51,7 +51,8 @@ class ActErrorWidget extends StatelessWidget {
                           ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          LaunchUrlHelper().sendEmail(S.of(context).puls_email);
+                          LaunchUrlHelper.launchHelpEmail(
+                              S.of(context).puls_email);
                         }),
                 ],
               ),

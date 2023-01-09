@@ -9,13 +9,6 @@ abstract class LoginEvent extends Equatable {
 
 class LoginEventFetchFilialE extends LoginEvent {}
 
-class LoginEventToggleCompanyE extends LoginEvent {
-  final DictionaryData company;
+class LoginInitialE extends LoginEvent {}
 
-  const LoginEventToggleCompanyE({
-    required this.company,
-  });
-
-  @override
-  List<Object> get props => [company];
-}
+class LoginEnterE extends LoginEvent {}

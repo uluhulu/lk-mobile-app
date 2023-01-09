@@ -56,8 +56,8 @@ class PinCodeErrorSheet extends StatelessWidget {
         const SizedBox(height: kBasePadding * 3),
         PrimaryElevatedButton(
           onPressed: () {
-            Navigator.of(context).pop();
             context.read<LocalAuthBloc>().add(LocalAuthInitializeE());
+            Navigator.of(context).pop();
           },
           text: S.of(context).create_new_code,
         ),

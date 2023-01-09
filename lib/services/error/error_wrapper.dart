@@ -39,33 +39,43 @@ class ErrorListener extends StatelessWidget {
                 )),
                 context: context,
                 builder: (BuildContext context) {
-                  return ListView(
+                  return Container(
                     padding: const EdgeInsets.only(
                       top: kBasePadding * 2,
                       left: kBasePadding,
                       right: kBasePadding,
                       bottom: kBottomSheetBottomPadding,
                     ),
-                    shrinkWrap: true,
-                    children: [
-                      Text(
-                        'Ошибка',
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                      const SizedBox(height: kBasePadding),
-                      Text(
-                        state.message,
-                        style: Theme.of(context).textTheme.bodyText1,
-                        maxLines: 5,
-                      ),
-                      const SizedBox(height: kBasePadding * 3),
-                      PrimaryElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        text: 'Понятно',
-                      )
-                    ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/icon/info-circle.svg',
+                          width: 36,
+                          height: 36,
+                          color: Colors.red,
+                        ),
+                        const SizedBox(height: kPadding / 2),
+                        Text(
+                          state.title ?? 'Ошибка!',
+                          style: Theme.of(context).textTheme.headline2,
+                        ),
+                        const SizedBox(height: kBasePadding),
+                        Text(
+                          state.message,
+                          style: Theme.of(context).textTheme.bodyText1,
+                          maxLines: 5,
+                        ),
+                        const SizedBox(height: kBasePadding * 3),
+                        PrimaryElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          text: 'Понятно',
+                        )
+                      ],
+                    ),
                   );
                 });
           });
@@ -126,7 +136,9 @@ class ErrorListener extends StatelessWidget {
                                     ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    LaunchUrlHelper.launchEmail('help@puls.ru');
+                                    LaunchUrlHelper.launchHelpEmail(
+                                      S.of(context).puls_email,
+                                    );
                                   }),
                           ],
                         ),

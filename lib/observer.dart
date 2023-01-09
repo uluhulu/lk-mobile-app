@@ -21,15 +21,13 @@ class AppBlocObserver extends BlocObserver {
 
   @override
   void onEvent(Bloc bloc, Object? event) {
-    L.d(event);
+    L.d('BlocName: $bloc: onEvent: $event');
 
     super.onEvent(bloc, event);
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
-    // Logger().v(change);
-
-    super.onChange(bloc, change);
+    // Logger().v(change);    super.onChange(bloc, change);
   }
 }

@@ -4,10 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:mkk/data/providers/dio/transformers/dio_client.dart';
 import 'package:mkk/domain/repositories/user_repository.dart';
+import 'package:mkk/presentation/pages/banner/banner_bloc/banner_bloc.dart';
 import 'package:mkk/services/error/bloc/error_bloc.dart';
 import 'package:mkk/services/logger/logger_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import '../../../../data/api/auth/login/entity/auth_login_entity.dart';
 import '../../../../domain/repositories/repository.dart';
 import '../../../../domain/use_cases/user/local_auth_use_case.dart';
 
@@ -23,11 +25,13 @@ class AuthorizationBloc
   final GetLocalAuthUseCase getLocalAuthUseCase;
   final SetLocalAuthUseCase setLocalAuthUseCase;
   final UserRepository userRepository;
+  final BannerBloc bannerBloc;
   // final SignInUseCase signInUseCase;
 
   AuthorizationBloc({
     required this.repository,
     required this.errorBloc,
+    required this.bannerBloc,
     // required this.logInUseCase,
     // required this.logOutUseCase,
     required this.getLocalAuthUseCase,
@@ -48,34 +52,23 @@ class AuthorizationBloc
     try {
       emit(AuthorizationLoadingS());
 
-      final result = await repository.login(
-        login: event.login,
-        password: event.password,
-        filial: event.filial,
+      final result = event.loginEntity;
+      await _saveUserData(event.login, event.filial);
+
+      final localPinCode = getLocalAuthUseCase.call();
+      final successState = AuthorizationSuccesS(
+        token: result.data.sessionId,
+        isLogin: result.data.isLogin,
       );
-
-      if (result.data.isLogin == true) {
-        await _saveUserData(event.login, event.filial);
-
-        final localPinCode = getLocalAuthUseCase.call();
-        final successState = AuthorizationSuccesS(
-          token: result.data.sessionId,
-          isLogin: result.data.isLogin,
+      if (localPinCode != null) {
+        emit(
+          AuthorizationLocalNeedS(
+            data: successState,
+            pinCode: localPinCode,
+          ),
         );
-        if (localPinCode != null) {
-          emit(
-            AuthorizationLocalNeedS(
-              data: successState,
-              pinCode: localPinCode,
-            ),
-          );
-        } else {
-          emit(successState);
-        }
-
-        return;
       } else {
-        emit(AuthorizationNeedLoginS());
+        emit(successState);
       }
     } catch (e) {
       errorBloc.add(AuthErrorE(e));
@@ -99,21 +92,34 @@ class AuthorizationBloc
       if (DioClient.currentToken.isNotEmpty) {
         DioClient.currentToken = '';
         await repository.logout();
-        emit(AuthorizationNeedLoginS());
+        add(AuthorizationDeleteLocalAuthE());
+        bannerBloc.add(BannerInitializeE());
+
+        //emit(AuthorizationNeedLoginS());
       }
     } catch (e) {
       errorBloc.add(ErrorSimpleE(e));
     }
   }
 
+// context.read<BannerBloc>().add(BannerInitializeE());
   FutureOr<void> _initialize(
       AuthorizationInitializeE event, Emitter<AuthorizationState> emit) async {
     try {
+      final localPinCode = getLocalAuthUseCase.call();
+
       final currentState = state;
       AuthorizationSuccesS? successState;
       if (currentState is AuthorizationSuccesS) {
-        successState = currentState;
+        if (localPinCode == null) {
+          successState = currentState;
+        } else {
+          successState = currentState;
+          emit(AuthorizationLocalNeedS(
+              data: currentState, pinCode: localPinCode));
+        }
       }
+
       if (currentState is AuthorizationLocalNeedS) {
         successState = currentState.data;
       }
@@ -124,15 +130,23 @@ class AuthorizationBloc
       DioClient().setAuthInterceptor(
           accessToken: successState.token,
           unauthorizedCallback: () => add(AuthorizationLogOutCallBack()));
-      final localPinCode = getLocalAuthUseCase.call();
-      if (localPinCode != null) {
-        emit(
-          AuthorizationLocalNeedS(
-            data: successState,
-            pinCode: localPinCode,
-          ),
-        );
+
+      try {
+        //TODO: переделать
+        await repository.getProfile();
+      } catch (e) {
+        L.e('Auth error repository.getProfile() $e');
       }
+
+      // final localPinCode = getLocalAuthUseCase.call();
+      // if (localPinCode != null) {
+      //   emit(
+      //     AuthorizationLocalNeedS(
+      //       data: successState,
+      //       pinCode: localPinCode,
+      //     ),
+      //   );
+      // }
     } catch (e, s) {
       L.e('Auth error $e $s');
       emit(AuthorizationNeedLoginS());

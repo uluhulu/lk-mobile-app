@@ -10,26 +10,27 @@ abstract class LoginState extends Equatable {
 
 class LoginInitialS extends LoginState {}
 
+class LoginSplashLoadingS extends LoginState {}
+
 class LoginLoadingS extends LoginState {}
 
 class LoginLoadedS extends LoginState {
   final DictionaryFilialEntity data;
-  final DictionaryData company;
+  // final DictionaryData company;
 
   const LoginLoadedS({
     required this.data,
-    required this.company,
+    //required this.company,
   });
 
   @override
-  List<Object> get props => [data, company];
+  List<Object> get props => [data];
 
   LoginLoadedS copyWith({
     DictionaryFilialEntity? data,
   }) {
     return LoginLoadedS(
       data: data ?? this.data,
-      company: company,
     );
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:mkk/config/theme/elements/theme_data.dart';
 import 'package:mkk/core/utils/date_format.dart';
+import 'package:mkk/core/utils/formatter.dart';
+import 'package:mkk/generated/l10n.dart';
 
 import '../../../../core/utils/constants.dart';
+import '../../../widgets/text/text_with_copy.dart';
 
 class PaymentsCard extends StatelessWidget {
   final String date;
@@ -69,13 +71,13 @@ class PaymentsCardContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Ближайший срок оплаты',
+          S.of(context).next_payment_date,
           style: Theme.of(context)
               .textTheme
               .subtitle1
               ?.copyWith(color: myColors.whiteColor),
         ),
-        Text(
+        TextWithCopy(
           DateFormats.isoDateFormatter(date),
           style: Theme.of(context)
               .textTheme
@@ -84,14 +86,14 @@ class PaymentsCardContent extends StatelessWidget {
         ),
         const SizedBox(height: kPadding),
         Text(
-          'Сумма к оплате',
+          S.of(context).amount_payble,
           style: Theme.of(context)
               .textTheme
               .subtitle1
               ?.copyWith(color: myColors.whiteColor),
         ),
-        Text(
-          sum,
+        TextWithCopy(
+          Formatter.asCurrency(sum),
           style: Theme.of(context)
               .textTheme
               .headline5

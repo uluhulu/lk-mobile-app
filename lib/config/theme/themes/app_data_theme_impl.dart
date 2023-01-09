@@ -61,7 +61,7 @@ class AppDataThemeImpl implements AppDataTheme {
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.disabled)) {
-              return Colors.black12;
+              return const Color.fromARGB(255, 223, 223, 223);
             }
 
             return appColors.primaryButtonColor;

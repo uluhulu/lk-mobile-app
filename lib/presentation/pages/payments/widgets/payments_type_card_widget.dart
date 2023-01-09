@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mkk/presentation/pages/payments/widgets/payments_indexed_icon_widget.dart';
 
+import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
+import '../../../../core/utils/formatter.dart';
+import '../../../widgets/text/text_with_copy.dart';
 
 class PaymentsTypeCard extends StatelessWidget {
   final int index;
@@ -47,7 +50,9 @@ class PaymentsTypeCard extends StatelessWidget {
 
   BoxDecoration _decoration(BuildContext context) {
     return BoxDecoration(
-      border: Border.all(color: Theme.of(context).dividerColor),
+      border: Border.all(
+        color: MyTheme.of(context).mainDividerColor,
+      ),
       borderRadius: BorderRadius.circular(kBorderRadius),
     );
   }
@@ -71,12 +76,11 @@ class PaymentsTypeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: переделать (сделать карточку адаптивной)
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          TextWithCopy(
             title,
             style: Theme.of(context).textTheme.headline4,
           ),
@@ -86,11 +90,12 @@ class PaymentsTypeContent extends StatelessWidget {
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(category, style: Theme.of(context).textTheme.subtitle2),
-                Text('$sum₽', style: Theme.of(context).textTheme.bodyText1),
+                TextWithCopy(Formatter.asCurrencyNum(sum),
+                    style: Theme.of(context).textTheme.bodyText1),
               ]),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(countLabel, style: Theme.of(context).textTheme.subtitle2),
-                Text(count.toString(),
+                calculateWidth(context),
+                TextWithCopy(count.toString(),
                     style: Theme.of(context).textTheme.bodyText1),
               ]),
             ],
@@ -98,5 +103,32 @@ class PaymentsTypeContent extends StatelessWidget {
         ],
       ),
     );
+  }
+
+//TODO: вынести логику в отдельный виджет
+  Widget calculateWidth(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    if (width < 322) {
+      return Text(countLabel, style: Theme.of(context).textTheme.subtitle2);
+    }
+    if (width > 350 && width < 385) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Text(countLabel, style: Theme.of(context).textTheme.subtitle2),
+      );
+    }
+    if (width > 385 && width < 400) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 30),
+        child: Text(countLabel, style: Theme.of(context).textTheme.subtitle2),
+      );
+    }
+    if (width > 400 && width < 420) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 45),
+        child: Text(countLabel, style: Theme.of(context).textTheme.subtitle2),
+      );
+    }
+    return Text(countLabel, style: Theme.of(context).textTheme.subtitle2);
   }
 }

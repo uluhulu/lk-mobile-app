@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mkk/presentation/pages/restore_password/widgets/restore_password_region_company_list.dart';
-
+import 'package:mkk/generated/l10n.dart';
+import 'package:mkk/presentation/pages/restore_password/views/restore_password_region_company_list.dart';
+import 'package:super_validation/super_validation.dart';
 import '../../../../config/theme/elements/theme_data.dart';
-import '../../../../core/utils/constants.dart';
 import '../../../widgets/fields/custom_input_decoration.dart';
+import '../../../widgets/modal/base_bottom_sheet_widget.dart';
 import '../../../widgets/modal/modal_bottom_sheet_widget.dart';
 import '../../authorization/widgets/modal_sheet_title_widget.dart';
 import '../restore_password_bloc/restore_password_bloc.dart';
 
 class RestorePasswordRegionCompanyField extends StatelessWidget {
-  final RestorePasswordLoadedS state;
   final RestorePasswordBloc bloc;
+
   const RestorePasswordRegionCompanyField({
     Key? key,
-    required this.state,
     required this.bloc,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: TextField(
-        enabled: false,
+    return SuperValidationEnumBuilder<int>(
+      superValidation: bloc.filialValidation,
+      builder: (context, value) => SuperValidationTextFieldListener<int>(
+        superValidation: bloc.filialValidation,
+        transformer: (value) => bloc.getName(value ?? 0),
+        readOnly: true,
         decoration: CustomInputDecoration(
-            hintText: state.company.id == 2 ? 'Не выбрано' : state.company.name,
-            hintStyle: state.company.id == 2
+            hintText: value == null
+                ? S.of(context).not_selected
+                : bloc.getName(value),
+            hintStyle: value == null
                 ? null
                 : TextStyle(
                     fontSize: 16,
@@ -39,33 +44,23 @@ class RestorePasswordRegionCompanyField extends StatelessWidget {
               width: 24,
               height: 24,
             )),
-      ),
-      onTap: () {
-        showModalBottomSheet<void>(
-            isScrollControlled: true,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(kSheetBorderRadius),
-                topRight: Radius.circular(kSheetBorderRadius),
-              ),
-            ),
-            constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.9),
+        onTap: () {
+          BaseBottomSheetWidget(
             context: context,
-            builder: ((context) {
-              return Stack(
-                children: [
-                  BlocProvider<RestorePasswordBloc>.value(
-                    value: bloc,
-                    child: const RestorePasswordRegionCompanyList(),
-                  ),
-                  const DragHandleWidget(),
-                  const ModalBottomSheetIconBackWidget(),
-                  const ModalSheetTitleWidget(),
-                ],
-              );
-            }));
-      },
+            child: Stack(
+              children: [
+                BlocProvider<RestorePasswordBloc>.value(
+                  value: bloc,
+                  child: const RestorePasswordRegionCompanyList(),
+                ),
+                const DragHandleWidget(),
+                const ModalBottomSheetIconBackWidget(),
+                const ModalSheetTitleWidget(),
+              ],
+            ),
+          ).show();
+        },
+      ),
     );
   }
 }

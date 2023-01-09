@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkk/generated/l10n.dart';
 import '../../../../config/app_routes.dart';
+import '../../../../config/theme/elements/theme_data.dart';
+import '../../../../core/help/launch_url_helper.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../data/api/profile/info/entity/profile_info_entity.dart';
 import '../../../widgets/buttons/secondary_elevated_button.dart';
@@ -22,22 +24,26 @@ class ProfileDataCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Мои данные',
+            S.of(context).my_data,
             style: Theme.of(context).textTheme.headline2,
             textAlign: TextAlign.start,
           ),
           const SizedBox(height: kBasePadding),
           TitleInfoWidget(
-            title: 'Полное наименование',
+            title: S.of(context).full_name,
             subtitle: profile.client.superShortName,
           ),
           TitleInfoWidget(
-            title: 'ИНН',
+            title: S.of(context).inn,
             subtitle: profile.client.inn,
           ),
           TitleInfoWidget(
-            title: 'E-mail',
+            title: S.of(context).email,
             subtitle: profile.client.email,
+            onTap: () => LaunchUrlHelper.launchEmail(profile.client.email),
+            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  color: MyTheme.of(context).primaryButtonColor,
+                ),
           ),
           const SizedBox(height: kBasePadding),
           SecondaryElevatedButton(

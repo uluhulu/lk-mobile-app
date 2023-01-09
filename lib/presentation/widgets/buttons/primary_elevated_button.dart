@@ -29,7 +29,7 @@ class PrimaryElevatedButton extends StatelessWidget {
   final bool withoutCardView;
   final Color? backgroundColor;
   final ButtonStyle? style;
-  final IconData? icon;
+  final Widget? icon;
   final TextStyle? textStyle;
 
   @override
@@ -53,10 +53,10 @@ class PrimaryElevatedButton extends StatelessWidget {
 
   Widget _buildText() {
     if (isLoading == true) {
-      return SizedBox(
-        width: btnHeight / 2,
-        height: btnHeight / 3,
-        child: const CircularProgressIndicator(
+      return const SizedBox(
+        height: 24,
+        width: 24,
+        child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
       );
@@ -77,17 +77,22 @@ class PrimaryElevatedButton extends StatelessWidget {
                     ),
               ),
             )
-          : Center(
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: textStyle ??
-                    const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-              ),
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                icon ?? const SizedBox.shrink(),
+                const SizedBox(width: kPadding),
+                Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: textStyle ??
+                      const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                ),
+              ],
             ),
     );
   }

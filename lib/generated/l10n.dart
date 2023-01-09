@@ -590,10 +590,10 @@ class S {
     );
   }
 
-  /// `'Придумайте новый\n4-значный код`
+  /// `Придумайте новый\n4-значный код`
   String get come_up_new_code {
     return Intl.message(
-      '\'Придумайте новый\n4-значный код',
+      'Придумайте новый\n4-значный код',
       name: 'come_up_new_code',
       desc: '',
       args: [],
@@ -635,6 +635,1026 @@ class S {
     return Intl.message(
       'Настройки',
       name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Контакты ООО «ФК ПУЛЬС»`
+  String get contacts {
+    return Intl.message(
+      'Контакты ООО «ФК ПУЛЬС»',
+      name: 'contacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Менеджер`
+  String get manager {
+    return Intl.message(
+      'Менеджер',
+      name: 'manager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Офис-менеджер`
+  String get office_manager {
+    return Intl.message(
+      'Офис-менеджер',
+      name: 'office_manager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Мои данные`
+  String get my_data {
+    return Intl.message(
+      'Мои данные',
+      name: 'my_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Полное наименование`
+  String get full_naim {
+    return Intl.message(
+      'Полное наименование',
+      name: 'full_naim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ИНН`
+  String get inn {
+    return Intl.message(
+      'ИНН',
+      name: 'inn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-mail`
+  String get email {
+    return Intl.message(
+      'E-mail',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выберите события, о которых вы хотите получать уведомления`
+  String get select_events {
+    return Intl.message(
+      'Выберите события, о которых вы хотите получать уведомления',
+      name: 'select_events',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Изменения статусов претензий`
+  String get changed_status {
+    return Intl.message(
+      'Изменения статусов претензий',
+      name: 'changed_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сообщения по претензиям`
+  String get claim_messages {
+    return Intl.message(
+      'Сообщения по претензиям',
+      name: 'claim_messages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сохранить`
+  String get save {
+    return Intl.message(
+      'Сохранить',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ошибка!`
+  String get error {
+    return Intl.message(
+      'Ошибка!',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Оформить претензию`
+  String get issue_claim {
+    return Intl.message(
+      'Оформить претензию',
+      name: 'issue_claim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Добавить излишки`
+  String get add_excess {
+    return Intl.message(
+      'Добавить излишки',
+      name: 'add_excess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Код`
+  String get code {
+    return Intl.message(
+      'Код',
+      name: 'code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Детали`
+  String get details {
+    return Intl.message(
+      'Детали',
+      name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Накладная`
+  String get invoice {
+    return Intl.message(
+      'Накладная',
+      name: 'invoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Заказ покупателя`
+  String get buyer_order {
+    return Intl.message(
+      'Заказ покупателя',
+      name: 'buyer_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Дата`
+  String get date {
+    return Intl.message(
+      'Дата',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сумма`
+  String get sum {
+    return Intl.message(
+      'Сумма',
+      name: 'sum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сумма к оплате`
+  String get amount_payble {
+    return Intl.message(
+      'Сумма к оплате',
+      name: 'amount_payble',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ближайший срок оплаты`
+  String get next_payment_date {
+    return Intl.message(
+      'Ближайший срок оплаты',
+      name: 'next_payment_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Просроченный период`
+  String get overdue_period {
+    return Intl.message(
+      'Просроченный период',
+      name: 'overdue_period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Адрес`
+  String get address {
+    return Intl.message(
+      'Адрес',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Маркировка`
+  String get marking {
+    return Intl.message(
+      'Маркировка',
+      name: 'marking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Статус маркировки`
+  String get status_marking {
+    return Intl.message(
+      'Статус маркировки',
+      name: 'status_marking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нет`
+  String get no {
+    return Intl.message(
+      'Нет',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Есть`
+  String get there_is {
+    return Intl.message(
+      'Есть',
+      name: 'there_is',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Площадка: `
+  String get area {
+    return Intl.message(
+      'Площадка: ',
+      name: 'area',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Интернет-заказ: `
+  String get internet_order {
+    return Intl.message(
+      'Интернет-заказ: ',
+      name: 'internet_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Статус заказа: `
+  String get order_status {
+    return Intl.message(
+      'Статус заказа: ',
+      name: 'order_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нет маркированного товара`
+  String get no_marking_item {
+    return Intl.message(
+      'Нет маркированного товара',
+      name: 'no_marking_item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Содержит маркированный товар`
+  String get contains_marking_item {
+    return Intl.message(
+      'Содержит маркированный товар',
+      name: 'contains_marking_item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Если в течение 5 минут сообщение не придёт, запросите новый код.`
+  String get restore_password_enter_code_info {
+    return Intl.message(
+      'Если в течение 5 минут сообщение не придёт, запросите новый код.',
+      name: 'restore_password_enter_code_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Адрес доставки`
+  String get delivery_address {
+    return Intl.message(
+      'Адрес доставки',
+      name: 'delivery_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Статус маркировки`
+  String get marking_status {
+    return Intl.message(
+      'Статус маркировки',
+      name: 'marking_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Маркированный товар`
+  String get marking_item {
+    return Intl.message(
+      'Маркированный товар',
+      name: 'marking_item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сначала новые`
+  String get new_first {
+    return Intl.message(
+      'Сначала новые',
+      name: 'new_first',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сначала старые`
+  String get old_first {
+    return Intl.message(
+      'Сначала старые',
+      name: 'old_first',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Фильтр`
+  String get filter {
+    return Intl.message(
+      'Фильтр',
+      name: 'filter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сортировка по дате`
+  String get sort_by_date {
+    return Intl.message(
+      'Сортировка по дате',
+      name: 'sort_by_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Поиск`
+  String get search {
+    return Intl.message(
+      'Поиск',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Накладные`
+  String get invoices {
+    return Intl.message(
+      'Накладные',
+      name: 'invoices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Период`
+  String get period {
+    return Intl.message(
+      'Период',
+      name: 'period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По запросу ничего не найдено: `
+  String get search_not_found {
+    return Intl.message(
+      'По запросу ничего не найдено: ',
+      name: 'search_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Применить`
+  String get apply {
+    return Intl.message(
+      'Применить',
+      name: 'apply',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Получить новый код можно через`
+  String get remindRequest {
+    return Intl.message(
+      'Получить новый код можно через',
+      name: 'remindRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Получить новый код`
+  String get get_new_code {
+    return Intl.message(
+      'Получить новый код',
+      name: 'get_new_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Повторите пароль`
+  String get repeat_password {
+    return Intl.message(
+      'Повторите пароль',
+      name: 'repeat_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Новый пароль должен состоять минимум из 5 символов. Можно использовать заглавные и строчные латинские буквы и цифры.`
+  String get reset_password_info {
+    return Intl.message(
+      'Новый пароль должен состоять минимум из 5 символов. Можно использовать заглавные и строчные латинские буквы и цифры.',
+      name: 'reset_password_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Новый пароль`
+  String get new_password {
+    return Intl.message(
+      'Новый пароль',
+      name: 'new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Подтвердите пароль`
+  String get confirm_password {
+    return Intl.message(
+      'Подтвердите пароль',
+      name: 'confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сменить пароль`
+  String get change_password {
+    return Intl.message(
+      'Сменить пароль',
+      name: 'change_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Черновики претензий`
+  String get claim_drafts {
+    return Intl.message(
+      'Черновики претензий',
+      name: 'claim_drafts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `У вас нет черновиков претензий`
+  String get no_claim_drafts {
+    return Intl.message(
+      'У вас нет черновиков претензий',
+      name: 'no_claim_drafts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Товаров в претензии`
+  String get claim_items {
+    return Intl.message(
+      'Товаров в претензии',
+      name: 'claim_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Товаров в накладной`
+  String get invoice_items {
+    return Intl.message(
+      'Товаров в накладной',
+      name: 'invoice_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Удаление черновика`
+  String get delete_claim_draft {
+    return Intl.message(
+      'Удаление черновика',
+      name: 'delete_claim_draft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Черновик претензии будет удалён, вы уверены?`
+  String get delete_claim_draft_info {
+    return Intl.message(
+      'Черновик претензии будет удалён, вы уверены?',
+      name: 'delete_claim_draft_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Удалить`
+  String get delete {
+    return Intl.message(
+      'Удалить',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Отмена`
+  String get canc {
+    return Intl.message(
+      'Отмена',
+      name: 'canc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Удалить черновик`
+  String get delete_draft {
+    return Intl.message(
+      'Удалить черновик',
+      name: 'delete_draft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Не выбрано`
+  String get not_selected {
+    return Intl.message(
+      'Не выбрано',
+      name: 'not_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Статус претензии`
+  String get claim_status {
+    return Intl.message(
+      'Статус претензии',
+      name: 'claim_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `За выбранный период не найдено ни одной претензии`
+  String get no_claims {
+    return Intl.message(
+      'За выбранный период не найдено ни одной претензии',
+      name: 'no_claims',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `В выбранном периоде данных нет`
+  String get no_data {
+    return Intl.message(
+      'В выбранном периоде данных нет',
+      name: 'no_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Изменить период`
+  String get change_period {
+    return Intl.message(
+      'Изменить период',
+      name: 'change_period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сбросить`
+  String get reset {
+    return Intl.message(
+      'Сбросить',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `№ вх. документа`
+  String get incoming_doc_number {
+    return Intl.message(
+      '№ вх. документа',
+      name: 'incoming_doc_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Статус`
+  String get status {
+    return Intl.message(
+      'Статус',
+      name: 'status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Претензия`
+  String get claim {
+    return Intl.message(
+      'Претензия',
+      name: 'claim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Не удалось загрузить товары`
+  String get error_load_items {
+    return Intl.message(
+      'Не удалось загрузить товары',
+      name: 'error_load_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Кол-во в накладной`
+  String get invoice_quantity {
+    return Intl.message(
+      'Кол-во в накладной',
+      name: 'invoice_quantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Кол-во в претензии`
+  String get claim_quantity {
+    return Intl.message(
+      'Кол-во в претензии',
+      name: 'claim_quantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Тип претензии`
+  String get claim_type {
+    return Intl.message(
+      'Тип претензии',
+      name: 'claim_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Комментарий`
+  String get comment {
+    return Intl.message(
+      'Комментарий',
+      name: 'comment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Серия`
+  String get series {
+    return Intl.message(
+      'Серия',
+      name: 'series',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Решение`
+  String get decision {
+    return Intl.message(
+      'Решение',
+      name: 'decision',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ваше сообщение от`
+  String get your_message_from {
+    return Intl.message(
+      'Ваше сообщение от',
+      name: 'your_message_from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Отклонена`
+  String get rejected {
+    return Intl.message(
+      'Отклонена',
+      name: 'rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По запросу ничего не найдено`
+  String get not_found {
+    return Intl.message(
+      'По запросу ничего не найдено',
+      name: 'not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `За выбранный период не найдено ни одной накладной\n\n`
+  String get no_invoices {
+    return Intl.message(
+      'За выбранный период не найдено ни одной накладной\n\n',
+      name: 'no_invoices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Попробуйте выбрать другую дату или обратитесь в службу поддержки по адресу `
+  String get try_another_date {
+    return Intl.message(
+      'Попробуйте выбрать другую дату или обратитесь в службу поддержки по адресу ',
+      name: 'try_another_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Производитель`
+  String get manufacturer {
+    return Intl.message(
+      'Производитель',
+      name: 'manufacturer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Фасовка`
+  String get packaging {
+    return Intl.message(
+      'Фасовка',
+      name: 'packaging',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Кол-во`
+  String get quantity {
+    return Intl.message(
+      'Кол-во',
+      name: 'quantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Цена`
+  String get price {
+    return Intl.message(
+      'Цена',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `НДС`
+  String get vat {
+    return Intl.message(
+      'НДС',
+      name: 'vat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сумма НДС`
+  String get vat_sum {
+    return Intl.message(
+      'Сумма НДС',
+      name: 'vat_sum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Задолженность`
+  String get debt {
+    return Intl.message(
+      'Задолженность',
+      name: 'debt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Полное наименование`
+  String get full_name {
+    return Intl.message(
+      'Полное наименование',
+      name: 'full_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Регистрационные данные`
+  String get registration_data {
+    return Intl.message(
+      'Регистрационные данные',
+      name: 'registration_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Пароль изменён`
+  String get password_changed {
+    return Intl.message(
+      'Пароль изменён',
+      name: 'password_changed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вы не можете использовать этот код для восстановления пароля.\n\nВам нужно запросить новый код.`
+  String get cant_use_code {
+    return Intl.message(
+      'Вы не можете использовать этот код для восстановления пароля.\n\nВам нужно запросить новый код.',
+      name: 'cant_use_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Срок действия кода истёк`
+  String get code_expired {
+    return Intl.message(
+      'Срок действия кода истёк',
+      name: 'code_expired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Черновик претензии: {id}\n\nВсе черновики хранятся в разделе Черновики претензии. Перейти в раздел можно со вкладки Претензии.`
+  String claim_saved(Object id) {
+    return Intl.message(
+      'Черновик претензии: $id\n\nВсе черновики хранятся в разделе Черновики претензии. Перейти в раздел можно со вкладки Претензии.',
+      name: 'claim_saved',
+      desc: '',
+      args: [id],
+    );
+  }
+
+  /// `Поиск осуществляется по `
+  String get invoice_search_error {
+    return Intl.message(
+      'Поиск осуществляется по ',
+      name: 'invoice_search_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Для поиска по номеру заказа покупателя или по номеру интернет-заказа переключите режим в меню.\n\nПодробнее про поиск накладных смотрите в «Справке» в разделе `
+  String get invoice_search_error_by_number {
+    return Intl.message(
+      'Для поиска по номеру заказа покупателя или по номеру интернет-заказа переключите режим в меню.\n\nПодробнее про поиск накладных смотрите в «Справке» в разделе ',
+      name: 'invoice_search_error_by_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `\n\nПодробнее про поиск претензии смотрите в «Справке» в разделе `
+  String get claim_search_error_by_number {
+    return Intl.message(
+      '\n\nПодробнее про поиск претензии смотрите в «Справке» в разделе ',
+      name: 'claim_search_error_by_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Поиск накладной`
+  String get invoice_search {
+    return Intl.message(
+      'Поиск накладной',
+      name: 'invoice_search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Для поиска по номеру накладной или по номеру интернет-заказа переключите режим в меню.\n\nПодробнее про поиск накладных смотрите в «Справке» в разделе `
+  String get invoice_search_error_by_order {
+    return Intl.message(
+      'Для поиска по номеру накладной или по номеру интернет-заказа переключите режим в меню.\n\nПодробнее про поиск накладных смотрите в «Справке» в разделе ',
+      name: 'invoice_search_error_by_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Для поиска по номеру накладной или по номеру заказа покупателя переключите режим в меню.\n\nПодробнее про поиск накладных смотрите в «Справке» в разделе `
+  String get invoice_search_error_by_internet_order {
+    return Intl.message(
+      'Для поиска по номеру накладной или по номеру заказа покупателя переключите режим в меню.\n\nПодробнее про поиск накладных смотрите в «Справке» в разделе ',
+      name: 'invoice_search_error_by_internet_order',
       desc: '',
       args: [],
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:mkk/core/utils/date_format.dart';
 import 'package:mkk/generated/l10n.dart';
 import '../../../../../config/theme/elements/theme_data.dart';
 import '../../../../../core/utils/constants.dart';
@@ -42,7 +43,7 @@ class _CreateActPageState extends State<CreateActPage> {
             DateTimeRange? dateTimeRange = await showDateRangePicker(
                 context: context,
                 firstDate: DateTime(2010),
-                lastDate: DateTime.now().add(const Duration(days: 365)),
+                lastDate: DateTime.now(),
                 initialEntryMode: DatePickerEntryMode.calendarOnly);
             if (dateTimeRange != null) {
               setState(() {
@@ -66,14 +67,26 @@ class _CreateActPageState extends State<CreateActPage> {
           canPress: _textController.text.isNotEmpty,
           onPressed: () {
             final ProfileActParams params = ProfileActParams(
-              dateFrom: _textController.text.split(' - ')[0],
-              dateTo: _textController.text.split(' - ')[1],
-            );
+                dateFrom: DateFormats.yyyyMMdd(_stringToDateTime(
+                  _textController.text.split(' - ')[0],
+                )),
+                dateTo: DateFormats.yyyyMMdd(_stringToDateTime(
+                  _textController.text.split(' - ')[1],
+                )));
             context.read<ActBloc>().add(ActRequestE(params: params));
           },
           text: S.of(context).request,
         ),
       ],
+    );
+  }
+
+  DateTime _stringToDateTime(String date) {
+    final List<String> dateList = date.split('.');
+    return DateTime(
+      int.parse(dateList[2]),
+      int.parse(dateList[1]),
+      int.parse(dateList[0]),
     );
   }
 }

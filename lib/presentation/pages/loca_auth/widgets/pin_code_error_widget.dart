@@ -5,10 +5,12 @@ import 'package:mkk/generated/l10n.dart';
 import '../../../../core/utils/constants.dart';
 
 class PinErrorWidget extends StatelessWidget {
+  final bool needPadding;
   const PinErrorWidget({
     Key? key,
     required this.hasError,
     required this.incorrectCode,
+    this.needPadding = true,
   }) : super(key: key);
 
   final bool hasError;
@@ -18,7 +20,7 @@ class PinErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: kPadding),
-      margin: const EdgeInsets.only(bottom: kPadding * 3),
+      //margin: needPadding ? const EdgeInsets.only(bottom: kPadding * 3) : null,
       alignment: Alignment.center,
       height: 36,
       child: hasError

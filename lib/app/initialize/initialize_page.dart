@@ -40,7 +40,8 @@ class InitializeContent extends StatelessWidget {
     return BlocBuilder<InitializeBloc, InitializeState>(
       builder: (context, state) {
         if (state is InitializeAppSplashS) {
-          return const AppSplashPage();
+          return const StaticSplashPage();
+          //return const AppSplashPage();
         } else if (state is InitializeDoneS) {
           return ErrorWrapper(child: child);
         } else if (state is InitializeErrorS) {

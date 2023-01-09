@@ -1,0 +1,4 @@
+enum InvoicesSortType {
+  firstNew,
+  firstOld,
+}

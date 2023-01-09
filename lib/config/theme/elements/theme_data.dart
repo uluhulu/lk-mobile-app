@@ -57,6 +57,7 @@ abstract class MyThemeData {
   late Color greenColor;
   late Color redColor;
   late Color whiteColor;
+  late Color blackColor;
   late Color hintColor;
   late Color greyIconColor;
   late Color emailIconColor;
@@ -65,7 +66,17 @@ abstract class MyThemeData {
   late Color successColor;
   late Color paymentsCardColor;
   late Color blueColor;
+  late Color lightBlueColor;
   late Color orangeColor;
+  late Color blueDetailCardColor;
+  late Color deepBlueTextColor;
+  late Color deepBlueCardColor;
+  late Color greyContainerColor;
+  late Color markingStatusCardColor;
+  late Color grey1;
+  late Color spaceGrey;
+  late Color mainDividerColor;
+  late Color yellowColor;
 
   @override
   bool operator ==(covariant MyThemeData other) {
@@ -78,13 +89,26 @@ abstract class MyThemeData {
         other.greenColor == greenColor &&
         other.redColor == redColor &&
         other.whiteColor == whiteColor &&
+        other.blackColor == blackColor &&
         other.hintColor == hintColor &&
         other.greyIconColor == greyIconColor &&
         other.emailIconColor == emailIconColor &&
         other.phoneIconColor == phoneIconColor &&
         other.errorColor == errorColor &&
         other.successColor == successColor &&
-        other.paymentsCardColor == paymentsCardColor;
+        other.paymentsCardColor == paymentsCardColor &&
+        other.blueColor == blueColor &&
+        other.lightBlueColor == lightBlueColor &&
+        other.orangeColor == orangeColor &&
+        other.blueDetailCardColor == blueDetailCardColor &&
+        other.deepBlueTextColor == deepBlueTextColor &&
+        other.deepBlueCardColor == deepBlueCardColor &&
+        other.greyContainerColor == greyContainerColor &&
+        other.markingStatusCardColor == markingStatusCardColor &&
+        other.grey1 == grey1 &&
+        other.spaceGrey == spaceGrey &&
+        other.mainDividerColor == mainDividerColor &&
+        other.yellowColor == yellowColor;
   }
 
   @override
@@ -96,12 +120,25 @@ abstract class MyThemeData {
         greenColor.hashCode ^
         redColor.hashCode ^
         whiteColor.hashCode ^
+        blackColor.hashCode ^
         hintColor.hashCode ^
         greyIconColor.hashCode ^
         emailIconColor.hashCode ^
         phoneIconColor.hashCode ^
         errorColor.hashCode ^
         successColor.hashCode ^
-        paymentsCardColor.hashCode;
+        paymentsCardColor.hashCode ^
+        blueColor.hashCode ^
+        lightBlueColor.hashCode ^
+        orangeColor.hashCode ^
+        blueDetailCardColor.hashCode ^
+        deepBlueTextColor.hashCode ^
+        deepBlueCardColor.hashCode ^
+        greyContainerColor.hashCode ^
+        markingStatusCardColor.hashCode ^
+        grey1.hashCode ^
+        spaceGrey.hashCode ^
+        mainDividerColor.hashCode ^
+        yellowColor.hashCode;
   }
 }

@@ -19,23 +19,23 @@ class MainScreen extends StatelessWidget {
     return MainNavigator(
       child: BlocProvider<HomeNavigationBarBloc>(
         create: _createNavigationBloc,
-        child: ScreenView(
-          context: context,
-          needPadding: false,
+        child: Scaffold(
+          // context: context,
+          // needPadding: false,
           bottomNavigationBar: const MainNavigationBar(),
-          titleWidget: SvgPicture.asset('assets/icon/app_bar_logo.svg'),
-          leading: InkWell(
-              onTap: () {
-                showDialog(context: context, builder: _showDialog);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(kPadding),
-                child: SvgPicture.asset(
-                  'assets/icon/question.svg',
-                  color: Colors.white,
-                ),
-              )),
-          child: const MainContent(),
+          // titleWidget: SvgPicture.asset('assets/icon/app_bar_logo.svg'),
+          // leading: InkWell(
+          //     onTap: () {
+          //       showDialog(context: context, builder: _showDialog);
+          //     },
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(kPadding),
+          //       child: SvgPicture.asset(
+          //         'assets/icon/question.svg',
+          //         color: Colors.white,
+          //       ),
+          //     )),
+          body: const MainContent(),
         ),
       ),
     );

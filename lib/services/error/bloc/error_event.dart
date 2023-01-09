@@ -32,3 +32,13 @@ class AuthErrorE extends ErrorEvent {
   @override
   List<Object?> get props => [error];
 }
+
+class ErrorServerE extends ErrorEvent {
+  final String message;
+  ErrorServerE({
+    required this.message,
+  });
+
+  @override
+  List<Object?> get props => [message];
+}

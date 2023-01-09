@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:mkk/data/api/auth/login/entity/auth_login_entity.dart';
 import 'package:mkk/data/api/profile/info/entity/profile_info_entity.dart';
 

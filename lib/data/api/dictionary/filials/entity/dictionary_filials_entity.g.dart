@@ -34,8 +34,8 @@ Meta _$MetaFromJson(Map<String, dynamic> json) => Meta(
       lastPage: json['last_page'] as int,
       perPage: json['per_page'] as int,
       total: json['total'] as int,
-      from: json['from'] as int,
-      to: json['to'] as int,
+      from: json['from'] as int?,
+      to: json['to'] as int?,
       path: json['path'] as String,
       links: (json['links'] as List<dynamic>)
           .map((e) => MetaLinks.fromJson(e as Map<String, dynamic>))

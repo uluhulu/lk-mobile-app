@@ -1,0 +1,507 @@
+{
+    "data": [
+        {
+            "uuid": "2e2b06ec-7714-11ed-a203-b47af1468eb4",
+            "date": "2022-12-08",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 519.89,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04228325_08.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04228325",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u0410\u043f\u0442\u0435\u043a\u0430\u0424\u043e\u0440\u0442\u0435",
+            "marketplace_number": "1128063523",
+            "marketplace_status": "\u0421\u043e\u0431\u0440\u0430\u043d \u0438 \u0443\u043f\u0430\u043a\u043e\u0432\u0430\u043d",
+            "customer_order_number": "\u041c\u0421\u041a04320529"
+        },
+        {
+            "uuid": "fa1a808d-76e1-11ed-bdd1-b47af15e6e0c",
+            "date": "2022-12-08",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 561.11,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04215913_08.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04215913",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u0410\u043f\u0442\u0435\u043a\u0430\u0424\u043e\u0440\u0442\u0435",
+            "marketplace_number": "1128063382",
+            "marketplace_status": "\u0421\u043e\u0431\u0440\u0430\u043d \u0438 \u0443\u043f\u0430\u043a\u043e\u0432\u0430\u043d",
+            "customer_order_number": "\u041c\u0421\u041a04305598"
+        },
+        {
+            "uuid": "880809ae-76dd-11ed-a203-b47af1468eb4",
+            "date": "2022-12-08",
+            "marking_status": {
+                "name": "\u041e\u0442\u0433\u0440\u0443\u0436\u0435\u043d",
+                "description": "\u041e\u0433\u043e"
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 642.91,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04214288_08.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04214288",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u042e\u0442\u0435\u043a\u0430",
+            "marketplace_number": "33411167",
+            "marketplace_status": "\u0421\u043e\u0431\u0440\u0430\u043d \u0438 \u0443\u043f\u0430\u043a\u043e\u0432\u0430\u043d",
+            "customer_order_number": "\u041c\u0421\u041a04301057"
+        },
+        {
+            "uuid": "88080a1b-76dd-11ed-a203-b47af1468eb4",
+            "date": "2022-12-08",
+            "marking_status": {
+                "name": "\u041e\u0442\u0433\u0440\u0443\u0436\u0435\u043d",
+                "description": "\u041e\u0433\u043e"
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 218.37,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04214287_08.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04214287",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u042e\u0442\u0435\u043a\u0430",
+            "marketplace_number": "33413110",
+            "marketplace_status": "\u0421\u043e\u0431\u0440\u0430\u043d \u0438 \u0443\u043f\u0430\u043a\u043e\u0432\u0430\u043d",
+            "customer_order_number": "\u041c\u0421\u041a04301137"
+        },
+        {
+            "uuid": "89dfcf82-76dd-11ed-bdd1-b47af15e6e0c",
+            "date": "2022-12-08",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 311,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04214281_08.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04214281",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u0410\u043f\u0442\u0435\u043a\u0430\u0424\u043e\u0440\u0442\u0435",
+            "marketplace_number": "1128063299",
+            "marketplace_status": "\u0421\u043e\u0431\u0440\u0430\u043d \u0438 \u0443\u043f\u0430\u043a\u043e\u0432\u0430\u043d",
+            "customer_order_number": "\u041c\u0421\u041a04301228"
+        },
+        {
+            "uuid": "9aed53f1-765e-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 14484.58,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "129327, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0418\u0437\u0443\u043c\u0440\u0443\u0434\u043d\u0430\u044f, \u0434. 6",
+            "edo": "\u041c\u0421\u041a04213083_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04213083",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04289235"
+        },
+        {
+            "uuid": "a5cd23f2-765d-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041e\u0436\u0438\u0434\u0430\u043d\u0438\u0435 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f",
+                "description": "\u041c\u044b \u043f\u043e\u043b\u0443\u0447\u0438\u043b\u0438 \u043e\u0442 \u0412\u0430\u0441 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u0442\u0430\u0432\u043a\u0438 (416-\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435) \u0438 \u043e\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043b\u044f\u0435\u043c \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0438\u0435.\n                \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043f\u043e\u0434\u043e\u0436\u0434\u0438\u0442\u0435 \u043d\u0435\u043c\u043d\u043e\u0433\u043e \u043f\u043e\u043a\u0430 \u043c\u044b \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u043c \u0412\u0430\u0448 \u0444\u0430\u0439\u043b XML. \u0412 \u0441\u043b\u0443\u0447\u0430\u0435, \u0435\u0441\u043b\u0438 \u0434\u0430\u043d\u043d\u044b\u0439 \u0441\u0442\u0430\u0442\u0443\u0441 \u043d\u0435 \u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f\n                \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0438 23 \u0447\u0430\u0441\u043e\u0432, \u043e\u0431\u0440\u0430\u0442\u0438\u0442\u0435\u0441\u044c \u0432 \u0442\u0435\u0445\u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0443 \u0424\u041a \u041f\u0423\u041b\u042c\u0421, \u0432\u043e\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0432\u0448\u0438\u0441\u044c \u0444\u043e\u0440\u043c\u043e\u0439 \u043e\u0431\u0440\u0430\u0442\u043d\u043e\u0439 \u0441\u0432\u044f\u0437\u0438."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 14484.58,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "125430, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0448\u043e\u0441\u0441\u0435 \u041f\u044f\u0442\u043d\u0438\u0446\u043a\u043e\u0435, \u0434. 21, \u043a\u043e\u0440\u043f. 1",
+            "edo": "\u041c\u0421\u041a04212564_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04212564",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04289244"
+        },
+        {
+            "uuid": "88a9001f-7652-11ed-bdd1-b47af15e6e0c",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 3547.5,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04207085_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04207085",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04284517"
+        },
+        {
+            "uuid": "88a8f6fa-7652-11ed-bdd1-b47af15e6e0c",
+            "date": "2022-12-07",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 16771.54,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04207084_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04207084",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04284517"
+        },
+        {
+            "uuid": "7fd63c3c-7651-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 159043.48,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04206656_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04206656",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04289228"
+        },
+        {
+            "uuid": "7eba3b86-7651-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 11505.68,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04206653_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04206653",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04289228"
+        },
+        {
+            "uuid": "ce6650a5-762b-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 333.77,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04199165_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04199165",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u0410\u043f\u0442\u0435\u043a\u0430\u0424\u043e\u0440\u0442\u0435",
+            "marketplace_number": "1128063050",
+            "marketplace_status": "\u0413\u043e\u0442\u043e\u0432 \u043a \u0432\u044b\u0434\u0430\u0447\u0435",
+            "customer_order_number": "\u041c\u0421\u041a04288599"
+        },
+        {
+            "uuid": "487fff7d-762b-11ed-bdd1-b47af15e6e0c",
+            "date": "2022-12-07",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 340.54,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "129327, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0418\u0437\u0443\u043c\u0440\u0443\u0434\u043d\u0430\u044f, \u0434. 6",
+            "edo": "\u041c\u0421\u041a04199068_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04199068",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u042e\u0442\u0435\u043a\u0430",
+            "marketplace_number": "33243137",
+            "marketplace_status": "\u0413\u043e\u0442\u043e\u0432 \u043a \u0432\u044b\u0434\u0430\u0447\u0435",
+            "customer_order_number": "\u041c\u0421\u041a04275810"
+        },
+        {
+            "uuid": "2db9bffd-762b-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 219.12,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "129327, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0418\u0437\u0443\u043c\u0440\u0443\u0434\u043d\u0430\u044f, \u0434. 6",
+            "edo": "\u041c\u0421\u041a04199030_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04199030",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u0410\u0421\u041d\u0410",
+            "marketplace_number": "22786124",
+            "marketplace_status": "\u0414\u043e\u0441\u0442\u0430\u0432\u043b\u0435\u043d",
+            "customer_order_number": "\u041c\u0421\u041a04284190"
+        },
+        {
+            "uuid": "1071f74f-762b-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 43.77,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04198996_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04198996",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04288980"
+        },
+        {
+            "uuid": "7d0d6177-762a-11ed-bdd1-b47af15e6e0c",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 3448.19,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04198857_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04198857",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04288979"
+        },
+        {
+            "uuid": "7b62d1ba-762a-11ed-bdd1-b47af15e6e0c",
+            "date": "2022-12-07",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 563.58,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+            "edo": "\u041c\u0421\u041a04198855_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04198855",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "",
+            "marketplace_number": "",
+            "marketplace_status": "",
+            "customer_order_number": "\u041c\u0421\u041a04288979"
+        },
+        {
+            "uuid": "b45b4f32-7628-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": null,
+            "has_claims": false,
+            "is_marking": false,
+            "sum": 816.14,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "125430, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0448\u043e\u0441\u0441\u0435 \u041f\u044f\u0442\u043d\u0438\u0446\u043a\u043e\u0435, \u0434. 21, \u043a\u043e\u0440\u043f. 1",
+            "edo": "\u041c\u0421\u041a04198306_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04198306",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u0421\u0431\u0435\u0440\u043c\u0435\u0433\u0430\u043c\u0430\u0440\u043a\u0435\u0442",
+            "marketplace_number": "773864104",
+            "marketplace_status": "\u0413\u043e\u0442\u043e\u0432 \u043a \u0432\u044b\u0434\u0430\u0447\u0435",
+            "customer_order_number": "\u041c\u0421\u041a04284826"
+        },
+        {
+            "uuid": "a2917d28-7628-11ed-a203-b47af1468eb4",
+            "date": "2022-12-07",
+            "marking_status": {
+                "name": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+                "description": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u043e\u0431\u043e\u0440\u043e\u0442 \u043f\u043e \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0435 \u0437\u0430\u043a\u043e\u043d\u0447\u0435\u043d. \u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0430\u043a\u0446\u0435\u043f\u0442\u043e\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e."
+            },
+            "has_claims": false,
+            "is_marking": true,
+            "sum": 720.94,
+            "claims": [],
+            "cargo_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\"",
+            "cargo_address": "125430, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0448\u043e\u0441\u0441\u0435 \u041f\u044f\u0442\u043d\u0438\u0446\u043a\u043e\u0435, \u0434. 21, \u043a\u043e\u0440\u043f. 1",
+            "edo": "\u041c\u0421\u041a04198280_07.12.2022",
+            "file": "%D0%9C%D0%A1%D0%9A04198280",
+            "filter_key": "dc8b93b93a8f465a149c01f30998c8ab",
+            "marketplace_name": "\u0410\u0421\u041d\u0410",
+            "marketplace_number": "22782085",
+            "marketplace_status": "\u0414\u043e\u0441\u0442\u0430\u0432\u043b\u0435\u043d",
+            "customer_order_number": "\u041c\u0421\u041a04278223"
+        }
+    ],
+    "links": {
+        "first": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=1",
+        "last": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=19",
+        "prev": null,
+        "next": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=2"
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 19,
+        "links": [
+            {
+                "url": null,
+                "label": "\u041d\u0430\u0437\u0430\u0434",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=2",
+                "label": "2",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=3",
+                "label": "3",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=4",
+                "label": "4",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=5",
+                "label": "5",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=6",
+                "label": "6",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=7",
+                "label": "7",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=8",
+                "label": "8",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=9",
+                "label": "9",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=10",
+                "label": "10",
+                "active": false
+            },
+            {
+                "url": null,
+                "label": "...",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=18",
+                "label": "18",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=19",
+                "label": "19",
+                "active": false
+            },
+            {
+                "url": "https:\/\/lk-stage.puls.ru\/api\/invoices?page=2",
+                "label": "\u0412\u043f\u0435\u0440\u0435\u0434",
+                "active": false
+            }
+        ],
+        "path": "https:\/\/lk-stage.puls.ru\/api\/invoices",
+        "per_page": 20,
+        "to": 19,
+        "total": 377
+    },
+    "filter": {
+        "addresses": [
+            {
+                "uuid": "d82b3e18-9451-11e1-84d5-d8d385febb70",
+                "name": "113452, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f, \u0434.24, \u043a\u043e\u0440\u043f.2",
+                "parent_uuid": "6e083742-d006-11dc-b35f-001a4bec493c",
+                "parent_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\""
+            },
+            {
+                "uuid": "08ea3db4-b641-11e6-8148-005056bc5d70",
+                "name": "125430, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0448\u043e\u0441\u0441\u0435 \u041f\u044f\u0442\u043d\u0438\u0446\u043a\u043e\u0435, \u0434. 21, \u043a\u043e\u0440\u043f. 1",
+                "parent_uuid": "6e083742-d006-11dc-b35f-001a4bec493c",
+                "parent_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\""
+            },
+            {
+                "uuid": "800bb172-20ec-11e6-8130-005056bc5d70",
+                "name": "129327, \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u0443\u043b. \u0418\u0437\u0443\u043c\u0440\u0443\u0434\u043d\u0430\u044f, \u0434. 6",
+                "parent_uuid": "6e083742-d006-11dc-b35f-001a4bec493c",
+                "parent_name": "\u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e \u0441 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c\u044e \"\u0410\u041f\u0422\u0415\u041a\u0410 \"\u0424\u041e\u0420\u0422\u0415\""
+            }
+        ],
+        "marking_statuses": [
+            "\u041e\u0436\u0438\u0434\u0430\u043d\u0438\u0435 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f",
+            "\u041e\u0442\u0433\u0440\u0443\u0436\u0435\u043d",
+            "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d",
+            "\u0427\u0430\u0441\u0442\u0438\u0447\u043d\u043e \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d"
+        ]
+    },
+    "applied_filters": {
+        "date_from": "2022-11-01",
+        "date_to": "2022-12-29",
+        "address_filter": null,
+        "is_marking": null,
+        "marking_status": null
+    },
+    "is_edo": true
+}%                                                      araki@MacBook-Pro-Vasilij

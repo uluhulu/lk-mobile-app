@@ -58,8 +58,8 @@ class Meta {
   @JsonKey(name: 'per_page')
   final int perPage;
   final int total;
-  final int from;
-  final int to;
+  final int? from;
+  final int? to;
   final String path;
   final List<MetaLinks> links;
 
@@ -68,8 +68,8 @@ class Meta {
     required this.lastPage,
     required this.perPage,
     required this.total,
-    required this.from,
-    required this.to,
+    this.from,
+    this.to,
     required this.path,
     required this.links,
   });

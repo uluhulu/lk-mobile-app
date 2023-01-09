@@ -6,7 +6,7 @@ import 'package:mkk/generated/l10n.dart';
 import 'package:mkk/locator/locator.dart';
 import 'package:mkk/presentation/pages/profile/act/act_bloc/act_bloc.dart';
 import 'package:mkk/presentation/pages/profile/act/widgets/act_error_widget.dart';
-import 'package:mkk/presentation/widgets/loading_page.dart';
+import 'package:mkk/presentation/widgets/loading_widget.dart';
 import '../../../../widgets/modal/modal_bottom_sheet_widget.dart';
 import '../../../../widgets/scaffold/screen_view.dart';
 import '../widgets/act_loaded_widget.dart';
@@ -47,7 +47,7 @@ class ActContent extends StatelessWidget {
 
   Widget _builder(BuildContext context, ActState state) {
     if (state is ActLoadingS) {
-      return const LoadingPage();
+      return const LoadingWidget();
     }
     return const CreateActPage();
   }

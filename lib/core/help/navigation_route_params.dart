@@ -1,6 +1,6 @@
 /// Передача базовых параметров роута
 class NavigationRouteParams {
-  const NavigationRouteParams(this.id);
+  const NavigationRouteParams(this.uuid);
 
-  final int id;
+  final String uuid;
 }

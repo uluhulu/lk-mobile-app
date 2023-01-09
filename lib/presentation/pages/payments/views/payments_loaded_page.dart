@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mkk/generated/l10n.dart';
 
 import '../../../../core/utils/constants.dart';
 import '../../../../data/api/receivables/info/entity/receivables_info_entity.dart';
@@ -20,7 +21,7 @@ class PaymentsLoadedPage extends StatelessWidget {
         Padding(
           padding: _padding(),
           child: Text(
-            'Задолженность',
+            S.of(context).debt,
             style: Theme.of(context).textTheme.headline2,
           ),
         ),

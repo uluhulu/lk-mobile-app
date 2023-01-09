@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mkk/generated/l10n.dart';
+import 'package:mkk/presentation/widgets/text/text_with_copy.dart';
 
 import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
@@ -18,16 +20,20 @@ class OverduePeriodWidget extends StatelessWidget {
     final myColors = MyTheme.of(context);
     final myTheme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: kBasePadding,
-        vertical: kBasePadding * 2,
-      ),
+      padding: _padding(),
       child: OverduePeriodContent(
         myColors: myColors,
         myTheme: myTheme,
         days: days,
         unit: unit,
       ),
+    );
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.symmetric(
+      horizontal: kBasePadding,
+      vertical: kBasePadding * 2,
     );
   }
 }
@@ -50,31 +56,39 @@ class OverduePeriodContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(
-          'assets/icon/all-debt.svg',
-          width: 26,
-          height: 27,
-          color: myColors.errorColor,
-        ),
+        _icon(),
         const SizedBox(width: kPadding),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Просроченный период',
-              style: myTheme.textTheme.subtitle2?.copyWith(
-                color: myColors.errorColor,
-              ),
-            ),
-            Text(
-              '$days $unit',
-              style: myTheme.textTheme.headline5?.copyWith(
-                color: myColors.errorColor,
-              ),
-            ),
-          ],
-        )
+        _content(context),
       ],
+    );
+  }
+
+  Widget _content(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          S.of(context).overdue_period,
+          style: myTheme.textTheme.subtitle2?.copyWith(
+            color: myColors.errorColor,
+          ),
+        ),
+        TextWithCopy(
+          '$days $unit',
+          style: myTheme.textTheme.headline5?.copyWith(
+            color: myColors.errorColor,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _icon() {
+    return SvgPicture.asset(
+      'assets/icon/all-debt.svg',
+      width: 26,
+      height: 27,
+      color: myColors.errorColor,
     );
   }
 }

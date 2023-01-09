@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkk/core/utils/constants.dart';
-import 'package:mkk/presentation/widgets/buttons/primary_elevated_button.dart';
+import 'package:mkk/domain/repositories/user_repository.dart';
+import 'package:mkk/locator/locator.dart';
 import 'package:mkk/presentation/widgets/modal/base_bottom_sheet_widget.dart';
+import 'package:mkk/presentation/widgets/scaffold/screen_view.dart';
 import '../../../../config/app_routes.dart';
 import '../../../../config/theme/elements/theme_data.dart';
+import '../../../../domain/use_cases/user/local_auth_use_case.dart';
 import '../../../../generated/l10n.dart';
 import '../../authorization/authorization_bloc/authorization_bloc.dart';
 import '../../banner/banner_bloc/banner_bloc.dart';
-import '../widgets/settings_icon_title_widget.dart';
+import '../widgets/notification_content.dart';
+import '../widgets/settings_item_widget.dart';
 
 class SettingsCard extends StatelessWidget {
   const SettingsCard({super.key});
@@ -28,130 +32,66 @@ class SettingsCard extends StatelessWidget {
             textAlign: TextAlign.start,
           ),
         ),
-        const SizedBox(height: kBasePadding * 2),
-        SettingsIconTitleWidget(
-          icon: SvgPicture.asset(
-            'assets/icon/notification.svg',
-            color: Theme.of(context).primaryColor,
-          ),
-          title: S.of(context).notifications,
-          onPressed: () {
-            notificationCenter(context);
-          },
-        ),
-        const Divider(
-          height: 64,
-          thickness: 2,
-          indent: 40,
-        ),
-        SettingsIconTitleWidget(
-          icon: SvgPicture.asset(
-            'assets/icon/key.svg',
-            color: Theme.of(context).primaryColor,
-          ),
+        const SizedBox(height: kPadding),
+        // SettingsItemWidget(
+        //   onPressed: () {
+        //     notificationCenter(context);
+        //   },
+        //   title: S.of(context).notifications,
+        //   icon: SvgPicture.asset('assets/icon/notification.svg',
+        //       color: Theme.of(context).primaryColor),
+        // ),
+        SettingsItemWidget(
           onPressed: () {
             Navigator.of(context).pushNamed(AppRoutes.setPin);
           },
-          title: S.of(context).change_app_login_code,
+          title: _isSetPin(context)
+              ? S.of(context).change_app_login_code
+              : "Установить код входа в приложение",
+          icon: SvgPicture.asset('assets/icon/key.svg',
+              color: Theme.of(context).primaryColor),
+          needDivider: false,
         ),
-        const Divider(
-          height: 64,
-          thickness: 2,
-          indent: 40,
-        ),
-        SettingsIconTitleWidget(
-          icon: SvgPicture.asset(
-            'assets/icon/key.svg',
-            color: Theme.of(context).primaryColor,
-          ),
-          title: 'Удалить данные о пин коде',
-          needIconNext: false,
-          onPressed: () {
-            context.read<BannerBloc>().add(BannerRemoveAllE());
-          },
-        ),
-        const SizedBox(height: kPadding * 2),
-        const Divider(
-          height: 48,
+
+        // SettingsItemWidget(
+        //   onPressed: () {
+        //     context.read<BannerBloc>().add(BannerRemoveAllE());
+        //   },
+        //   title: 'Удалить данные о пин коде',
+        //   needIconNext: false,
+        //   icon: SvgPicture.asset('assets/icon/key.svg',
+        //       color: Theme.of(context).primaryColor),
+        //   needDivider: false,
+        // ),
+        Divider(
           thickness: 12,
+          color: MyTheme.of(context).mainDividerColor,
         ),
-        const SizedBox(height: kBasePadding),
-        SettingsIconTitleWidget(
-          icon: SvgPicture.asset(
-            'assets/icon/logout.svg',
-            color: myColors.errorColor,
-          ),
-          title: S.of(context).logout,
-          needIconNext: false,
+        SettingsItemWidget(
           onPressed: () {
             context.read<AuthorizationBloc>().add(AuthorizationLogOutE());
           },
+          title: S.of(context).logout,
+          icon: SvgPicture.asset('assets/icon/logout.svg',
+              color: myColors.errorColor),
+          needIconNext: false,
+          needDivider: false,
         ),
-        const SizedBox(height: kBasePadding * 2),
       ],
     );
   }
 
   BaseBottomSheetWidget notificationCenter(BuildContext context) {
     return BaseBottomSheetWidget(
-        context: context, child: const NotificationContentWidget())
-      ..show();
+      context: context,
+      child: const NotificationContentWidget(),
+    )..show();
   }
-}
 
-class NotificationContentWidget extends StatelessWidget {
-  const NotificationContentWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final myColors = MyTheme.of(context);
-    return ListView(
-      padding: const EdgeInsets.only(
-        top: kBasePadding * 2,
-        left: kBasePadding,
-        right: kBasePadding,
-        bottom: kBottomSheetBottomPadding,
-      ),
-      shrinkWrap: true,
-      children: [
-        Text(S.of(context).notifications,
-            style: Theme.of(context).textTheme.headline2),
-        const SizedBox(height: kBasePadding),
-        Text('Выберите события, о которых вы хотите получать уведомления',
-            style: Theme.of(context).textTheme.headline3),
-        const SizedBox(height: kPadding * 3),
-        CheckboxListTile(
-          value: true,
-          side: BorderSide(width: 1, color: myColors.greyIconColor),
-          activeColor: myColors.primaryButtonColor,
-          checkboxShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kBorderRadius / 2),
-          ),
-          contentPadding: EdgeInsets.zero,
-          onChanged: (value) {},
-          title: Text('Изменения статусов претензий',
-              style: Theme.of(context).textTheme.bodyText1),
-        ),
-        const Divider(
-          height: 40,
-          thickness: 1,
-          indent: 16,
-          endIndent: 16,
-        ),
-        CheckboxListTile(
-          value: false,
-          side: BorderSide(width: 1, color: myColors.greyIconColor),
-          contentPadding: EdgeInsets.zero,
-          onChanged: (value) {},
-          title: Text('Сообщения по претензиям',
-              style: Theme.of(context).textTheme.bodyText1),
-        ),
-        const SizedBox(height: kBasePadding * 3),
-        PrimaryElevatedButton(onPressed: () {}, text: 'Сохранить'),
-        const SizedBox(height: kPadding * 3),
-      ],
-    );
+  bool _isSetPin(BuildContext context) {
+    final userRepo = sl.get<UserRepository>();
+    final localAuth = GetLocalAuthUseCase(userRepo);
+    final pinCode = localAuth.call();
+    return pinCode?.isNotEmpty ?? false ? true : false;
   }
 }

@@ -10,11 +10,11 @@ abstract class LocalAuthEvent extends Equatable {
 
 class LocalAuthInitializeE extends LocalAuthEvent {}
 
-class LocalAuthSetPinE extends LocalAuthEvent {}
+//class LocalAuthSetPinE extends LocalAuthEvent {}
 
 class LocalAuthUnSetPinCodeE extends LocalAuthEvent {}
 
-class LocalAuthSetPinCodeE extends LocalAuthEvent {}
+//class LocalAuthSetPinCodeE extends LocalAuthEvent {}
 
 class LocalAuthReEnterE extends LocalAuthEvent {
   final String pin;
