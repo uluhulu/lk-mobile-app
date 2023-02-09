@@ -1,0 +1,1 @@
+[{"type":{"import":"package:mkk/services/vibration/vibration_service.dart","name":"VibrationService","isNullable":false},"typeImpl":{"import":"package:mkk/services/vibration/vibration_service.dart","name":"VibrationService","isNullable":false},"isAsync":false,"preResolve":false,"injectableType":2,"dependsOn":[],"environments":[],"dependencies":[],"constructorName":""}]

@@ -1,0 +1,9 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ClaimDraftCreateEntity _$ClaimDraftCreateEntityFromJson(
+        Map<String, dynamic> json) =>
+    ClaimDraftCreateEntity(
+      draftId: json['draft_id'] as int,
+    );

@@ -1,0 +1,1 @@
+[{"type":{"import":"package:mkk/services/notification/local_notification.dart","name":"LocalNotification","isNullable":false},"typeImpl":{"import":"package:mkk/services/notification/local_notification.dart","name":"LocalNotification","isNullable":false},"isAsync":false,"preResolve":false,"injectableType":2,"dependsOn":[],"environments":[],"dependencies":[],"constructorName":""}]

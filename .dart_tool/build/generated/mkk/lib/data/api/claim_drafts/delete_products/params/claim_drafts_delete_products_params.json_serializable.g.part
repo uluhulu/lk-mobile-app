@@ -1,0 +1,9 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$ClaimDraftsDeleteProductsParamsToJson(
+        ClaimDraftsDeleteProductsParams instance) =>
+    <String, dynamic>{
+      'ids': instance.ids,
+    };

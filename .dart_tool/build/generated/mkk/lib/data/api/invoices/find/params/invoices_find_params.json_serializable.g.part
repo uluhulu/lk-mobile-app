@@ -1,0 +1,9 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$InvoicesFindParamsToJson(InvoicesFindParams instance) =>
+    <String, dynamic>{
+      'search': instance.search,
+      'search_by': instance.searchBy,
+    };

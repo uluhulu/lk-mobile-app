@@ -1,0 +1,75 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+InvoicesDetailEntity _$InvoicesDetailEntityFromJson(
+        Map<String, dynamic> json) =>
+    InvoicesDetailEntity(
+      data: InvoicesData.fromJson(json['data'] as Map<String, dynamic>),
+      filter: json['filter'] == null
+          ? null
+          : FilterDetail.fromJson(json['filter'] as Map<String, dynamic>),
+      isEdo: json['is_edo'] as bool?,
+      isEcom: json['is_ecom'] as bool?,
+    );
+
+InvoicesDetailData _$InvoicesDetailDataFromJson(Map<String, dynamic> json) =>
+    InvoicesDetailData(
+      invoices: InvoicesData.fromJson(json['invoices'] as Map<String, dynamic>),
+    );
+
+InvoicesData _$InvoicesDataFromJson(Map<String, dynamic> json) => InvoicesData(
+      invoice: InvoicesDetail.fromJson(json['invoice'] as Map<String, dynamic>),
+    );
+
+InvoicesDetail _$InvoicesDetailFromJson(Map<String, dynamic> json) =>
+    InvoicesDetail(
+      uuid: json['uuid'] as String,
+      date: json['date'] as String?,
+      hasClaims: json['has_claims'] as bool,
+      isMarking: json['is_marking'] as bool,
+      sum: (json['sum'] as num).toDouble(),
+      cargoName: json['cargo_name'] as String,
+      cargoAddress: json['cargo_address'] as String,
+      edo: json['edo'] as String,
+      file: json['file'] as String,
+      filterKey: json['filter_key'] as String?,
+      marketplaceName: json['marketplace_name'] as String,
+      marketplaceNumber: json['marketplace_number'] as String,
+      marketplaceStatus: json['marketplace_status'] as String,
+      customerOrderNumber: json['customer_order_number'] as String,
+      claims: (json['claims'] as List<dynamic>?)
+          ?.map((e) => ClaimsDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      markingStatus: json['marking_status'] == null
+          ? null
+          : MarkingStatus.fromJson(
+              json['marking_status'] as Map<String, dynamic>),
+    );
+
+ClaimsDetail _$ClaimsDetailFromJson(Map<String, dynamic> json) => ClaimsDetail(
+      uuid: json['uuid'] as String,
+      number: json['number'] as String?,
+      date: json['date'] as String?,
+    );
+
+MarkingStatus _$MarkingStatusFromJson(Map<String, dynamic> json) =>
+    MarkingStatus(
+      name: json['name'] as String,
+      description: json['description'] as String,
+    );
+
+FilterDetail _$FilterDetailFromJson(Map<String, dynamic> json) => FilterDetail(
+      manufacturers: (json['manufacturers'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+    );
+
+AppliedFilters _$AppliedFiltersFromJson(Map<String, dynamic> json) =>
+    AppliedFilters(
+      dateFrom: json['date_from'] as String?,
+      dateTo: json['date_to'] as String?,
+      addressFilter: json['address_filter'] as String?,
+      isMarking: json['is_marking'] as bool?,
+      markingStatus: json['marking_status'] as String?,
+    );

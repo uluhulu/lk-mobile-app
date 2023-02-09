@@ -1,0 +1,28 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$ClaimsParamsToJson(ClaimsParams instance) {
+  final val = <String, dynamic>{
+    'date_from': instance.dateFrom,
+    'date_to': instance.dateTo,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('page', instance.page);
+  writeNotNull('per_page', instance.perPage);
+  writeNotNull('sorting', _$ClaimsSortingEnumMap[instance.sorting]);
+  writeNotNull('status', instance.status);
+  writeNotNull('address', instance.address);
+  return val;
+}
+
+const _$ClaimsSortingEnumMap = {
+  ClaimsSorting.desk: 'date DESC',
+  ClaimsSorting.asc: 'date ASC',
+};

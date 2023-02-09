@@ -1,0 +1,1 @@
+[{"type":{"import":"package:mkk/services/itunes/itunes_search_api.dart","name":"ITunesSearchAPI","isNullable":false},"typeImpl":{"import":"package:mkk/services/itunes/itunes_search_api.dart","name":"ITunesSearchAPI","isNullable":false},"isAsync":false,"preResolve":false,"injectableType":2,"dependsOn":[],"environments":[],"dependencies":[],"constructorName":""}]

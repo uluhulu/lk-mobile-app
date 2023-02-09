@@ -1,0 +1,10 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$ClaimDraftsCreateParamsToJson(
+        ClaimDraftsCreateParams instance) =>
+    <String, dynamic>{
+      'invoice_guid': instance.invoiceGuid,
+      'selected_products': instance.selectedProducts,
+    };

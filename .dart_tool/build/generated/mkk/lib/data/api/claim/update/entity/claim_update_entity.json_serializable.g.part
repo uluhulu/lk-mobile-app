@@ -1,0 +1,8 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ClaimUpdateEntity _$ClaimUpdateEntityFromJson(Map<String, dynamic> json) =>
+    ClaimUpdateEntity(
+      success: json['success'] as bool,
+    );

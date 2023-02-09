@@ -1,0 +1,45 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+DictionaryFilialEntity _$DictionaryFilialEntityFromJson(
+        Map<String, dynamic> json) =>
+    DictionaryFilialEntity(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => DictionaryData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      links: Links.fromJson(json['links'] as Map<String, dynamic>),
+      meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
+    );
+
+DictionaryData _$DictionaryDataFromJson(Map<String, dynamic> json) =>
+    DictionaryData(
+      id: json['id'] as int,
+      name: json['name'] as String,
+    );
+
+Links _$LinksFromJson(Map<String, dynamic> json) => Links(
+      first: json['first'] as String?,
+      last: json['last'] as String?,
+      prev: json['prev'] as String?,
+      next: json['next'] as String?,
+    );
+
+Meta _$MetaFromJson(Map<String, dynamic> json) => Meta(
+      currentPage: json['current_page'] as int,
+      lastPage: json['last_page'] as int,
+      perPage: json['per_page'] as int,
+      total: json['total'] as int,
+      from: json['from'] as int?,
+      to: json['to'] as int?,
+      path: json['path'] as String,
+      links: (json['links'] as List<dynamic>)
+          .map((e) => MetaLinks.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+MetaLinks _$MetaLinksFromJson(Map<String, dynamic> json) => MetaLinks(
+      url: json['url'] as String?,
+      label: json['label'] as String?,
+      active: json['active'] as bool?,
+    );

@@ -1,0 +1,18 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$AddClaimDraftAttachmentsParamsToJson(
+        AddClaimDraftAttachmentsParams instance) =>
+    <String, dynamic>{
+      'claim_id': instance.claimId,
+      'product_id': instance.productId,
+      'attachments': instance.attachments,
+    };
+
+Map<String, dynamic> _$ClaimDraftAttachmentsParamsToJson(
+        ClaimDraftAttachmentsParams instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'base64': instance.base64,
+    };

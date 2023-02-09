@@ -1,0 +1,12 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$ClaimDraftAddOveragesParamsToJson(
+        ClaimDraftAddOveragesParams instance) =>
+    <String, dynamic>{
+      'guid': instance.guid,
+      'name': instance.name,
+      'series_guid': instance.seriesGuid,
+      'series_name': instance.seriesName,
+    };

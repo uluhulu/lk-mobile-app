@@ -1,0 +1,12 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ClaimDraftAttachmentEntity _$ClaimDraftAttachmentEntityFromJson(
+        Map<String, dynamic> json) =>
+    ClaimDraftAttachmentEntity(
+      json['id'] as int,
+      json['name'] as String,
+      json['url'] as String,
+      json['base64'] as String,
+    );

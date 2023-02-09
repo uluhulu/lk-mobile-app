@@ -1,0 +1,1 @@
+[{"type":{"import":"package:mkk/data/providers/local_store_provider.dart","name":"LocalStoreProvider","isNullable":false},"typeImpl":{"import":"package:mkk/data/providers/local_store_provider.dart","name":"LocalStoreProvider","isNullable":false},"isAsync":false,"preResolve":false,"injectableType":1,"dependsOn":[],"environments":[],"dependencies":[],"constructorName":""}]

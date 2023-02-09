@@ -1,0 +1,8 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ClaimDetailEntity _$ClaimDetailEntityFromJson(Map<String, dynamic> json) =>
+    ClaimDetailEntity(
+      data: Data.fromJson(json['data'] as Map<String, dynamic>),
+    );
