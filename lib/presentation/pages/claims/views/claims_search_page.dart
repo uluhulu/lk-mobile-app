@@ -51,7 +51,7 @@ class InvoicesSearchContent extends StatelessWidget {
       return ScreenView(
         needPadding: false,
         context: context,
-        title: 'Претензия',
+        title: S.of(context).claim,
         child: ClaimsSearchLoaded(
           claim: state.claimsData,
         ),

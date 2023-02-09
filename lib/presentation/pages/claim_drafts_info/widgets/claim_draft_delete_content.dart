@@ -26,11 +26,15 @@ class ClaimDraftDeleteContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: kBasePadding),
-          Text(S.of(context).delete_claim_draft,
-              style: Theme.of(context).textTheme.headline2),
+          Text(
+            S.of(context).delete_claim_draft,
+            style: Theme.of(context).textTheme.headline2,
+          ),
           const SizedBox(height: kBasePadding),
-          Text(S.of(context).delete_claim_draft_info,
-              style: Theme.of(context).textTheme.subtitle1),
+          Text(
+            S.of(context).delete_claim_draft_info,
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
           const SizedBox(height: kBasePadding * 3),
           PrimaryElevatedButton(
             onPressed: () {

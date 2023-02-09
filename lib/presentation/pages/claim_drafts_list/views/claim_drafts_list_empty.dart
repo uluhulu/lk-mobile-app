@@ -11,6 +11,7 @@ class ClaimsDraftsListEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: _bodyPadding(),
       child: Column(
@@ -24,7 +25,9 @@ class ClaimsDraftsListEmpty extends StatelessWidget {
                 children: [
                   const SizedBox(height: kBasePadding * 4),
                   ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 230),
+                    constraints: width < 322
+                        ? const BoxConstraints(maxHeight: 150)
+                        : const BoxConstraints(maxHeight: 210),
                     child: Lottie.asset(
                       'assets/lottie/searching_animation.json',
                     ),

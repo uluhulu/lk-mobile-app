@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/araki/flutterProjects/mobile-lk/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rGB/values-en-rGB.xml",
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
                     "source": "/Users/araki/.gradle/caches/transforms-3/b309fb2a0789a761f5a304a59d83414b/transformed/jetified-exoplayer-core-2.18.1/res/values-en-rGB/values-en-rGB.xml",

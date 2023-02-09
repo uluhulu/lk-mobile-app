@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-anydpi-v21/media_session_service_notification_ic_skip_to_next.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-anydpi-v21/media_session_service_notification_ic_skip_to_next.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-anydpi-v21/media_session_service_notification_ic_music_note.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-anydpi-v21/media_session_service_notification_ic_music_note.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-anydpi-v21/media_session_service_notification_ic_play.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-anydpi-v21/media_session_service_notification_ic_play.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-anydpi-v21/media_session_service_notification_ic_pause.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-anydpi-v21/media_session_service_notification_ic_pause.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-anydpi-v21/media_session_service_notification_ic_skip_to_previous.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-anydpi-v21/media_session_service_notification_ic_skip_to_previous.xml"
+    }
+]

@@ -19,31 +19,34 @@ class ClaimDraftsDeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ClaimDraftsListBloc>();
-    return GestureDetector(
-      onTap: () {
-        BaseBottomSheetWidget(
-          context: context,
-          child: BlocProvider.value(
-            value: bloc,
-            child: ClaimDraftsDeleteAccept(id: id),
-          ),
-        ).show();
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kBasePadding),
-        child: Row(
-          children: [
-            SvgPicture.asset('assets/icon/trash_empty.svg',
-                width: 24, height: 24, color: MyTheme.of(context).errorColor),
-            const SizedBox(width: kPadding),
-            Text(
-              S.of(context).delete_draft,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline3
-                  ?.copyWith(color: MyTheme.of(context).errorColor),
+    return SizedBox(
+      width: double.infinity,
+      child: InkWell(
+        onTap: () {
+          BaseBottomSheetWidget(
+            context: context,
+            child: BlocProvider.value(
+              value: bloc,
+              child: ClaimDraftsDeleteAccept(id: id),
             ),
-          ],
+          ).show();
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: kBasePadding),
+          child: Row(
+            children: [
+              SvgPicture.asset('assets/icon/trash_empty.svg',
+                  width: 24, height: 24, color: MyTheme.of(context).errorColor),
+              const SizedBox(width: kPadding),
+              Text(
+                S.of(context).delete_draft,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline3
+                    ?.copyWith(color: MyTheme.of(context).errorColor),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -52,32 +55,55 @@ class ClaimDraftsDeleteButton extends StatelessWidget {
 
 
 ///Вариант кнопки
-// TextButton(
-//       onPressed: () {
-//         BaseBottomSheetWidget(
-//           context: context,
-//           child: BlocProvider.value(
-//             value: bloc,
-//             child: ClaimDraftsDeleteAccept(id: id),
-//           ),
-//         ).show();
-//       },
-//       style: TextButton.styleFrom(
-//         padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
-//         maximumSize: const Size(190, double.infinity),
-//       ),
-//       child: Row(
-//         children: [
-//           SvgPicture.asset('assets/icon/trash_empty.svg',
-//               width: 24, height: 24, color: MyTheme.of(context).errorColor),
-//           const SizedBox(width: kPadding),
-//           Text(
-//             'Удалить черновик',
-//             style: Theme.of(context)
-//                 .textTheme
-//                 .headline3
-//                 ?.copyWith(color: MyTheme.of(context).errorColor),
-//           ),
-//         ],
-//       ),
-//     );
+  //  return TextButton.icon(
+  //     onPressed: () {
+  //       BaseBottomSheetWidget(
+  //         context: context,
+  //         child: BlocProvider.value(
+  //           value: bloc,
+  //           child: ClaimDraftsDeleteAccept(id: id),
+  //         ),
+  //       ).show();
+  //     },
+  //     style: TextButton.styleFrom(
+  //       padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
+  //       maximumSize: const Size(300, double.infinity),
+  //     ),
+  //     icon: SvgPicture.asset('assets/icon/trash_empty.svg',
+  //         width: 24, height: 24, color: MyTheme.of(context).errorColor),
+  //     label: Text(
+  //       S.of(context).delete_draft,
+  //       style: Theme.of(context)
+  //           .textTheme
+  //           .headline3
+  //           ?.copyWith(color: MyTheme.of(context).errorColor),
+  //     ),
+  //   );
+  //   return GestureDetector(
+  //     onTap: () {
+  //       BaseBottomSheetWidget(
+  //         context: context,
+  //         child: BlocProvider.value(
+  //           value: bloc,
+  //           child: ClaimDraftsDeleteAccept(id: id),
+  //         ),
+  //       ).show();
+  //     },
+  //     child: Padding(
+  //       padding: const EdgeInsets.symmetric(vertical: kBasePadding),
+  //       child: Row(
+  //         children: [
+  //           SvgPicture.asset('assets/icon/trash_empty.svg',
+  //               width: 24, height: 24, color: MyTheme.of(context).errorColor),
+  //           const SizedBox(width: kPadding),
+  //           Text(
+  //             S.of(context).delete_draft,
+  //             style: Theme.of(context)
+  //                 .textTheme
+  //                 .headline3
+  //                 ?.copyWith(color: MyTheme.of(context).errorColor),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );

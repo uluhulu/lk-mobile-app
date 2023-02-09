@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mkk/presentation/pages/app_loader/app_loader_bloc/app_loader_bloc.dart';
 import 'package:mkk/presentation/pages/create_claim/create_claim_bloc/create_claim_bloc.dart';
 import 'package:mkk/presentation/pages/invoices_detail/invoices_detail_bloc/invoices_detail_bloc.dart';
+import '../../../../data/api/invoices/detail/params/invoices_detail_params.dart';
 import '../../../../domain/repositories/repository.dart';
 import '../../../../locator/locator.dart';
 import '../../../widgets/error/app_error_widget.dart';
@@ -37,7 +39,7 @@ class InvoicesDetailProvider extends StatelessWidget {
         needPadding: false,
         context: context,
         title: 'Накладная',
-        child: const InvoicesDetailContent(),
+        child: InvoicesDetailContent(uuid: uuid),
       ),
     );
   }
@@ -48,7 +50,9 @@ class InvoicesDetailProvider extends StatelessWidget {
       uuid: uuid,
     );
     if (!fromSearch) {
-      bloc.add(InvoicesDetailFetchE(uuid: uuid));
+      final InvoicesDetailParams detailParams =
+          InvoicesDetailParams(uuid: uuid);
+      bloc.add(InvoicesDetailFetchE(uuid: uuid, params: detailParams));
     }
     return bloc;
   }
@@ -63,13 +67,18 @@ class InvoicesDetailProvider extends StatelessWidget {
   CreateClaimBloc _createClaimBloc(BuildContext context) {
     return CreateClaimBloc(
       repository: sl.get<Repository>(),
+      appLoader: context.read<AppLoaderBloc>(),
       uuid: uuid,
     );
   }
 }
 
 class InvoicesDetailContent extends StatelessWidget {
-  const InvoicesDetailContent({super.key});
+  final String uuid;
+  const InvoicesDetailContent({
+    super.key,
+    required this.uuid,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +90,7 @@ class InvoicesDetailContent extends StatelessWidget {
         if (state is InvoicesDetailLoadedS) {
           return InvoicesDetailLoaded(
             detailData: state.detail,
+            uuid: uuid,
           );
         }
         if (state is InvoicesDetailErrorS) {

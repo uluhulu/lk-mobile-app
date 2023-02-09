@@ -9,23 +9,34 @@ import 'package:mkk/data/api/dictionary/filials/entity/dictionary_filials_entity
 import 'package:mkk/data/api/invoices/detail/params/invoices_detail_params.dart';
 import 'package:mkk/data/api/profile/info/entity/profile_info_entity.dart';
 import 'package:mkk/data/api/receivables/info/entity/receivables_info_entity.dart';
+import 'package:retrofit/retrofit.dart';
 
 import '../../data/api/auth/reset_password_code/entity/reset_password_code_entity.dart';
 import '../../data/api/auth/reset_password_code/params/reset_password_code_params.dart';
+import '../../data/api/claim_draft_overages/add_overages/params/claim_drafts_add_overages_params.dart';
+import '../../data/api/claim_draft_overages/find_overages/entity/claim_drafts_find_overages_entity.dart';
+import '../../data/api/claim_draft_overages/find_overages/params/claim_drafts_find_overage_params.dart';
+import '../../data/api/claim/update/entity/claim_update_entity.dart';
+import '../../data/api/claim/update/params/claim_update_params.dart';
 import '../../data/api/claim_drafts/add_products/entity/claim_drafts_add_products_entity.dart';
+import '../../data/api/claim_drafts/claim_draft_attachment/entity/claim_draft_attachment_entity.dart';
+import '../../data/api/claim_drafts/claim_draft_attachments/add_claim_draft_attachments/entity/add_claim_draft_attachments_entity.dart';
+import '../../data/api/claim_drafts/claim_draft_attachments/add_claim_draft_attachments/params/add_claim_draft_attachments_params.dart';
 import '../../data/api/claim_drafts/create/entity/claim_draft_create_entity.dart';
 import '../../data/api/claim_drafts/create/params/claim_drafts_create_params.dart';
 import '../../data/api/claim_drafts/delete_products/params/claim_drafts_delete_products_params.dart';
 import '../../data/api/claim_drafts/info/entity/claim_drafts_info_entity.dart';
 import '../../data/api/claim_drafts/list/params/claim_drafts_list_params.dart';
 import '../../data/api/claim_drafts/products/entity/claim_drafts_products_entity.dart';
-import '../../data/api/claim_drafts/save/entity/claim_drafts_save_entity.dart';
 import '../../data/api/claim_drafts/save/params/claim_drafts_save_params.dart';
 import '../../data/api/claim_drafts/send/entity/claim_drafts_send_entity.dart';
 import '../../data/api/claims/detail/entity/claim_detail_entity.dart';
 import '../../data/api/claims/find/params/search_claims_params.dart';
 import '../../data/api/claims/main/entity/claims_entity.dart';
+import '../../data/api/claims/attachments/entity/claim_new_attachment_entity.dart';
+import '../../data/api/claims/attachments/params/claim_new_attachment_params.dart';
 import '../../data/api/claims/products/entity/claims_detail_products_entity.dart';
+import '../../data/api/help/entity/help_entity.dart';
 import '../../data/api/invoices/detail/entity/invoices_detail_entity.dart';
 import '../../data/api/invoices/detail/products/entity/invoices_detail_products_entity.dart';
 import '../../data/api/invoices/detail/products/params/invoices_detail_products_params.dart';
@@ -75,6 +86,13 @@ abstract class Repository {
 
   Future<ClaimsEntity> claims(ClaimsParams params);
 
+  Future<ClaimUpdateEntity> updateClaim(ClaimUpdateParams params);
+
+  Future<ClaimsNewAttachmentsEntity> updateClaimAttachments(
+      ClaimsNewAttachmentsParams params);
+
+  Future<ImageData> getClaimsImage(String path);
+
   Future<InvoicesFindEntity> invoicesSearch(InvoicesFindParams params);
 
   Future<SearchClaimsEntity> claimsSearch(SearchClaimsParams params);
@@ -108,4 +126,21 @@ abstract class Repository {
 
   Future<ClaimDraftCreateEntity> claimDraftsCreate(
       ClaimDraftsCreateParams params);
+
+  Future<AddClaimDraftAttachmentsEntity> updateClaimDraftAttachments(
+      AddClaimDraftAttachmentsParams params);
+
+  Future<ClaimDraftAttachmentEntity> getClaimDraftImage(int id);
+
+  Future<dynamic> deleteClaimDraftImage(int id);
+
+  Future<ClaimDraftsFindOveragesEntity> claimDraftsFindOverages(
+      ClaimDraftsFindOveragesParams params);
+
+  Future<dynamic> claimDraftAddOverages(
+      ClaimDraftAddOveragesParams params, int id);
+
+  Future<HelpEntity> getHelp(int roleId);
+
+  Future<dynamic> getHelpIcon(String icon);
 }

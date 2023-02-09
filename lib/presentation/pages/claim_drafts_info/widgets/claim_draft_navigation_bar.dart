@@ -8,6 +8,7 @@ import 'package:mkk/services/platform.dart';
 import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 import '../../../widgets/buttons/primary_elevated_button.dart';
 import 'bottom_sheet/claim_draft_save_content.dart';
 import 'bottom_sheet/claim_draft_send_content.dart';
@@ -103,41 +104,51 @@ class ClaimDraftSaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: TextButton(
-        onPressed: () {
-          context.read<ClaimDraftsInfoBloc>().add(ClaimDraftsInfoSaveE());
-        },
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 29),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _icon(),
-            const SizedBox(width: kPadding),
-            _btText(context),
-          ],
-        ),
-      ),
+    final width = MediaQuery.of(context).size.width;
+
+    return BlocBuilder<AppMetricaBloc, AppMetricaState>(
+      builder: (context, state){
+        final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+        return Expanded(
+          child: TextButton(
+            onPressed: () {
+              context.read<ClaimDraftsInfoBloc>().add(ClaimDraftsInfoSaveE());
+              appMetricaBloc.add(AppmetricaOnEventE(
+                  eventName:
+                  "Черновики претензий ${S.of(context).button_on_pressed} ${S.of(context).save}"));
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 29),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _icon(width),
+                const SizedBox(width: kPadding),
+                _btText(context, width),
+              ],
+            ),
+          ),
+        );
+      },
+
     );
   }
 
-  Widget _btText(BuildContext context) {
+  Widget _btText(BuildContext context, double width) {
     return Text(
       S.of(context).save,
       style: Theme.of(context).textTheme.headline4?.copyWith(
-            color: myColors.successColor,
-          ),
+          color: myColors.successColor, fontSize: width < 322 ? 15 : null),
     );
   }
 
-  Widget _icon() {
+  Widget _icon(double width) {
     return SvgPicture.asset(
       'assets/icon/ram-2.svg',
       color: myColors.successColor,
-      width: 24,
-      height: 24,
+      width: width < 322 ? 22 : 24,
+      height: width < 322 ? 22 : 24,
     );
   }
 }

@@ -8,3 +8,5 @@ abstract class PaymentsEvent extends Equatable {
 }
 
 class PaymentsFetchE extends PaymentsEvent {}
+
+class PaymentsNotAccess extends PaymentsEvent {}

@@ -21,7 +21,7 @@ class ClaimDetailLoaded extends StatelessWidget {
           claim: detailData.data,
         ),
         const SizedBox(height: kBasePadding),
-        const ClaimProductsList(),
+         ClaimProductsList(status: detailData.data.status,),
       ],
     );
   }

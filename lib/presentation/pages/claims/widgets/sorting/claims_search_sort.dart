@@ -11,6 +11,7 @@ import '../../../../../../core/utils/constants.dart';
 import '../../../../../core/help/navigation_claims_filter_page_params.dart';
 import '../../../../../data/api/claims/main/entity/claims_entity.dart';
 import '../../../../../data/api/claims/main/params/claims_params.dart';
+import '../../../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 import '../search/widgets/claim_search_field.dart';
 
 class ClaimsSearchSort extends StatelessWidget {
@@ -94,19 +95,28 @@ class ClaimsSearchSort extends StatelessWidget {
   ) {
     return Row(
       children: [
-        TextButton.icon(
-          onPressed: () => _filterOnPressed(context, bloc),
-          icon: SvgPicture.asset(
-            'assets/icon/filter.svg',
-            width: 24,
-            height: 24,
-            color: myColors.primaryButtonColor,
-          ),
-          label: Text(l10n.filter,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline3
-                  ?.copyWith(color: myColors.primaryButtonColor)),
+        BlocBuilder<AppMetricaBloc, AppMetricaState>(
+          builder: (context, state) {
+            final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+            return TextButton.icon(
+              onPressed: () => _filterOnPressed(
+                context,
+                bloc,
+                appMetricaBloc,
+              ),
+              icon: SvgPicture.asset(
+                'assets/icon/filter.svg',
+                width: 24,
+                height: 24,
+                color: myColors.primaryButtonColor,
+              ),
+              label: Text(l10n.filter,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3
+                      ?.copyWith(color: myColors.primaryButtonColor)),
+            );
+          },
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: kPadding / 2),
@@ -115,7 +125,7 @@ class ClaimsSearchSort extends StatelessWidget {
             borderRadius: BorderRadius.circular(kBorderRadius / 2),
           ),
           child: bloc.getFilterCount() != null
-              ? Text(bloc.getFilterCount() ?? '',
+              ? Text(bloc.getFilterCount().toString(),
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1
@@ -126,10 +136,12 @@ class ClaimsSearchSort extends StatelessWidget {
     );
   }
 
-  void _filterOnPressed(BuildContext context, ClaimsBloc bloc) {
+  void _filterOnPressed(
+      BuildContext context, ClaimsBloc bloc, AppMetricaBloc appMetricaBloc) {
     Navigator.of(context).pushNamed(
       AppRoutes.claimsFilters,
       arguments: ClaimsFilterPageParams(data: data, bloc: bloc),
     );
+    (("Претензии ${S.of(context).button_on_pressed} ${S.of(context).filter} "));
   }
 }

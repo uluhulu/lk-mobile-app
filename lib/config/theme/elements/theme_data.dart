@@ -77,6 +77,9 @@ abstract class MyThemeData {
   late Color spaceGrey;
   late Color mainDividerColor;
   late Color yellowColor;
+  late Color htmlDialogColor;
+  late Color htmlDialogBackGroundColor;
+  late Color dividerGreyColor;
 
   @override
   bool operator ==(covariant MyThemeData other) {

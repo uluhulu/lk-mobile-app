@@ -1,0 +1,23 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'help_entity.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+HelpEntity _$HelpEntityFromJson(Map<String, dynamic> json) => HelpEntity(
+      content: (json['content'] as List<dynamic>)
+          .map((e) => Content.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Content _$ContentFromJson(Map<String, dynamic> json) => Content(
+      name: json['name'] as String?,
+      content: json['content'] as String?,
+      code: json['code'] as String?,
+      icon: json['icon'] as String?,
+      child: (json['child'] as List<dynamic>?)
+          ?.map((e) => Content.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )..rawSwg = json['raw_swg'] as String?;

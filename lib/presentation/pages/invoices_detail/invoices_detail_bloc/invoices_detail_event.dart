@@ -8,14 +8,16 @@ abstract class InvoicesDetailEvent extends Equatable {
 }
 
 class InvoicesDetailFetchE extends InvoicesDetailEvent {
+  final InvoicesDetailParams params;
   final String uuid;
 
   const InvoicesDetailFetchE({
+    required this.params,
     required this.uuid,
   });
 
   @override
-  List<Object> get props => [uuid];
+  List<Object> get props => [uuid, params];
 }
 
 class InvoicesDetailRefreshE extends InvoicesDetailEvent {}

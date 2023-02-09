@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:mkk/services/filter_saver_service.dart';
+import 'package:mkk/domain/repositories/user_repository.dart';
+import 'package:mkk/locator/locator.dart';
+import 'package:mkk/services/claim_filter_saver_service.dart';
+import 'package:mkk/services/invoices_filter_saver_service.dart';
 import '../../../core/components/analytics_client.dart';
 import '../../../core/components/device_info.dart';
 import '../../../core/components/local_store_client.dart';
@@ -12,6 +15,7 @@ import '../../../services/firebase/firebase_service.dart';
 import '../../../services/logger/logger_service.dart';
 import '../../../services/notification/firebase_notification.dart';
 import '../../../services/notification/local_notification.dart';
+import '../../../services/npm/npm_services.dart';
 import '../../../services/package_info_services.dart';
 
 part 'initialize_event.dart';
@@ -55,6 +59,19 @@ class InitializeBloc extends Bloc<InitializeEvent, InitializeState> {
     } catch (e) {
       L.e(e);
     }
+    await initializeDateTime();
+  }
+
+  Future<void> initializeDateTime() async {
+    try {
+      DateTime startDate = DateTime.now().toLocal();
+      int milliseconds = await NTP.getNtpOffset(localTime: startDate);
+      Duration offset = Duration(milliseconds: milliseconds);
+
+      sl<UserRepository>().setLocalTimeOffset(offset);
+    } catch (e) {
+      L.e('initializeDateTime: $e');
+    }
   }
 
   FutureOr<void> _initializeAppMetrica() {
@@ -85,7 +102,8 @@ class InitializeBloc extends Bloc<InitializeEvent, InitializeState> {
       Emitter<InitializeState> emit) async {
     LocalStoreClient.initialize();
     PackageInfoService.instance.init();
-    FilterSaverService.instance.init();
+    ClaimFilterSaverService.instance.init();
+    InvoiceFilterSaverService.instance.init();
   }
 
   FutureOr<void> _initializeOther(Emitter<InitializeState> emit) async {

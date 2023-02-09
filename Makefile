@@ -16,5 +16,7 @@ dev_android:
 	flutter build apk --release -v
 prod_ios:
 	flutter build ipa --release -v
+fire_dev:
+	flutterfire configure -p puls--mobile-b2014 --ios-bundle-id=com.mkk.release --macos-bundle-id=com.mkk.release --android-package-name=com.mkk.release -g --out=lib/firebase_options.dart
 
 	

@@ -13,9 +13,11 @@ class ClaimDraftsProductsLoadingS extends ClaimDraftsProductsState {}
 
 class ClaimDraftsProductsLoadedS extends ClaimDraftsProductsState {
   final ClaimDraftsProductsEntity products;
+  final ClaimDraftsProductsEntity limit;
 
   const ClaimDraftsProductsLoadedS({
     required this.products,
+    required this.limit,
   });
 
   @override

@@ -19,7 +19,8 @@ abstract class Env {
 
 class EnvProduction extends Env {
   @override
-  String get vapidKey => "vapidKey todo";
+  String get vapidKey =>
+      "Bearer 9BRaz23kgI8ZPrmWLlIGjgBrkaooTIPso37a5kDr2qhsGc6uu41PdpuT7SG6DoPI";
 
   @override
   Envs get envs => Envs.prod;
@@ -28,10 +29,10 @@ class EnvProduction extends Env {
   String get appMetricaKey => '1e8156d9-f150-4ae7-a9ca-1709d22bf665';
 
   @override
-  String get apiHost => 'lk-stage.puls.ru';
+  String get apiHost => 'https://online.puls.ru';
 
   @override
-  String get domainHost => 'main.ru';
+  String get domainHost => 'puls.ru';
 
   @override
   String get fbTopicUser => 'todo';
@@ -49,12 +50,13 @@ class EnvProduction extends Env {
   bool get isSendSms => true;
 
   @override
-  String get mainDomain => 'lk-stage.puls.ru';
+  String get mainDomain => 'puls.ru';
 }
 
 class EnvDevelopment extends Env {
   @override
-  String get vapidKey => "vapidKey todo";
+  String get vapidKey =>
+      "Bearer VXfnb06pX8fxGrMJLDyXzSeJlOHdvGgUVb9wUArNQt3OMF0a9Y05QTw1dx95mxjy";
 
   @override
   Envs get envs => Envs.dev;
@@ -63,16 +65,16 @@ class EnvDevelopment extends Env {
   String get appMetricaKey => '1e8156d9-f150-4ae7-a9ca-1709d22bf665';
 
   @override
-  String get apiHost => 'main.ru';
+  String get apiHost => 'https://lk-stage.puls.ru';
 
   @override
   String get appEnv => 'develop';
 
   @override
-  String get domainHost => 'main.ru';
+  String get domainHost => 'lk-stage.puls.ru';
 
   @override
-  String get fbTopicUser => 'purpose_borrower';
+  String get fbTopicUser => '';
 
   @override
   bool get isAnalyticsEnable => false;
@@ -87,5 +89,5 @@ class EnvDevelopment extends Env {
   bool get isSendSms => true;
 
   @override
-  String get mainDomain => 'main.ru';
+  String get mainDomain => 'lk-stage.puls.ru';
 }

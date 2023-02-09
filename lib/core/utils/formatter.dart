@@ -26,4 +26,11 @@ class Formatter {
         ? format.format(amountDouble).replaceAll(',', '.')
         : "-";
   }
+
+  static String textFormatter(String text) {
+    return text
+        .trim()
+        .replaceAll(RegExp(r'(\n){3,}'), "\n")
+        .replaceAll(RegExp(' +'), ' ');
+  }
 }

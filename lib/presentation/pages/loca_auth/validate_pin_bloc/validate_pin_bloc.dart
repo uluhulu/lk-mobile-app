@@ -55,12 +55,19 @@ class ValidatePinBloc extends Bloc<ValidatePinEvent, ValidatePinState> {
         index++;
         sl.get<VibrationService>().vibrate();
         pin = '';
+        await Future.delayed(const Duration(milliseconds: 350));
         emit(ValidatePinState(pin: pin, hasError: true, redDot: true));
 
         streamController.add(pin);
-        await Future.delayed(const Duration(milliseconds: 500));
-        emit(state.copyWith(
-            redDot: false, showErrorBanner: false, newErrorBanner: false));
+        //await Future.delayed(const Duration(milliseconds: 500));
+        emit(
+          state.copyWith(
+            redDot: false,
+            showErrorBanner: false,
+            newErrorBanner: false,
+            showNewErrorText: true,
+          ),
+        );
         break;
       case 2:
         index++;
@@ -75,7 +82,7 @@ class ValidatePinBloc extends Bloc<ValidatePinEvent, ValidatePinState> {
           count: index,
         ));
         streamController.add(pin);
-        await Future.delayed(const Duration(milliseconds: 500));
+        await Future.delayed(const Duration(milliseconds: 350));
         emit(state.copyWith(
             redDot: false, showErrorBanner: false, newErrorBanner: false));
         break;
@@ -89,15 +96,15 @@ class ValidatePinBloc extends Bloc<ValidatePinEvent, ValidatePinState> {
           hasError: true,
           showErrorBanner: false,
           showNewErrorText: true,
-          newErrorBanner: index == 5 ? true : false,
+          newErrorBanner: index == 4 ? true : false,
           redDot: true,
           count: index,
         ));
 
         streamController.add(pin);
-        await Future.delayed(const Duration(milliseconds: 500));
+        await Future.delayed(const Duration(milliseconds: 350));
         emit(state.copyWith(
-            redDot: index == 5 ? true : false,
+            redDot: index == 4 ? true : false,
             showErrorBanner: false,
             newErrorBanner: false));
         break;

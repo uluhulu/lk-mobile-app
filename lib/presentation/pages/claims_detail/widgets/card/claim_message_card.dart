@@ -4,6 +4,7 @@ import 'package:mkk/generated/l10n.dart';
 import '../../../../../config/theme/elements/theme_data.dart';
 import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/date_format.dart';
+import '../../../../../core/utils/formatter.dart';
 import '../../../../../data/api/claims/main/entity/claims_entity.dart';
 
 class ClaimMessageCard extends StatelessWidget {
@@ -42,7 +43,7 @@ class ClaimMessageCard extends StatelessWidget {
 
   String _claimMessage(Data claim) {
     if (claim.comment != null && claim.comment != '') {
-      return claim.comment!;
+      return Formatter.textFormatter(claim.comment!);
     } else {
       return '—';
     }
@@ -65,9 +66,10 @@ class ClaimMessageCard extends StatelessWidget {
                   //TODO: Поменять дату сообщения после работки API
                   '${S.of(context).your_message_from} ${DateFormats.isoDateTimeFormatterWithUTC(claim.date)}',
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                      color: myColors.whiteColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
+                        color: myColors.whiteColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
                 )
               : const SizedBox.shrink(),
           const SizedBox(height: 12),

@@ -4,10 +4,11 @@ import 'package:mkk/core/utils/constants.dart';
 import 'package:mkk/domain/repositories/repository.dart';
 import 'package:mkk/generated/l10n.dart';
 import 'package:mkk/locator/locator.dart';
+import 'package:mkk/presentation/pages/network_logger/bloc/network_logger_bloc.dart';
 import 'package:mkk/presentation/pages/profile/act/act_bloc/act_bloc.dart';
 import 'package:mkk/presentation/pages/profile/act/widgets/act_error_widget.dart';
 import 'package:mkk/presentation/widgets/loading_widget.dart';
-import '../../../../widgets/modal/modal_bottom_sheet_widget.dart';
+import 'package:network_logger/network_logger.dart';
 import '../../../../widgets/scaffold/screen_view.dart';
 import '../widgets/act_loaded_widget.dart';
 import 'create_act_page.dart';
@@ -17,8 +18,15 @@ class ActProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ActBloc>(
-      create: _createActBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ActBloc>(
+          create: _createActBloc,
+        ),
+        BlocProvider<NetworkLoggerBloc>(
+          create: (context) => NetworkLoggerBloc(),
+        ),
+      ],
       child: ScreenView(
         context: context,
         title: S.of(context).act_request,
@@ -49,7 +57,10 @@ class ActContent extends StatelessWidget {
     if (state is ActLoadingS) {
       return const LoadingWidget();
     }
-    return const CreateActPage();
+    return BlocListener<NetworkLoggerBloc, NetworkLoggerState>(
+      listener: _networkLoggerListener,
+      child: const CreateActPage(),
+    );
   }
 
   void _listener(BuildContext context, ActState state) {
@@ -80,5 +91,15 @@ class ActContent extends StatelessWidget {
         topRight: Radius.circular(kSheetBorderRadius),
       ),
     );
+  }
+
+  void _networkLoggerListener(BuildContext context, NetworkLoggerState state) {
+    if (state is NetworkLoggerShowS) {
+      NetworkLoggerOverlay.attachTo(context, rootOverlay: false);
+    }
+    if (state is NetworkLoggerInitialS) {
+      NetworkLoggerButton(showOnlyOnDebug: true);
+      NetworkLoggerOverlay.attachTo(context, rootOverlay: false);
+    }
   }
 }

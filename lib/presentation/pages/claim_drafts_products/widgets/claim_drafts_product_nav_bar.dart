@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mkk/presentation/pages/claim_drafts_info/claim_drafts_bloc/claim_drafts_info_bloc.dart';
 import 'package:mkk/presentation/pages/claim_drafts_products/claim_drafts_products_bloc/claim_drafts_products_bloc.dart';
 import 'package:mkk/presentation/widgets/modal/base_bottom_sheet_widget.dart';
 import 'package:mkk/services/platform.dart';
+import 'package:super_validation/validation_builder.dart';
 
 import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../generated/l10n.dart';
 import '../../../widgets/buttons/primary_elevated_button.dart';
-import '../../claim_drafts_info/widgets/bottom_sheet/claim_draft_send_content.dart';
+import '../claim_draft_product_bloc/claim_draft_product_cubit.dart';
 import 'claim_drafts_product_delete_content.dart';
 
 class ClaimDraftProductNavBar extends StatelessWidget {
@@ -70,17 +70,24 @@ class ClaimDraftSaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<ClaimDraftProductBloc>();
     return Expanded(
-      child: PrimaryElevatedButton(
-        onPressed: () {
-          context
-              .read<ClaimDraftsProductsBloc>()
-              .add(ClaimDraftsProductsSaveE(productId: id));
+      child: SuperValidationMultiBuilder(
+          superValidation: {
+            'quantity': bloc.quantityClaim,
+            'comment': bloc.comment,
+          },
+          builder: (context, validation, isValid) {
+            return PrimaryElevatedButton(
+              canPress: isValid,
+              onPressed: () {
+                context.read<ClaimDraftProductBloc>().save();
 
-          Navigator.of(context).pop();
-        },
-        text: S.of(context).save,
-      ),
+                Navigator.of(context).pop();
+              },
+              text: S.of(context).save,
+            );
+          }),
     );
   }
 }
@@ -98,6 +105,7 @@ class ClaimDraftDeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ClaimDraftsProductsBloc>();
+    final width = MediaQuery.of(context).size.width;
     return Expanded(
       child: TextButton(
         onPressed: () {
@@ -115,30 +123,29 @@ class ClaimDraftDeleteButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _icon(),
+            _icon(width),
             const SizedBox(width: kPadding),
-            _btText(context),
+            _btText(context, width),
           ],
         ),
       ),
     );
   }
 
-  Widget _btText(BuildContext context) {
+  Widget _btText(BuildContext context, double width) {
     return Text(
-      'Удалить товар',
+      S.of(context).delete_product,
       style: Theme.of(context).textTheme.headline4?.copyWith(
-            color: myColors.errorColor,
-          ),
+          color: myColors.errorColor, fontSize: width < 322 ? 15 : null),
     );
   }
 
-  Widget _icon() {
+  Widget _icon(double width) {
     return SvgPicture.asset(
       'assets/icon/trash_empty.svg',
       color: myColors.errorColor,
-      width: 24,
-      height: 24,
+      width: width < 322 ? 22 : 24,
+      height: width < 322 ? 22 : 24,
     );
   }
 }

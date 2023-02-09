@@ -4,14 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mkk/data/api/claim_drafts/delete_products/params/claim_drafts_delete_products_params.dart';
 import 'package:mkk/domain/repositories/repository.dart';
-import 'package:mkk/domain/validators/claim_drafts/claim_drafts_validator.dart';
 import 'package:mkk/presentation/pages/claim_drafts_info/claim_draft_add_product_bloc/claim_draft_add_product_bloc.dart';
-import 'package:super_validation/super_validation_enum.dart';
-import 'package:super_validation/super_validation_string.dart';
+import 'package:mkk/presentation/pages/claim_drafts_info/claim_drafts_bloc/claim_drafts_info_bloc.dart';
 
 import '../../../../data/api/claim_drafts/products/entity/claim_drafts_products_entity.dart';
 import '../../../../data/api/claim_drafts/products/params/claim_drafts_products_params.dart';
 import '../../../../data/api/claim_drafts/save/params/claim_drafts_save_params.dart';
+import '../../claim_drafts_info/claim_draft_add_overage_bloc/claim_draft_add_overage_bloc.dart';
+import '../../claim_drafts_info/claim_drafts_error_cubit/claim_drafts_error_cubit.dart';
 
 part 'claim_drafts_products_event.dart';
 part 'claim_drafts_products_state.dart';
@@ -21,36 +21,54 @@ class ClaimDraftsProductsBloc
   final int id;
   final Repository repository;
   final ClaimDraftAddProductBloc addProductBloc;
+  final ClaimDraftAddOverageBloc addOverageBloc;
+  final ClaimDraftsErrorCubit claimDraftsErrorCubit;
+  final ClaimDraftsInfoBloc claimDraftsInfoBloc;
 
   ClaimDraftsProductsBloc({
     required this.repository,
     required this.id,
     required this.addProductBloc,
+    required this.claimDraftsInfoBloc,
+    required this.claimDraftsErrorCubit,
+    required this.addOverageBloc,
   }) : super(ClaimDraftsProductsInitialS()) {
     on<ClaimDraftsProductsFetchE>(_fetchProducts);
     on<ClaimDraftsProductsDeleteE>(_deleteProduct);
     on<ClaimDraftsProductsSaveE>(_saveProduct);
+    on<ClaimDraftsProductsReloadE>(_reload);
 
     _initialize();
 
-    _subscription = addProductBloc.stream.distinct().listen(_listener);
+    _subscription =
+        addProductBloc.stream.distinct().listen(_addProductBlocListener);
+    _subscriptionOverage =
+        addOverageBloc.stream.distinct().listen(_addOverageBlocListener);
   }
 
   late StreamSubscription<ClaimDraftAddProductState> _subscription;
+  late StreamSubscription<ClaimDraftAddOverageState> _subscriptionOverage;
 
   @override
   Future<void> close() {
     _subscription.cancel();
+    _subscriptionOverage.cancel();
+
     return super.close();
   }
+
+  int maxQuantityClaim = 0;
 
   FutureOr<void> _fetchProducts(ClaimDraftsProductsFetchE event,
       Emitter<ClaimDraftsProductsState> emit) async {
     try {
       emit(ClaimDraftsProductsLoadingS());
       final products = await repository.claimDraftProducts(id, event.params);
+      final limit = await repository.claimDraftProducts(
+          id, ClaimDraftsProductsParams(id: id, isSelected: 0));
+
       products.data.isNotEmpty
-          ? emit(ClaimDraftsProductsLoadedS(products: products))
+          ? emit(ClaimDraftsProductsLoadedS(products: products, limit: limit))
           : emit(ClaimDraftsProductsEmptyS());
     } catch (e) {
       emit(ClaimDraftsProductsErrorS());
@@ -75,19 +93,16 @@ class ClaimDraftsProductsBloc
     }
   }
 
+  void saveProduct(ClaimDraftsProductsModel model) {
+    add(ClaimDraftsProductsSaveE(model: model));
+  }
+
   FutureOr<void> _saveProduct(ClaimDraftsProductsSaveE event,
       Emitter<ClaimDraftsProductsState> emit) async {
     try {
       final params = ClaimDraftsSaveParams(
-        comment: comment.text,
-        products: [
-          ClaimDraftsProductsModel(
-            id: event.productId,
-            claimType: claimTypeNumber.value,
-            claimQuantity: int.tryParse(quantityClaim.text),
-            claimComment: comment.text.isEmpty ? null : comment.text,
-          ),
-        ],
+        comment: claimDraftsInfoBloc.message.text,
+        products: [event.model],
       );
       await repository.claimDraftsSave(id, params);
       _initialize();
@@ -96,24 +111,20 @@ class ClaimDraftsProductsBloc
     }
   }
 
-  SuperValidation quantityClaim = SuperValidation(
-    validationFunc: ClaimDraftsValidator.quantityClaim,
-  );
+  FutureOr<void> _reload(ClaimDraftsProductsReloadE event,
+      Emitter<ClaimDraftsProductsState> emit) {
+    _initialize();
+  }
 
-  SuperValidation comment = SuperValidation(
-    validationFunc: ClaimDraftsValidator.quantityClaim,
-  );
+  void _addProductBlocListener(ClaimDraftAddProductState addProductState) {
+    if (addProductState is ClaimDraftAddProductSaveSuccesS ||
+        addProductState is ClaimDraftAddProductS) {
+      _initialize();
+    }
+  }
 
-  final SuperValidationEnum<String> claimType = SuperValidationEnum(
-    validateFunc: ClaimDraftsValidator.claimTypeWithDrafts,
-  );
-
-  final SuperValidationEnum<int> claimTypeNumber = SuperValidationEnum(
-    validateFunc: null,
-  );
-
-  void _listener(ClaimDraftAddProductState addProductState) {
-    if (addProductState is ClaimDraftAddProductSaveSuccesS) {
+  void _addOverageBlocListener(ClaimDraftAddOverageState addOverageState) {
+    if (addOverageState is ClaimDraftAddOverageEditProductS) {
       _initialize();
     }
   }

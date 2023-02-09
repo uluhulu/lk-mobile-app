@@ -8,10 +8,29 @@ import '../../../../data/api/invoices/detail/products/entity/invoices_detail_pro
 import '../create_claim_bloc/create_claim_bloc.dart';
 import 'create_claim_item_title.dart';
 
-class CreateClaimItemList extends StatelessWidget {
+class CreateClaimItemList extends StatefulWidget {
   const CreateClaimItemList({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CreateClaimItemList> createState() => _CreateClaimItemListState();
+}
+
+class _CreateClaimItemListState extends State<CreateClaimItemList> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +43,9 @@ class CreateClaimItemList extends StatelessWidget {
           if (state is CreateClaimStartS) {
             return Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.only(bottom: kBasePadding * 4),
+                padding: const EdgeInsets.only(bottom: kBasePadding * 5),
                 shrinkWrap: true,
+                controller: _scrollController,
                 separatorBuilder: _separatorBuilder,
                 itemCount: state.data.data.length,
                 itemBuilder: ((context, index) {
@@ -56,5 +76,13 @@ class CreateClaimItemList extends StatelessWidget {
     return const Divider(
       height: 48,
     );
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent &&
+        !_scrollController.position.outOfRange) {
+      context.read<CreateClaimBloc>().add(CreateClaimPaginationE());
+    }
   }
 }

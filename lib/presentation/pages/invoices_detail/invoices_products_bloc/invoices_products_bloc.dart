@@ -21,17 +21,23 @@ class InvoicesProductsBloc
   }) : super(InvoicesProductsInitialS()) {
     on<InvoicesProductsFetchE>(_fetchProducts);
     on<InvoicesProductsRefreshE>(_refreshProducts);
-    add(InvoicesProductsFetchE(uuid: uuid));
+    add(InvoicesProductsFetchE(
+      uuid: uuid,
+      params: InvoicesDetailProductsParams(uuid: uuid),
+    ));
   }
 
   FutureOr<void> _fetchProducts(
       InvoicesProductsFetchE event, Emitter<InvoicesProductsState> emit) async {
     try {
       emit(InvoicesProductsLoadingS());
-      final InvoicesDetailProductsParams productsParams =
-          InvoicesDetailProductsParams(uuid: uuid);
-      final result = await repository.invoicesDetailProducts(productsParams);
-      emit(InvoicesProductsLoadedS(products: result));
+      final result = await repository.invoicesDetailProducts(event.params);
+      emit(InvoicesProductsLoadedS(
+        products: result,
+        currentPage: result.meta.currentPage,
+        numberPages: result.meta.lastPage,
+        params: event.params,
+      ));
     } catch (e) {
       emit(InvoicesProductsErrorS(message: e.toString()));
     }
@@ -39,6 +45,9 @@ class InvoicesProductsBloc
 
   FutureOr<void> _refreshProducts(
       InvoicesProductsRefreshE event, Emitter<InvoicesProductsState> emit) {
-    add(InvoicesProductsFetchE(uuid: uuid));
+    add(InvoicesProductsFetchE(
+      uuid: uuid,
+      params: InvoicesDetailProductsParams(uuid: uuid),
+    ));
   }
 }

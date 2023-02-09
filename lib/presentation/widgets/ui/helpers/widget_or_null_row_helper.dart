@@ -10,6 +10,9 @@ class WidgetOrNullRowHelper extends StatelessWidget {
   final Color? valueColor;
   final bool? isDetail;
   final bool? needValueColor;
+  final TextStyle? titleStyle;
+  final TextStyle? valueStyle;
+
   const WidgetOrNullRowHelper({
     Key? key,
     required this.title,
@@ -17,27 +20,32 @@ class WidgetOrNullRowHelper extends StatelessWidget {
     this.valueColor,
     this.isDetail,
     this.needValueColor,
+    this.titleStyle,
+    this.valueStyle,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return value == null || value!.isEmpty
-        ? const SizedBox.shrink()
-        : Padding(
-            padding: const EdgeInsets.only(bottom: kPadding),
-            child: Row(
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.subtitle2?.copyWith(
+    if (value == null || value!.isEmpty) {
+      return const SizedBox.shrink();
+    } else {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: kPadding),
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: titleStyle ??
+                  Theme.of(context).textTheme.subtitle2?.copyWith(
                       fontSize: 14,
                       color: isDetail == null
                           ? null
                           : MyTheme.of(context).whiteColor),
-                ),
-                TextWithCopy(
-                  value!,
-                  style: Theme.of(context).textTheme.subtitle2?.copyWith(
+            ),
+            TextWithCopy(
+              value!,
+              style: valueStyle ??
+                  Theme.of(context).textTheme.subtitle2?.copyWith(
                         color: isDetail == null
                             ? valueColor
                             : needValueColor == null
@@ -45,9 +53,10 @@ class WidgetOrNullRowHelper extends StatelessWidget {
                                 : valueColor,
                         fontSize: 14,
                       ),
-                ),
-              ],
             ),
-          );
+          ],
+        ),
+      );
+    }
   }
 }

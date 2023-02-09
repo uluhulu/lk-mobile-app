@@ -7,6 +7,7 @@ import '../../../../../core/utils/constants.dart';
 import '../../../../../data/api/claims/main/params/claims_params.dart';
 import '../../../../../domain/enums/invoices/invoices_sort_type.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 
 class ClaimsSortContentProvider extends StatelessWidget {
   final ClaimsBloc bloc;
@@ -62,24 +63,33 @@ class InvoicesSortContent extends StatelessWidget {
                 itemCount: ClaimsSorting.values.length,
                 shrinkWrap: true,
                 itemBuilder: ((context, index) {
-                  return RadioListTile<ClaimsSorting>(
-                    visualDensity: VisualDensity.comfortable,
-                    activeColor: MyTheme.of(context).primaryButtonColor,
-                    controlAffinity: ListTileControlAffinity.trailing,
-                    value: index == 0 ? ClaimsSorting.desk : ClaimsSorting.asc,
-                    groupValue: sortType,
-                    onChanged: (value) {
-                      if (value != null) {
-                        bloc.sort.value = value;
-                        context
-                            .read<ClaimsBloc>()
-                            .add(ClaimsSortListE(type: value));
-                        Navigator.of(context).pop();
-                      }
-                    },
-                    title: Text(
-                      index == 0 ? l10n.new_first : l10n.old_first,
-                    ),
+                  return  BlocBuilder<AppMetricaBloc, AppMetricaState>(
+                    builder: (context, state){
+                      final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+                      return RadioListTile<ClaimsSorting>(
+                        visualDensity: VisualDensity.comfortable,
+                        activeColor: MyTheme.of(context).primaryButtonColor,
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        value: index == 0 ? ClaimsSorting.desk : ClaimsSorting.asc,
+                        groupValue: sortType,
+                        onChanged: (value) {
+                          if (value != null) {
+                            bloc.sort.value = value;
+                            context
+                                .read<ClaimsBloc>()
+                                .add(ClaimsSortListE(type: value));
+                            Navigator.of(context).pop();
+                            appMetricaBloc.add(AppmetricaOnEventE(
+                                eventName:
+                                  "Претензии Сортировка ${index == 0 ? l10n.new_first : l10n.old_first} "));
+                          }
+                        },
+                        title: Text(
+                          index == 0 ? l10n.new_first : l10n.old_first,
+                        ),
+                      );
+                    }
+
                   );
                 }));
           },

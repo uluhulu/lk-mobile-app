@@ -17,7 +17,7 @@ class SearchInvoiceProductsProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<InvoicesProductsBloc>(
       create: _createProductsBloc,
-      child: const InvoicesProductsList(),
+      child: InvoicesProductsList(uuid: uuid),
     );
   }
 

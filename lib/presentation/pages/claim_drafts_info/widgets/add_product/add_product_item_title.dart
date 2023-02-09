@@ -40,7 +40,7 @@ class AddProductItemTitle extends StatelessWidget {
             WidgetOrNullColumnHelper(
               needColumnPadding: false,
               needPadding: false,
-              title: 'Кол-во',
+              title: S.of(context).quantity,
               value: item.invoiceQuantity.toString(),
             ),
           ],

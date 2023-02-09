@@ -1,61 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_validation/super_validation_string.dart';
+import 'package:super_validation/validation_builder.dart';
 import '../../../../../config/theme/elements/theme_data.dart';
 import '../../../../../core/utils/constants.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../widgets/buttons/primary_elevated_button.dart';
-import '../create_claim_bloc/create_claim_bloc.dart';
 
 class CreateClaimProductSaveContent extends StatelessWidget {
-  final int id;
+  final SuperValidation validation;
+  final VoidCallback onSaved;
+  final VoidCallback onCanceled;
+
   const CreateClaimProductSaveContent({
     super.key,
-    required this.id,
+    required this.onSaved,
+    required this.validation,
+    required this.onCanceled,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(
-          top: kBasePadding * 2,
-          left: kBasePadding,
-          right: kBasePadding,
-          bottom: kBottomSheetBottomPadding,
-        ),
+        padding: _padding(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Сохранить изменения?',
+              S.of(context).save_changes,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: kBasePadding * 3),
-            PrimaryElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                context
-                    .read<CreateClaimBloc>()
-                    .add(CreateClaimDeleteProductE(id: id));
-              },
-              text: S.of(context).save,
-            ),
+            _saveButton(context),
             const SizedBox(height: kBasePadding),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
-                minimumSize: const Size(double.infinity, 40),
-              ),
-              child: Text('Не сохранять',
-                  style: Theme.of(context).textTheme.headline4?.copyWith(
-                        color: MyTheme.of(context).primaryColor,
-                      )),
-            )
+            _cancelButton(context)
           ],
         ));
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+      top: kBasePadding * 2,
+      left: kBasePadding,
+      right: kBasePadding,
+      bottom: kBottomSheetBottomPadding,
+    );
+  }
+
+  Widget _saveButton(BuildContext context) {
+    return SuperValidationBuilder(
+        superValidation: validation,
+        builder: (context, validation, isValid) {
+          return PrimaryElevatedButton(
+            canPress: isValid,
+            onPressed: () {
+              Navigator.of(context).pop();
+              onSaved();
+            },
+            text: S.of(context).save,
+          );
+        });
+  }
+
+  Widget _cancelButton(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+        onCanceled();
+      },
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
+        minimumSize: const Size(double.infinity, 40),
+      ),
+      child: Text(
+        S.of(context).dont_saved,
+        style: Theme.of(context).textTheme.headline4?.copyWith(
+              color: MyTheme.of(context).primaryColor,
+            ),
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mkk/data/api/dictionary/filials/entity/dictionary_filials_entity.dart';
 
 import '../../list/entity/claim_dratfs_list_entity.dart';
 
@@ -7,9 +8,11 @@ part 'claim_drafts_products_entity.g.dart';
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class ClaimDraftsProductsEntity {
   final List<ClaimDraftsProductsData> data;
+  final Meta meta;
 
   ClaimDraftsProductsEntity({
     required this.data,
+    required this.meta,
   });
 
   factory ClaimDraftsProductsEntity.fromJson(Map<String, dynamic> json) =>

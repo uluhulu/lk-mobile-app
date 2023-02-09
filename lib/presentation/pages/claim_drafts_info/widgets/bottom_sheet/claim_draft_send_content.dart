@@ -11,49 +11,55 @@ class ClaimDraftSendContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.only(
-          top: kBasePadding * 2,
-          left: kBasePadding,
-          right: kBasePadding,
-          bottom: kBottomSheetBottomPadding,
+    return Container(padding: _padding(), child: _content(context));
+  }
+
+  Widget _content(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          S.of(context).claim_sending,
+          style: Theme.of(context).textTheme.headline2,
+          textAlign: TextAlign.start,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Отправка претензии',
-              style: Theme.of(context).textTheme.headline2,
-              textAlign: TextAlign.start,
-            ),
-            const SizedBox(height: kBasePadding),
-            Text(
-              'Вы действительно хотите отправить черновик претензии?',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            const SizedBox(height: kBasePadding * 3),
-            PrimaryElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                context.read<ClaimDraftsInfoBloc>().add(ClaimDraftsInfoSendE());
-              },
-              text: S.of(context).send,
-            ),
-            const SizedBox(height: kBasePadding),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
-                minimumSize: const Size(double.infinity, 40),
-              ),
-              child: Text(S.of(context).cancel,
-                  style: Theme.of(context).textTheme.headline4?.copyWith(
-                        color: MyTheme.of(context).primaryColor,
-                      )),
-            )
-          ],
-        ));
+        const SizedBox(height: kBasePadding),
+        Text(
+          S.of(context).claim_sending_confirmation,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+        const SizedBox(height: kBasePadding * 3),
+        PrimaryElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            context.read<ClaimDraftsInfoBloc>().add(ClaimDraftsInfoSendE());
+          },
+          text: S.of(context).send,
+        ),
+        const SizedBox(height: kBasePadding),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
+            minimumSize: const Size(double.infinity, 40),
+          ),
+          child: Text(S.of(context).cancel,
+              style: Theme.of(context).textTheme.headline4?.copyWith(
+                    color: MyTheme.of(context).primaryColor,
+                  )),
+        )
+      ],
+    );
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+      top: kBasePadding * 2,
+      left: kBasePadding,
+      right: kBasePadding,
+      bottom: kBottomSheetBottomPadding,
+    );
   }
 }

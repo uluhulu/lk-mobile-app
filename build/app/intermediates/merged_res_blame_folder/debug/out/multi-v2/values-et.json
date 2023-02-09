@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/araki/flutterProjects/mobile-lk/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml",
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml",
             "map": [
                 {
                     "source": "/Users/araki/.gradle/caches/transforms-3/81ba91bca1bb8d50c2451dbe078524dd/transformed/biometric-1.1.0/res/values-et/values-et.xml",

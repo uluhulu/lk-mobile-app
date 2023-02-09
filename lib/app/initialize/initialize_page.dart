@@ -1,4 +1,5 @@
 import '../../services/appmetrica/appmetrica_service.dart';
+import '../../services/appmetrica/bloc/appmetrica_bloc.dart';
 import '../../services/error/error_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,17 +14,27 @@ import 'initialize_error_page.dart';
 
 class InitializePage extends StatelessWidget {
   final Widget child;
+
   const InitializePage({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => InitializeBloc(
-        localNotification: sl.get<LocalNotification>(),
-        firebaseNotification: sl.get<FirebaseNotification>(),
-        firebaseService: sl.get<FirebaseService>(),
-        appMetricaService: sl.get<AppMetricaService>(),
-      )..add(InitializeE()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => InitializeBloc(
+            localNotification: sl.get<LocalNotification>(),
+            firebaseNotification: sl.get<FirebaseNotification>(),
+            firebaseService: sl.get<FirebaseService>(),
+            appMetricaService: sl.get<AppMetricaService>(),
+          )..add(InitializeE()),
+        ),
+        // BlocProvider(
+        //   create: (context) => AppMetricaBloc(
+        //     appMetricaService: sl.get<AppMetricaService>(),
+        //   ),
+        // ),
+      ],
       child: InitializeContent(
         child: child,
       ),
@@ -33,6 +44,7 @@ class InitializePage extends StatelessWidget {
 
 class InitializeContent extends StatelessWidget {
   final Widget child;
+
   const InitializeContent({Key? key, required this.child}) : super(key: key);
 
   @override

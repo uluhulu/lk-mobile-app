@@ -370,6 +370,16 @@ class S {
     );
   }
 
+  /// `Вы неверно повторили код 2 раза подряд.\n\nВы можете придумать новый код, чтобы при каждом входе в приложение не вводить логин и пароль, или отменить свое действие`
+  String get pin_code_error_subtitle_new {
+    return Intl.message(
+      'Вы неверно повторили код 2 раза подряд.\n\nВы можете придумать новый код, чтобы при каждом входе в приложение не вводить логин и пароль, или отменить свое действие',
+      name: 'pin_code_error_subtitle_new',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Войти по логину и паролю`
   String get enter_for_log_pass {
     return Intl.message(
@@ -540,11 +550,31 @@ class S {
     );
   }
 
+  /// `Код установлен`
+  String get change_code_success_title {
+    return Intl.message(
+      'Код установлен',
+      name: 'change_code_success_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Новый код успешно установлен!\n\nПри следущем входе в приложение используйте этот новый код.`
   String get change_code_info {
     return Intl.message(
       'Новый код успешно установлен!\n\nПри следущем входе в приложение используйте этот новый код.',
       name: 'change_code_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Код успешно установлен!\n\nПри следущем входе в приложение используйте этот код.`
+  String get change_code_info_new {
+    return Intl.message(
+      'Код успешно установлен!\n\nПри следущем входе в приложение используйте этот код.',
+      name: 'change_code_info_new',
       desc: '',
       args: [],
     );
@@ -780,6 +810,16 @@ class S {
     );
   }
 
+  /// `Добавить`
+  String get add {
+    return Intl.message(
+      'Добавить',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Код`
   String get code {
     return Intl.message(
@@ -985,16 +1025,6 @@ class S {
     return Intl.message(
       'Адрес доставки',
       name: 'delivery_address',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Статус маркировки`
-  String get marking_status {
-    return Intl.message(
-      'Статус маркировки',
-      name: 'marking_status',
       desc: '',
       args: [],
     );
@@ -1590,10 +1620,10 @@ class S {
     );
   }
 
-  /// `Черновик претензии: {id}\n\nВсе черновики хранятся в разделе Черновики претензии. Перейти в раздел можно со вкладки Претензии.`
+  /// `Черновик претензии: {id}\n\nВсе черновики хранятся в разделе Черновики претензии. Перейти в черновики можно из раздела Претензии.`
   String claim_saved(Object id) {
     return Intl.message(
-      'Черновик претензии: $id\n\nВсе черновики хранятся в разделе Черновики претензии. Перейти в раздел можно со вкладки Претензии.',
+      'Черновик претензии: $id\n\nВсе черновики хранятся в разделе Черновики претензии. Перейти в черновики можно из раздела Претензии.',
       name: 'claim_saved',
       desc: '',
       args: [id],
@@ -1655,6 +1685,566 @@ class S {
     return Intl.message(
       'Для поиска по номеру накладной или по номеру заказа покупателя переключите режим в меню.\n\nПодробнее про поиск накладных смотрите в «Справке» в разделе ',
       name: 'invoice_search_error_by_internet_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выберите товар из накладной`
+  String get select_product {
+    return Intl.message(
+      'Выберите товар из накладной',
+      name: 'select_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `За один раз можно добавить 1 товар`
+  String get select_one_product {
+    return Intl.message(
+      'За один раз можно добавить 1 товар',
+      name: 'select_one_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Черновик претензии`
+  String get claim_draft {
+    return Intl.message(
+      'Черновик претензии',
+      name: 'claim_draft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Кратко опишите ситуацию`
+  String get briefly_describe_the_situation {
+    return Intl.message(
+      'Кратко опишите ситуацию',
+      name: 'briefly_describe_the_situation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Отправка претензии`
+  String get claim_sending {
+    return Intl.message(
+      'Отправка претензии',
+      name: 'claim_sending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вы действительно хотите отправить черновик претензии?`
+  String get claim_sending_confirmation {
+    return Intl.message(
+      'Вы действительно хотите отправить черновик претензии?',
+      name: 'claim_sending_confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Удаление товара`
+  String get product_deletion {
+    return Intl.message(
+      'Удаление товара',
+      name: 'product_deletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Товар будет удалён из черновика претензии, вы уверены?`
+  String get product_deletion_confirmation {
+    return Intl.message(
+      'Товар будет удалён из черновика претензии, вы уверены?',
+      name: 'product_deletion_confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Удалить товар`
+  String get delete_product {
+    return Intl.message(
+      'Удалить товар',
+      name: 'delete_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Черновик сохранён!`
+  String get claim_draft_saved {
+    return Intl.message(
+      'Черновик сохранён!',
+      name: 'claim_draft_saved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Дата черновика`
+  String get draft_date {
+    return Intl.message(
+      'Дата черновика',
+      name: 'draft_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Введите комментарий к претензии`
+  String get enter_claim_comment {
+    return Intl.message(
+      'Введите комментарий к претензии',
+      name: 'enter_claim_comment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выбрать товар`
+  String get select_product_one {
+    return Intl.message(
+      'Выбрать товар',
+      name: 'select_product_one',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выберите товары из накладной или добавьте излишки`
+  String get select_product_two {
+    return Intl.message(
+      'Выберите товары из накладной или добавьте излишки',
+      name: 'select_product_two',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Не сохранять`
+  String get dont_saved {
+    return Intl.message(
+      'Не сохранять',
+      name: 'dont_saved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сохранить изменения?`
+  String get save_changes {
+    return Intl.message(
+      'Сохранить изменения?',
+      name: 'save_changes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Искать по наименованию`
+  String get search_by_name {
+    return Intl.message(
+      'Искать по наименованию',
+      name: 'search_by_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Претензия отправлена!`
+  String get claim_draft_sent {
+    return Intl.message(
+      'Претензия отправлена!',
+      name: 'claim_draft_sent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Создан документ: `
+  String get claim_draft_created {
+    return Intl.message(
+      'Создан документ: ',
+      name: 'claim_draft_created',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Созданы документы: `
+  String get claim_drafts_created {
+    return Intl.message(
+      'Созданы документы: ',
+      name: 'claim_drafts_created',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Отслеживать дальнейшее состояние претензии вы можете в разделе Претензии.`
+  String get claim_draft_created_info {
+    return Intl.message(
+      'Отслеживать дальнейшее состояние претензии вы можете в разделе Претензии.',
+      name: 'claim_draft_created_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Исправьте следующие ошибки:`
+  String get claim_draft_error {
+    return Intl.message(
+      'Исправьте следующие ошибки:',
+      name: 'claim_draft_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Невозможно отправить претензию`
+  String get claim_draft_error_send {
+    return Intl.message(
+      'Невозможно отправить претензию',
+      name: 'claim_draft_error_send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Скрыть`
+  String get hide {
+    return Intl.message(
+      'Скрыть',
+      name: 'hide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Установить код входа в приложение`
+  String get set_app_code {
+    return Intl.message(
+      'Установить код входа в приложение',
+      name: 'set_app_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `На сервере личного кабинета ведутся регламентные технические работы. В ближайшее время сервис снова будет доступен.`
+  String get auth_server_error_403 {
+    return Intl.message(
+      'На сервере личного кабинета ведутся регламентные технические работы. В ближайшее время сервис снова будет доступен.',
+      name: 'auth_server_error_403',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Не удалось подключиться к серверу региональной компании. Возможно в данный момент проводятся технические работы.\nПожалуйста повторите попытку позже. Если проблема остается, свяжитесь с технической поддержкой по адресу`
+  String get auth_server_error {
+    return Intl.message(
+      'Не удалось подключиться к серверу региональной компании. Возможно в данный момент проводятся технические работы.\nПожалуйста повторите попытку позже. Если проблема остается, свяжитесь с технической поддержкой по адресу',
+      name: 'auth_server_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Приносим свои извинения за доставленные неудобства.`
+  String get auth_server_error_subtitle {
+    return Intl.message(
+      'Приносим свои извинения за доставленные неудобства.',
+      name: 'auth_server_error_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Справка`
+  String get help {
+    return Intl.message(
+      'Справка',
+      name: 'help',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Обратитесь в службу технической поддержки, написав письмо по адресу:`
+  String get help_detail_bottom_info_1 {
+    return Intl.message(
+      'Обратитесь в службу технической поддержки, написав письмо по адресу:',
+      name: 'help_detail_bottom_info_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `help@puls.ru`
+  String get support_service_email {
+    return Intl.message(
+      'help@puls.ru',
+      name: 'support_service_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `В письме обязательно укажите ИНН вашей организации.`
+  String get help_detail_bottom_info_2 {
+    return Intl.message(
+      'В письме обязательно укажите ИНН вашей организации.',
+      name: 'help_detail_bottom_info_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `У вас остались вопросы?`
+  String get have_questions {
+    return Intl.message(
+      'У вас остались вопросы?',
+      name: 'have_questions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Другие вопросы в разделе «{title}»`
+  String other_questions_in_help_detail(Object title) {
+    return Intl.message(
+      'Другие вопросы в разделе «$title»',
+      name: 'other_questions_in_help_detail',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Не найдено ни одного производителя`
+  String get no_manufacturers {
+    return Intl.message(
+      'Не найдено ни одного производителя',
+      name: 'no_manufacturers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Далее`
+  String get next {
+    return Intl.message(
+      'Далее',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1. Выберите товар`
+  String get overage_select_product {
+    return Intl.message(
+      '1. Выберите товар',
+      name: 'overage_select_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Для выбора воспользуйтесь поиском`
+  String get overage_select_product_subtitle {
+    return Intl.message(
+      'Для выбора воспользуйтесь поиском',
+      name: 'overage_select_product_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Все производители`
+  String get all_manufacturers {
+    return Intl.message(
+      'Все производители',
+      name: 'all_manufacturers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Найдено серий:`
+  String get found_serials {
+    return Intl.message(
+      'Найдено серий:',
+      name: 'found_serials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2. Выберите серию`
+  String get overage_select_serial {
+    return Intl.message(
+      '2. Выберите серию',
+      name: 'overage_select_serial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Серия указана на упаковке (6-8 цифр)`
+  String get overage_select_serial_subtitle {
+    return Intl.message(
+      'Серия указана на упаковке (6-8 цифр)',
+      name: 'overage_select_serial_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Не удалось войти`
+  String get local_auth_error {
+    return Intl.message(
+      'Не удалось войти',
+      name: 'local_auth_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Всего найдено наименований: {total} Показаны первые {perPage} наименований. Для более точного поиска уточните запрос.`
+  String search_overage_product_result(Object total, Object perPage) {
+    return Intl.message(
+      'Всего найдено наименований: $total Показаны первые $perPage наименований. Для более точного поиска уточните запрос.',
+      name: 'search_overage_product_result',
+      desc: '',
+      args: [total, perPage],
+    );
+  }
+
+  /// `Наименование`
+  String get overage_product_name {
+    return Intl.message(
+      'Наименование',
+      name: 'overage_product_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выбрать`
+  String get select {
+    return Intl.message(
+      'Выбрать',
+      name: 'select',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Назад`
+  String get back {
+    return Intl.message(
+      'Назад',
+      name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Обновить`
+  String get update {
+    return Intl.message(
+      'Обновить',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Обновите приложение`
+  String get update_application {
+    return Intl.message(
+      'Обновите приложение',
+      name: 'update_application',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Загрузите актуальную версию, чтобы продолжить пользоваться приложением`
+  String get update_application_text {
+    return Intl.message(
+      'Загрузите актуальную версию, чтобы продолжить пользоваться приложением',
+      name: 'update_application_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сделать фото`
+  String get make_photo {
+    return Intl.message(
+      'Сделать фото',
+      name: 'make_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Выбрать фото из галереи`
+  String get choose_photo_from_gallery {
+    return Intl.message(
+      'Выбрать фото из галереи',
+      name: 'choose_photo_from_gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Добавить файл`
+  String get add_file {
+    return Intl.message(
+      'Добавить файл',
+      name: 'add_file',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Открыть галерею`
+  String get open_gallery {
+    return Intl.message(
+      'Открыть галерею',
+      name: 'open_gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По вашему запросу ничего не найдено`
+  String get overage_search_not_found {
+    return Intl.message(
+      'По вашему запросу ничего не найдено',
+      name: 'overage_search_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нажатие на кнопку : `
+  String get button_on_pressed {
+    return Intl.message(
+      'Нажатие на кнопку : ',
+      name: 'button_on_pressed',
       desc: '',
       args: [],
     );

@@ -14,7 +14,7 @@ ProfileInfoEntity _$ProfileInfoEntityFromJson(Map<String, dynamic> json) =>
 ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) => ProfileData(
       id: json['id'] as int,
       name: json['name'] as String,
-      email: json['email'] as String,
+      email: json['email'] as String?,
       role: json['role'] as String,
       client: Client.fromJson(json['client'] as Map<String, dynamic>),
     );
@@ -28,7 +28,7 @@ Client _$ClientFromJson(Map<String, dynamic> json) => Client(
       sid: json['sid'] as String,
       superShortName: json['super_short_name'] as String,
       inn: json['inn'] as String,
-      email: json['email'] as String,
+      email: json['email'] as String? ?? '',
       isMain: json['is_main'] as bool,
       companyGroupGuid: json['company_group_guid'] as String,
       companyGroupName: json['company_group_name'] as String,
@@ -38,10 +38,21 @@ Client _$ClientFromJson(Map<String, dynamic> json) => Client(
       officeManager: json['office_manager'] == null
           ? null
           : Manager.fromJson(json['office_manager'] as Map<String, dynamic>),
+      accessGroups: (json['access_groups'] as List<dynamic>)
+          .map((e) => $enumDecode(_$UserAccessEnumMap, e))
+          .toList(),
       cargo: (json['cargo'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, Cargo.fromJson(e as Map<String, dynamic>)),
       ),
     );
+
+const _$UserAccessEnumMap = {
+  UserAccess.image: 'image',
+  UserAccess.claim: 'claim',
+  UserAccess.catalog: 'catalog',
+  UserAccess.offers: 'offers',
+  UserAccess.receivable: 'receivable',
+};
 
 Manager _$ManagerFromJson(Map<String, dynamic> json) => Manager(
       name: json['name'] as String?,

@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:mkk/locator/locator.dart';
+import 'package:mkk/services/env/env.dart';
 
 /// Добавление авторизации
 class DioStaticInterceptor extends Interceptor {
@@ -9,8 +11,13 @@ class DioStaticInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) {
-    options.headers['Authorization'] =
-        'Bearer VXfnb06pX8fxGrMJLDyXzSeJlOHdvGgUVb9wUArNQt3OMF0a9Y05QTw1dx95mxjy';
+    final env = sl.get<Env>();
+    final needRestorePassword = options.headers['needRestore'];
+    if (needRestorePassword != null) {
+      handler.next(options);
+      return;
+    }
+    options.headers['Authorization'] = env.vapidKey;
     handler.next(options);
   }
 }

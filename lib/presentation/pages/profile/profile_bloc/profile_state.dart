@@ -21,3 +21,14 @@ class ProfileLoadedS extends ProfileState {
   @override
   List<Object> get props => [data];
 }
+
+class ProfileErrorS extends ProfileState {
+  final String message;
+
+  const ProfileErrorS({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}

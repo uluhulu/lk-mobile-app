@@ -7,8 +7,11 @@ import '../claim_products_bloc/claim_products_bloc.dart';
 import 'claim_products_list_loaded.dart';
 
 class ClaimProductsList extends StatelessWidget {
-  const ClaimProductsList({
+  String? status;
+
+  ClaimProductsList({
     Key? key,
+    this.status,
   }) : super(key: key);
 
   @override
@@ -21,6 +24,7 @@ class ClaimProductsList extends StatelessWidget {
         if (state is ClaimProductsLoadedS) {
           return ClaimProductListLoaded(
             productsData: state.products,
+            status: status ?? "",
           );
         }
         if (state is ClaimProductsErrorS) {

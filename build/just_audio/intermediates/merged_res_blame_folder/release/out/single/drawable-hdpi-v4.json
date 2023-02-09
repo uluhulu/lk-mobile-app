@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/media_session_service_notification_ic_pause.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-hdpi-v4/media_session_service_notification_ic_pause.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/b30057a988758e51b51188492f55b2a3/transformed/core-1.7.0/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_normal.9.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/b30057a988758e51b51188492f55b2a3/transformed/core-1.7.0/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/b30057a988758e51b51188492f55b2a3/transformed/core-1.7.0/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/media_session_service_notification_ic_skip_to_next.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-hdpi-v4/media_session_service_notification_ic_skip_to_next.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/b30057a988758e51b51188492f55b2a3/transformed/core-1.7.0/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/b30057a988758e51b51188492f55b2a3/transformed/core-1.7.0/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/media_session_service_notification_ic_play.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-hdpi-v4/media_session_service_notification_ic_play.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/media_session_service_notification_ic_skip_to_previous.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-hdpi-v4/media_session_service_notification_ic_skip_to_previous.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/just_audio/intermediates/merged_res/release/drawable-hdpi-v4/media_session_service_notification_ic_music_note.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-hdpi-v4/media_session_service_notification_ic_music_note.png"
+    }
+]

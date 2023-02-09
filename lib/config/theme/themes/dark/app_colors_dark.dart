@@ -57,4 +57,9 @@ class AppColorsDark implements AppColors {
 
   @override
   Color? whiteTextColor = Colors.white;
+  @override
+  Color? htmlDialogColor = const Color(0xff004F9F);
+
+  @override
+  Color? htmlDialogBackGroundColor = const Color(0xff95D3E6).withOpacity(0.25);
 }

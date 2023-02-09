@@ -28,7 +28,7 @@ class RegionCompanyList extends StatelessWidget {
                       visualDensity: VisualDensity.comfortable,
                       activeColor: MyTheme.of(context).primaryButtonColor,
                       controlAffinity: ListTileControlAffinity.trailing,
-                      value: index,
+                      value: state.data.data[index].id,
                       groupValue: value,
                       onChanged: (newValue) {
                         bloc.filialValidation.value = newValue;

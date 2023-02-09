@@ -10,6 +10,7 @@ import 'package:mkk/presentation/widgets/error/app_error_widget.dart';
 import '../../../../data/api/claim_drafts/list/params/claim_drafts_list_params.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/scaffold/screen_view.dart';
+import '../../claim_drafts_observer/claim_drafts_observer_bloc/claim_drafts_observer.dart';
 import 'claim_drafts_list_loaded.dart';
 
 class ClaimDraftsListProvider extends StatelessWidget {
@@ -31,6 +32,7 @@ class ClaimDraftsListProvider extends StatelessWidget {
   ClaimDraftsListBloc _createBloc(BuildContext context) {
     return ClaimDraftsListBloc(
       repository: sl.get<Repository>(),
+      appObserverBloc: context.read<ClaimDraftsObserverBloc>(),
     );
   }
 }

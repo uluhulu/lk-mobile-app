@@ -16,57 +16,71 @@ class AddProductDeleteContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.only(
-          top: kBasePadding * 2,
-          left: kBasePadding,
-          right: kBasePadding,
-          bottom: kBottomSheetBottomPadding,
+    return Container(padding: _padding(), child: _content(context));
+  }
+
+  Widget _content(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          S.of(context).product_deletion,
+          style: Theme.of(context).textTheme.headline2,
+          textAlign: TextAlign.start,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Удаление товара',
-              style: Theme.of(context).textTheme.headline2,
-              textAlign: TextAlign.start,
-            ),
-            const SizedBox(height: kBasePadding),
-            Text(
-              'Товар будет удалён из черновика претензии, вы уверены?',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            const SizedBox(height: kBasePadding * 3),
-            PrimaryElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                context
-                    .read<ClaimDraftAddProductBloc>()
-                    .add(ClaimDraftAddProductDeleteE(id: id));
-              },
-              icon: SvgPicture.asset(
-                'assets/icon/trash_empty.svg',
-                width: 24,
-                height: 24,
-                color: MyTheme.of(context).whiteColor,
-              ),
-              text: S.of(context).delete,
-            ),
-            const SizedBox(height: kBasePadding),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
-                minimumSize: const Size(double.infinity, 40),
-              ),
-              child: Text('Отмена',
-                  style: Theme.of(context).textTheme.headline4?.copyWith(
-                        color: MyTheme.of(context).primaryColor,
-                      )),
-            )
-          ],
-        ));
+        const SizedBox(height: kBasePadding),
+        Text(
+          S.of(context).product_deletion_confirmation,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+        const SizedBox(height: kBasePadding * 3),
+        _deleteButton(context),
+        const SizedBox(height: kBasePadding),
+        _cancelButton(context)
+      ],
+    );
+  }
+
+  Widget _deleteButton(BuildContext context) {
+    return PrimaryElevatedButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+        context
+            .read<ClaimDraftAddProductBloc>()
+            .add(ClaimDraftAddProductDeleteE(id: id));
+      },
+      icon: SvgPicture.asset(
+        'assets/icon/trash_empty.svg',
+        width: 24,
+        height: 24,
+        color: MyTheme.of(context).whiteColor,
+      ),
+      text: S.of(context).delete,
+    );
+  }
+
+  Widget _cancelButton(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: kBasePadding * 2),
+        minimumSize: const Size(double.infinity, 40),
+      ),
+      child: Text(S.of(context).canc,
+          style: Theme.of(context).textTheme.headline4?.copyWith(
+                color: MyTheme.of(context).primaryColor,
+              )),
+    );
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+      top: kBasePadding * 2,
+      left: kBasePadding,
+      right: kBasePadding,
+      bottom: kBottomSheetBottomPadding,
+    );
   }
 }

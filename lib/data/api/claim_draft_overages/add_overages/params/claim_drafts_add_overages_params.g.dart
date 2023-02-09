@@ -1,0 +1,16 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'claim_drafts_add_overages_params.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Map<String, dynamic> _$ClaimDraftAddOveragesParamsToJson(
+        ClaimDraftAddOveragesParams instance) =>
+    <String, dynamic>{
+      'guid': instance.guid,
+      'name': instance.name,
+      'series_guid': instance.seriesGuid,
+      'series_name': instance.seriesName,
+    };

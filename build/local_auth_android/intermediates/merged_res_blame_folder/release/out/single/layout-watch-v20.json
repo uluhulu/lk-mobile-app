@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/335101a8ebe7daf14fd5a8023660d07d/transformed/appcompat-1.2.0/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/335101a8ebe7daf14fd5a8023660d07d/transformed/appcompat-1.2.0/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    }
+]

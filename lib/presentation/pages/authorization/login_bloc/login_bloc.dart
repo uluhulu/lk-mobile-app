@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:mkk/data/providers/dio/transformers/interceptors/dio_auth_synchronizer.dart';
 import 'package:mkk/domain/repositories/user_repository.dart';
 import 'package:mkk/locator/locator.dart';
 import 'package:mkk/presentation/pages/authorization/authorization_bloc/authorization_bloc.dart';
@@ -18,9 +19,11 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthorizationBloc authorizationBloc;
   final Repository repository;
+  final AuthSynchronizer authSynchronizer;
   final ErrorBloc errorBloc;
   LoginBloc({
     required this.authorizationBloc,
+    required this.authSynchronizer,
     required this.repository,
     required this.errorBloc,
   }) : super(LoginInitialS()) {
@@ -28,6 +31,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginInitialE>(_initial);
     on<LoginEnterE>(_enter);
     add(LoginEventFetchFilialE());
+    add(LoginInitialE());
 
     loginSubscription = loginValidation.stream.listen(_loginListener);
     passwordSubscription = passwordValidation.stream.listen(_passwordListener);
@@ -47,6 +51,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       emit(LoginSplashLoadingS());
       final result = await repository.dictionaryFilialList();
+      //result sorting alphabetically
+      result.data.sort((a, b) => a.name.compareTo(b.name));
       copyData = result;
       await Future.delayed(const Duration(milliseconds: 1200), () {
         emit(LoginLoadedS(data: result));
@@ -56,10 +62,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-  FutureOr<void> _initial(LoginInitialE event, Emitter<LoginState> emit) {
+  FutureOr<void> _initial(LoginInitialE event, Emitter<LoginState> emit) async {
     final userLogin = userRepository.getUserLogin();
-    if (userLogin != null) {
+    final filial = userRepository.getRegionalCompany();
+    final password = userRepository.getPassword();
+    if (userLogin != null && filial != null && password != null) {
       loginValidation.text = userLogin;
+      filialValidation.value = filial;
+      passwordValidation.text = password;
     }
   }
 
@@ -67,24 +77,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       emit(LoginLoadingS());
 
-      final filial = copyData.data[filialValidation.value ?? 0].id;
+      final filial = filialValidation.value;
       final login = loginValidation.text;
+      final password = passwordValidation.text;
 
-      final result = await repository.login(
+      final result = await authSynchronizer.login(
         login: login,
-        password: passwordValidation.text,
-        filial: filial,
+        password: password,
+        filial: filial ?? 0,
       );
 
-      if (!result.data.isLogin) {
+      if (!result.isLogin) {
         return;
       }
-
-      authorizationBloc.add(AuthorizationLoginE(
-        filial: filial,
-        login: login,
-        loginEntity: result,
-      ));
+      final profile = await repository.getProfile();
+      await userRepository.saveUserAccess(profile.data.client.accessGroups);
+      authorizationBloc.add(AuthorizationLoginE());
     } catch (e) {
       VibrationService().vibrate();
       // _resetValidation();
@@ -96,6 +104,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   String getName(int index) {
     return copyData.data[index].name;
+  }
+
+  String getNameById(int id) {
+    try {
+      return copyData.data.firstWhere((element) => element.id == id).name;
+    } catch (e) {
+      return 'Не выбрано';
+    }
   }
 
   final SuperValidation loginValidation = SuperValidation(
@@ -150,6 +166,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     loginSubscription.cancel();
     passwordSubscription.cancel();
     filialSubscription.cancel();
+    filialValid.dispose();
+    loginValid.dispose();
+    passwordValid.dispose();
+    filialValidation.dispose();
+    loginValidation.dispose();
+    passwordValidation.dispose();
+
     return super.close();
   }
 }

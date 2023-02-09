@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 import 'package:mkk/domain/repositories/repository.dart';
 
 import '../../../../data/api/receivables/info/entity/receivables_info_entity.dart';
@@ -23,6 +22,7 @@ class PaymentsBloc extends Bloc<PaymentsEvent, PaymentsState> {
   FutureOr<void> _fetchPayments(
       PaymentsFetchE event, Emitter<PaymentsState> emit) async {
     try {
+      //int userRole = sl.get<UserRepository>().getUserRole() ?? 0;
       emit(PaymentsLoadingS());
       final result = await repository.receivablesInfo();
       emit(PaymentsLoadedS(data: result));

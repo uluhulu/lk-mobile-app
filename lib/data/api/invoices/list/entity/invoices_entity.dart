@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mkk/data/api/invoices/detail/entity/invoices_detail_entity.dart';
 
@@ -129,7 +130,7 @@ class Filter {
 }
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
-class Addresses {
+class Addresses extends Equatable {
   final String uuid;
   final String name;
   @JsonKey(name: 'parent_uuid')
@@ -137,7 +138,7 @@ class Addresses {
   @JsonKey(name: 'parent_name')
   final String parentName;
 
-  Addresses({
+  const Addresses({
     required this.uuid,
     required this.name,
     required this.parentUuid,
@@ -146,6 +147,9 @@ class Addresses {
 
   factory Addresses.fromJson(Map<String, dynamic> json) =>
       _$AddressesFromJson(json);
+
+  @override
+  List<Object?> get props => [uuid, name, parentUuid, parentName];
 }
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)

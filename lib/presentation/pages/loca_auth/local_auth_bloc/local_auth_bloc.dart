@@ -15,11 +15,14 @@ class LocalAuthBloc extends Bloc<LocalAuthEvent, LocalAuthState> {
 
   LocalAuthBloc({
     required this.userRepository,
-  }) : super(LocalAuthInitialS()) {
+  }) : super(const LocalAuthInitialS()) {
     on<LocalAuthInitializeE>(_localAuthInitializeE);
     on<LocalAuthEnteredE>(_enteredPinCode);
     on<LocalAuthReEnterE>(_reEnterPinCode);
     on<LocalAuthUnSetPinCodeE>(_unSetPinCode);
+    on<LocalAuthStartE>(_start);
+
+    add(LocalAuthStartE());
     //on<LocalAuthSuccessE>(_success);
   }
 
@@ -38,6 +41,7 @@ class LocalAuthBloc extends Bloc<LocalAuthEvent, LocalAuthState> {
     if (pin == event.pin) {
       emit(LocalAuthSuccessS(pin: pin));
       await userRepository.setLocalAuthPin(pin);
+      isPinCodeSet();
     } else {
       emit(LocalAuthLocalPinErrorS());
     }
@@ -49,13 +53,19 @@ class LocalAuthBloc extends Bloc<LocalAuthEvent, LocalAuthState> {
     // if (localPinCode != null) {
     //   emit(LocalAuthPinS(pin: localPinCode));
     // } else {}
-    emit(LocalAuthInitialS());
+    emit(const LocalAuthInitialS(isSetPin: null));
   }
 
   FutureOr<void> _unSetPinCode(
       LocalAuthUnSetPinCodeE event, Emitter<LocalAuthState> emit) {
     setLocalAuthUseCase.call(null);
     add(LocalAuthInitializeE());
+    isPinCodeSet();
+  }
+
+  bool isPinCodeSet() {
+    final localPinCode = getLocalAuthUseCase.call();
+    return localPinCode != null;
   }
 
   // FutureOr<void> _success(
@@ -67,4 +77,14 @@ class LocalAuthBloc extends Bloc<LocalAuthEvent, LocalAuthState> {
   //     emit(LocalAuthLocalPinErrorS());
   //   }
   // }
+
+  FutureOr<void> _start(LocalAuthStartE event, Emitter<LocalAuthState> emit) {
+    if (isPinCodeSet() && state is LocalAuthInitialS) {
+      emit(const LocalAuthInitialS(isSetPin: true));
+    } else if (isPinCodeSet()) {
+      emit(LocalAuthSuccessS(pin: getLocalAuthUseCase.call() ?? ''));
+    } else {
+      emit(const LocalAuthInitialS());
+    }
+  }
 }

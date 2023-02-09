@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/help/navigation_claims_filter_page_params.dart';
 import '../core/help/navigation_invoices_filter_page_params.dart';
 import '../core/help/navigation_route_params.dart';
+import '../domain/repositories/repository.dart';
+import '../locator/locator.dart';
 import '../presentation/navigation/navigation_page_route.dart';
+import '../presentation/pages/claim_drafts_info/add_overage/views/claim_draft_add_overages_page.dart';
 import '../presentation/pages/claim_drafts_info/views/add_product/add_product_page.dart';
 import '../presentation/pages/claim_drafts_info/views/claim_drafts_info_page.dart';
 import '../presentation/pages/claim_drafts_list/views/claim_drafts_list_page.dart';
@@ -14,12 +17,16 @@ import '../presentation/pages/claims_detail/views/claim_detail_page.dart';
 import '../presentation/pages/create_claim/views/create_claim_page.dart';
 import '../presentation/pages/invoices/views/invoices_filters_page.dart';
 import '../presentation/pages/invoices/views/invoices_search_page.dart';
+import '../presentation/pages/invoices_detail/invoices_add_overage/views/invoice_add_overage_provider.dart';
 import '../presentation/pages/invoices_detail/views/invoices_detail_page.dart';
+import '../presentation/pages/help/views/help_page.dart';
+import '../presentation/pages/help_detail/views/help_detail_page.dart';
 import '../presentation/pages/loca_auth/views/set_pin_code_page.dart';
 import '../presentation/pages/main/main_screen.dart';
 import '../presentation/pages/not_found/not_found_screen.dart';
 import '../presentation/pages/profile/act/views/act_page.dart';
 import '../presentation/pages/restore_password/views/restore_password_page.dart';
+import '../presentation/widgets/image_picker/claims_files_cubit/claims_files_cubit.dart';
 
 /// Роуты
 class AppRoutes {
@@ -39,6 +46,10 @@ class AppRoutes {
       claimDraftProductInfo = '/claimDraftProductInfo',
       claimAddItem = '/claimAddItem',
       createClaimDraft = '/createClaimDraft',
+      claimDraftAddOverages = '/claimDraftAddOverages',
+      help = '/help',
+      helpDetail = '/helpDetail',
+      invoiceAddOverages = '/invoiceAddOverages',
       claimsFilters = '/claimsFilters';
 
   static Widget? child;
@@ -137,10 +148,25 @@ class AppRoutes {
       case claimDraftProductInfo:
         final arg = settings.arguments;
         if (arg is ClaimsDraftsProductInfoParams) {
-          builder = (_) => BlocProvider.value(
-                value: arg.bloc,
-                child: ClaimDraftProductInfo(
-                  data: arg.data,
+          builder = (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: arg.bloc,
+                  ),
+                  BlocProvider.value(
+                    value: arg.errorCubit,
+                  ),
+                ],
+                child: BlocProvider<ClaimsFilesCubit>(
+                  create: (context) =>
+                      ClaimsFilesCubit(repository: sl.get<Repository>())
+                        ..claimDraftAttachmentToFiles(
+                          arg.data.attachments ?? [],
+                        ),
+                  child: ClaimDraftProductProvider(
+                    data: arg.data,
+                    draftId: arg.id,
+                  ),
                 ),
               );
           break;
@@ -174,6 +200,79 @@ class AppRoutes {
           builder = (BuildContext _) => const NotFoundScreen();
           break;
         }
+
+      case help:
+        // final arg = settings.arguments;
+        // if (arg is CreateClaimDraftParams) {
+        //   builder = (_) => CreateClaimProvider(
+        //         uuid: arg.uuid,
+        //       );
+        builder = (BuildContext _) => const HelpPageProvider();
+        break;
+      case helpDetail:
+        final arg = settings.arguments;
+        // final arg = settings.arguments;
+        // if (arg is CreateClaimDraftParams) {
+        //   builder = (_) => CreateClaimProvider(
+        //         uuid: arg.uuid,
+        //       );
+        if (arg is HelpDetailParams) {
+          builder = (_) => HelpDetailPageProvider(
+                content: arg.content,
+                helpTitle: arg.helpTitle,
+                otherContentItems: arg.otherContentItems,
+              );
+          break;
+        } else {
+          builder = (BuildContext _) => const NotFoundScreen();
+          break;
+        }
+      // } else {
+      //   builder = (BuildContext _) => const NotFoundScreen();
+      //   break;
+      // }
+
+      case claimDraftAddOverages:
+        final arg = settings.arguments;
+        if (arg is ClaimDraftAddOveragesParams) {
+          builder = (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: arg.claimErrorBloc,
+                  ),
+                  BlocProvider.value(
+                    value: arg.productsBloc,
+                  ),
+                  BlocProvider.value(
+                    value: arg.bloc,
+                  ),
+                ],
+                child: ClaimDraftAddOveragesPage(
+                  id: arg.id,
+                ),
+              );
+          break;
+        } else {
+          builder = (BuildContext _) => const NotFoundScreen();
+          break;
+        }
+
+      case invoiceAddOverages:
+        final arg = settings.arguments;
+        if (arg is CreateClaimDraftParams) {
+          builder = (_) => InvoiceAddOveragesProvider(
+                guid: arg.uuid,
+              );
+          break;
+        } else {
+          builder = (BuildContext _) => const NotFoundScreen();
+          break;
+        }
+      // builder = (BuildContext _) => InvoiceAddOveragesProvider(
+      //       guid: baseArguments.uuid,
+      //     );
+      // break;
+
       // builder = (BuildContext _) =>  ClaimDraftProductInfo();
       // break;
       // builder = (BuildContext _) => ClaimDraftsInfoProvider(

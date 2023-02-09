@@ -1,3 +1,4 @@
+import '../../../config/theme/elements/theme_data.dart';
 import '../../../core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,7 @@ class PrimaryElevatedButton extends StatelessWidget {
         onPressed: _enabled == true ? onPressed : null,
         style: style ??
             ElevatedButton.styleFrom(
+              backgroundColor: backgroundColor?? MyTheme.of(context).primaryButtonColor,
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius)),

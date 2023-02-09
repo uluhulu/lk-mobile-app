@@ -9,6 +9,7 @@ import 'package:super_validation/super_validation.dart';
 
 import '../../../../data/api/invoices/detail/products/entity/invoices_detail_products_entity.dart';
 import '../../../widgets/buttons/primary_elevated_button.dart';
+import '../../../widgets/fields/search_clear_text.dart';
 import '../../../widgets/scaffold/screen_view.dart';
 import '../create_claim_bloc/create_claim_bloc.dart';
 import '../widgets/create_claim_item_list.dart';
@@ -24,45 +25,99 @@ class CreateClaimLoaded extends StatelessWidget {
   Widget build(BuildContext context) {
     final myColors = MyTheme.of(context);
     final bloc = context.read<CreateClaimBloc>();
-    return ScreenView(
-      context: context,
-      title: S.of(context).claim_drafts,
-      floatingActionButton: navBarButton(bloc),
-      child: Column(
+    return SafeArea(
+      right: false,
+      left: false,
+      top: false,
+      child: ScreenView(
+        context: context,
+        title: S.of(context).claim_draft,
+        floatingActionButton: navBarButton(bloc),
+        child: _content(context, myColors, bloc),
+      ),
+    );
+  }
+
+  Widget _content(
+      BuildContext context, MyThemeData myColors, CreateClaimBloc bloc) {
+    final height = MediaQuery.of(context).size.height;
+    if (height < 540) {
+      return _lowHeightScreen(context, myColors, bloc);
+    } else {
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Выберите товар из накладной',
-            style:
-                Theme.of(context).textTheme.headline2?.copyWith(fontSize: 24),
-          ),
+          _title(context),
           const SizedBox(height: kPadding),
-          Row(
-            children: [
-              SvgPicture.asset(
-                'assets/icon/info-circle.svg',
-                width: 24,
-                height: 24,
-                color: myColors.blueColor,
-              ),
-              const SizedBox(width: kPadding / 2),
-              Text(
-                'За один раз можно добавить 1 товар ',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: myColors.blueColor),
-              ),
-            ],
-          ),
+          _subtitleInfo(myColors, context),
           const SizedBox(height: kPadding * 3),
           CreateClaimSearchField(
             searchValidation: bloc.search,
+            suffixIcon: _clearText(bloc, myColors),
+            scrollPadding: const EdgeInsets.only(bottom: 100),
           ),
           const SizedBox(height: kPadding * 3),
           const CreateClaimItemList(),
         ],
-      ),
+      );
+    }
+  }
+
+  Widget _lowHeightScreen(
+      BuildContext context, MyThemeData myColors, CreateClaimBloc bloc) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _title(context),
+                const SizedBox(height: kPadding),
+                _subtitleInfo(myColors, context),
+                const SizedBox(height: kPadding * 3),
+                CreateClaimSearchField(
+                  searchValidation: bloc.search,
+                  suffixIcon: _clearText(bloc, myColors),
+                  scrollPadding: const EdgeInsets.only(bottom: 100),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: kPadding * 3),
+        const CreateClaimItemList(),
+      ],
+    );
+  }
+
+  Widget _title(BuildContext context) {
+    return Text(
+      S.of(context).select_product,
+      style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 24),
+    );
+  }
+
+  Widget _subtitleInfo(MyThemeData myColors, BuildContext context) {
+    return Row(
+      children: [
+        SvgPicture.asset(
+          'assets/icon/info-circle.svg',
+          width: 24,
+          height: 24,
+          color: myColors.blueColor,
+        ),
+        const SizedBox(width: kPadding / 2),
+        Flexible(
+          child: Text(
+            S.of(context).select_one_product,
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1
+                ?.copyWith(color: myColors.blueColor),
+          ),
+        ),
+      ],
     );
   }
 
@@ -79,5 +134,13 @@ class CreateClaimLoaded extends StatelessWidget {
             text: S.of(context).apply,
           );
         });
+  }
+
+  Widget _clearText(CreateClaimBloc bloc, MyThemeData colors) {
+    return SearchClearText(
+      stream: bloc.search.stream,
+      initialize: () => bloc.add(CreateClaimInitializeE()),
+      clear: () => bloc.search.clear(),
+    );
   }
 }

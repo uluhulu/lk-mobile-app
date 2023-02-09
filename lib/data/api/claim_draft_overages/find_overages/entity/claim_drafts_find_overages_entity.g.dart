@@ -1,0 +1,50 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'claim_drafts_find_overages_entity.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ClaimDraftsFindOveragesEntity _$ClaimDraftsFindOveragesEntityFromJson(
+        Map<String, dynamic> json) =>
+    ClaimDraftsFindOveragesEntity(
+      data: (json['data'] as List<dynamic>)
+          .map((e) =>
+              ClaimDraftFindOverageData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
+      links: json['links'] == null
+          ? null
+          : Links.fromJson(json['links'] as Map<String, dynamic>),
+      filter: OverageFilter.fromJson(json['filter'] as Map<String, dynamic>),
+    );
+
+OverageFilter _$OverageFilterFromJson(Map<String, dynamic> json) =>
+    OverageFilter(
+      manufacturers: (json['manufacturers'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
+
+ClaimDraftFindOverageData _$ClaimDraftFindOverageDataFromJson(
+        Map<String, dynamic> json) =>
+    ClaimDraftFindOverageData(
+      code: json['code'] as String,
+      guid: json['guid'] as String,
+      name: json['name'] as String,
+      country: json['country'] as String?,
+      manufacturer: json['manufacturer'] as String,
+      nds: json['nds'] as String,
+      series: (json['series'] as List<dynamic>)
+          .map((e) => OverageSeries.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+OverageSeries _$OverageSeriesFromJson(Map<String, dynamic> json) =>
+    OverageSeries(
+      code: json['code'] as String,
+      guid: json['guid'] as String,
+      name: json['name'] as String,
+      isMarking: json['is_marking'] as bool,
+    );

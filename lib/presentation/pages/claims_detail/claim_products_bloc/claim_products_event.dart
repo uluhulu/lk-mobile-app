@@ -8,3 +8,19 @@ abstract class ClaimProductsEvent extends Equatable {
 }
 
 class ClaimProductsFetchE extends ClaimProductsEvent {}
+
+// class ClaimProductsNewImagesE extends ClaimProductsEvent {
+//   final String productUuid;
+//   final List<File> newImages;
+//
+//   ClaimProductsNewImagesE({
+//     required this.productUuid,
+//     required this.newImages,
+//   });
+//
+//   @override
+//   List<Object> get props => [
+//         productUuid,
+//         newImages,
+//       ];
+// }

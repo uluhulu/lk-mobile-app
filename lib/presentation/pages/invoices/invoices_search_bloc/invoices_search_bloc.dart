@@ -50,6 +50,13 @@ class InvoicesSearchBloc
     validateFunc: InvoicesValidator.validateSearchType,
   );
 
+  @override
+  Future<void> close() {
+    search.dispose();
+    type.dispose();
+    return super.close();
+  }
+
   // final SuperLoading superLoading = SuperLoading();
 
   // void loading() {

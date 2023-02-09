@@ -36,7 +36,7 @@ class _ClaimDraftHeaderCardState extends State<ClaimDraftHeaderCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextWithCopy('Черновик претензии ${widget.item.id}',
+            TextWithCopy('${S.of(context).claim_draft} ${widget.item.id}',
                 style: Theme.of(context).textTheme.headline2?.copyWith(
                       color: myColors.whiteColor,
                     )),
@@ -69,7 +69,7 @@ class _ClaimDraftHeaderCardState extends State<ClaimDraftHeaderCard> {
           style: Theme.of(context).textTheme.subtitle1?.copyWith(
                 color: myColors.whiteColor,
               )),
-      expandedTitle: Text('Скрыть',
+      expandedTitle: Text(S.of(context).hide,
           style: Theme.of(context).textTheme.subtitle1?.copyWith(
                 color: myColors.whiteColor,
               )),

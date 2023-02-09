@@ -47,3 +47,5 @@ class LocalAuthSuccessE extends LocalAuthEvent {
   @override
   List<Object> get props => [pin];
 }
+
+class LocalAuthStartE extends LocalAuthEvent {}

@@ -16,12 +16,7 @@ class ClaimDraftSaveContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(
-          top: kBasePadding * 2,
-          left: kBasePadding,
-          right: kBasePadding,
-          bottom: kBottomSheetBottomPadding,
-        ),
+        padding: _padding(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -33,7 +28,7 @@ class ClaimDraftSaveContent extends StatelessWidget {
             ),
             const SizedBox(height: kPadding),
             Text(
-              'Черновик сохранён!',
+              S.of(context).claim_draft_saved,
               style: Theme.of(context).textTheme.headline2,
               textAlign: TextAlign.center,
             ),
@@ -52,5 +47,14 @@ class ClaimDraftSaveContent extends StatelessWidget {
             const SizedBox(height: kPadding),
           ],
         ));
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+      top: kBasePadding * 2,
+      left: kBasePadding,
+      right: kBasePadding,
+      bottom: kBottomSheetBottomPadding,
+    );
   }
 }

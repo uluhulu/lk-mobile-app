@@ -41,7 +41,7 @@ class _ClaimsFiltersPageState extends State<ClaimsFiltersPage> {
         if (state is ClaimsLoadingS) {
           return ScreenView(
             context: context,
-            title: S.of(context).invoices,
+            title: l10n.claims,
             child: const LoadingWidget(),
           );
         }
@@ -50,7 +50,7 @@ class _ClaimsFiltersPageState extends State<ClaimsFiltersPage> {
             builder: _buttonBuilder,
           ),
           context: context,
-          title: l10n.invoices,
+          title: l10n.claims,
           child: _content(context, bloc, l10n),
         );
       },
@@ -80,7 +80,6 @@ class _ClaimsFiltersPageState extends State<ClaimsFiltersPage> {
         TextButton.icon(
           onPressed: () {
             bloc.add(ClaimsResetFiltersE());
-            //Navigator.pop(context);
           },
           icon: SvgPicture.asset(
             'assets/icon/refresh.svg',

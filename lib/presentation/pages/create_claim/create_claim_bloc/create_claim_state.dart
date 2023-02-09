@@ -26,14 +26,26 @@ class CreateClaimStartS extends CreateClaimState {
 class CreateClaimProductS extends CreateClaimState {
   final int id;
   final ClaimDraftsProductsData product;
+  final List<ClaimDraftFile> attachments;
+  final bool isImageGalleryLoading;
 
   const CreateClaimProductS({
     required this.id,
     required this.product,
+    required this.attachments,
+    required this.isImageGalleryLoading,
   });
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [id, product, attachments, isImageGalleryLoading];
+  //
+  // CreateClaimProductS copyWith({int? id, ClaimDraftsProductsData? product, List<
+  //     ClaimDraftFile>? attachments, bool? isAttachmentsLoading}) {
+  //   return CreateClaimProductS(
+  //     id: id ?? this.id,
+  //     product: product ?? this.product,
+  //     attachments: attachments ?? this.attachments,);
+  // }
 }
 
 class CreateClaimSaveSuccesS extends CreateClaimState {

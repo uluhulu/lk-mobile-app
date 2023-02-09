@@ -23,7 +23,7 @@ class InvoicesSearchContentWidget extends StatelessWidget {
         const InvoicesSearchTypePicker(),
         const SizedBox(height: kBasePadding),
         SearchTextField(searchValidation: bloc.search),
-        const SizedBox(height: kBasePadding),
+        const SizedBox(height: kBasePadding * 4),
       ],
     );
   }

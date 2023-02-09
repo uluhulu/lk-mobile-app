@@ -17,6 +17,9 @@ class CustomInputDecoration extends InputDecoration {
     this.needErrorBorder,
     Widget? suffixIcon,
     TextStyle? hintStyle,
+    bool? filled,
+    Color? fillColor,
+    bool? otherEnabledColor,
   }) : super(
           isDense: true,
           contentPadding: contentPadding ??
@@ -24,13 +27,17 @@ class CustomInputDecoration extends InputDecoration {
           focusedErrorBorder: needErrorBorder == null
               ? OutlineInputBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius),
-                  borderSide: const BorderSide(color: Colors.red, width: 1))
+                  borderSide: BorderSide(color: myColors.errorColor, width: 1))
               : OutlineInputBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius),
                   borderSide: BorderSide(color: myColors.hintColor, width: 1)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(kBorderRadius),
-              borderSide: BorderSide(color: myColors.hintColor, width: 1)),
+              borderSide: BorderSide(
+                  color: otherEnabledColor != null
+                      ? myColors.hintColor.withOpacity(0.3)
+                      : myColors.hintColor,
+                  width: 1)),
           focusedBorder: needOtherFocusColor == null
               ? OutlineInputBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius),
@@ -42,7 +49,7 @@ class CustomInputDecoration extends InputDecoration {
           errorBorder: needErrorBorder == null
               ? OutlineInputBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius),
-                  borderSide: const BorderSide(color: Colors.red, width: 1))
+                  borderSide: BorderSide(color: myColors.errorColor, width: 1))
               : OutlineInputBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius),
                   borderSide: BorderSide(color: myColors.hintColor, width: 1)),
@@ -69,6 +76,8 @@ class CustomInputDecoration extends InputDecoration {
           ),
           labelStyle: const TextStyle(fontSize: 16),
           errorMaxLines: 8,
+          filled: filled,
+          fillColor: fillColor,
         );
 }
 

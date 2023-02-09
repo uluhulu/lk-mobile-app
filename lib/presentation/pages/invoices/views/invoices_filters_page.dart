@@ -73,6 +73,7 @@ class _InvoicesFiltersPageState extends State<InvoicesFiltersPage> {
         FilterMarkingItem(bloc: bloc),
         const SizedBox(height: kBasePadding * 2),
         FilterMarkingStatus(bloc: bloc, data: widget.data),
+        const SizedBox(height: kBasePadding * 5),
       ],
     );
   }
@@ -92,7 +93,7 @@ class _InvoicesFiltersPageState extends State<InvoicesFiltersPage> {
             color: MyTheme.of(context).errorColor,
           ),
           label: Text(
-            'Сбросить',
+            S.of(context).reset,
             style: Theme.of(context).textTheme.subtitle1,
           ),
         )
@@ -108,7 +109,7 @@ class _InvoicesFiltersPageState extends State<InvoicesFiltersPage> {
       onPressed: () {
         Navigator.pop(context);
       },
-      text: 'Применить',
+      text: S.of(context).apply,
     );
   }
 }

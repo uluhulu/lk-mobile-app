@@ -35,18 +35,10 @@ class ClaimFilterAddressField extends StatelessWidget {
                 transformer: (value) => value?.name ?? '',
                 maxLines: 5,
                 minLines: 1,
-                decoration: CustomInputDecoration(
-                  needOtherFocusColor: true,
-                  hintText: S.of(context).not_selected,
-                  myColors: MyTheme.of(context),
-                  suffixIcon: SvgPicture.asset(
-                    'assets/icon/arrow-right.svg',
-                    color: MyTheme.of(context).greyIconColor,
-                  ),
-                ),
+                decoration: _decoration(context),
                 readOnly: true,
                 onTap: () {
-                  onPressed(context);
+                  _onPressed(context);
                 },
               );
             }),
@@ -54,7 +46,19 @@ class ClaimFilterAddressField extends StatelessWidget {
     );
   }
 
-  void onPressed(BuildContext context) {
+  CustomInputDecoration _decoration(BuildContext context) {
+    return CustomInputDecoration(
+      needOtherFocusColor: true,
+      hintText: S.of(context).not_selected,
+      myColors: MyTheme.of(context),
+      suffixIcon: SvgPicture.asset(
+        'assets/icon/arrow-right.svg',
+        color: MyTheme.of(context).greyIconColor,
+      ),
+    );
+  }
+
+  void _onPressed(BuildContext context) {
     BaseBottomSheetWidget(
       context: context,
       child: BlocProvider.value(

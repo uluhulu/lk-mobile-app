@@ -25,6 +25,14 @@ class DateFormats {
     }
   }
 
+  static String ddMMyyyyWithString(String? date) {
+    if (date == null) {
+      return "-";
+    } else {
+      return DateFormat('dd.MM.yyyy').format(DateTime.parse(date));
+    }
+  }
+
   static String isoDateFormatter(String? date) {
     if (date == null) {
       return "-";

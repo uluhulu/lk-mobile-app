@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkk/core/utils/constants.dart';
 import 'package:mkk/presentation/widgets/scaffold/status_bar_settings.dart';
 
+import '../../../config/app_routes.dart';
 import '../../../config/theme/elements/theme_data.dart';
+import '../../../generated/l10n.dart';
+import '../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 
 class ScreenView extends StatelessWidget {
   final BuildContext context;
@@ -17,6 +21,7 @@ class ScreenView extends StatelessWidget {
   final bool? needPadding;
   final Widget? floatingActionButton;
   final bool? needLeading;
+  final Color? backgroundColor;
 
   const ScreenView({
     required this.context,
@@ -31,21 +36,27 @@ class ScreenView extends StatelessWidget {
     this.needPadding,
     this.floatingActionButton,
     this.needLeading,
+    this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    //TODO: костыль
     return Scaffold(
-      floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      backgroundColor: Theme.of(context).primaryColor,
-      bottomNavigationBar: bottomNavigationBar,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
-      appBar: _appBar(context),
-      body: ScreenViewContent(
-        context: context,
-        needPadding: needPadding,
-        child: child,
+      backgroundColor: Colors.white,
+      body: Scaffold(
+        floatingActionButton: floatingActionButton,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        backgroundColor: Theme.of(context).primaryColor,
+        bottomNavigationBar: bottomNavigationBar,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
+        appBar: _appBar(context),
+        body: ScreenViewContent(
+          context: context,
+          needPadding: needPadding,
+          backgroundColor: backgroundColor,
+          child: child,
+        ),
       ),
     );
   }
@@ -81,27 +92,43 @@ class ScreenViewLeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding),
-          child: SvgPicture.asset(
-            'assets/icon/question.svg',
-            color: Colors.white,
+    return BlocBuilder<AppMetricaBloc, AppMetricaState>(
+      builder: (context, state) {
+        final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+        return InkWell(
+          onTap: () {
+            appMetricaBloc.add(AppmetricaOnEventE(
+                eventName:
+                    "Главный Экран ${S.of(context).button_on_pressed} ${S.of(context).help}"));
+            Navigator.of(context).pushNamed(
+              AppRoutes.help,
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(kPadding),
+            child: SvgPicture.asset(
+              'assets/icon/question.svg',
+              color: Colors.white,
+            ),
           ),
-        ));
+        );
+      },
+    );
   }
 }
 
 class ScreenViewContent extends StatelessWidget {
   final BuildContext context;
   final bool? needPadding;
+  final Color? backgroundColor;
   final Widget child;
+
   const ScreenViewContent({
     required this.context,
     super.key,
     required this.child,
     this.needPadding,
+    this.backgroundColor,
   });
 
   @override
@@ -115,7 +142,7 @@ class ScreenViewContent extends StatelessWidget {
         height: double.infinity,
         padding:
             needPadding == null ? const EdgeInsets.all(kPadding * 2) : null,
-        color: MyTheme.of(context).whiteColor,
+        color: backgroundColor ?? MyTheme.of(context).whiteColor,
         child: child,
       ),
     );
@@ -136,6 +163,7 @@ class SliverScreenView extends StatelessWidget {
   final Widget? floatingActionButton;
   final bool? needLeading;
   final ScrollController? controller;
+
   const SliverScreenView({
     super.key,
     required this.context,
@@ -223,6 +251,7 @@ class SliverScreenViewContent extends StatelessWidget {
   final BuildContext context;
   final bool? needPadding;
   final Widget child;
+
   const SliverScreenViewContent({
     required this.context,
     super.key,

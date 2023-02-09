@@ -6,28 +6,29 @@ part of 'claim_drafts_send_error_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ClaimDraftsSendErrorEntity _$ClaimDraftsSendErrorEntityFromJson(
+ClaimsDraftSendError _$ClaimsDraftSendErrorFromJson(
         Map<String, dynamic> json) =>
-    ClaimDraftsSendErrorEntity(
+    ClaimsDraftSendError(
       message: json['message'] as String,
-      errors: (json['errors'] as List<dynamic>)
-          .map((e) => ClaimDraftsErrorsData.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      errors: (json['errors'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            k, ClaimDraftsErrorsData.fromJson(e as Map<String, dynamic>)),
+      ),
     );
 
 ClaimDraftsErrorsData _$ClaimDraftsErrorsDataFromJson(
         Map<String, dynamic> json) =>
     ClaimDraftsErrorsData(
-      id: json['id'] as int,
       title: json['title'] as String,
       errors: (json['errors'] as List<dynamic>)
-          .map((e) => ClaimsDraftsErrorList.fromJson(e as Map<String, dynamic>))
+          .map(
+              (e) => ClaimDraftProductError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-ClaimsDraftsErrorList _$ClaimsDraftsErrorListFromJson(
+ClaimDraftProductError _$ClaimDraftProductErrorFromJson(
         Map<String, dynamic> json) =>
-    ClaimsDraftsErrorList(
-      field: json['field'] as String,
+    ClaimDraftProductError(
       message: json['message'] as String,
+      field: json['field'] as String,
     );

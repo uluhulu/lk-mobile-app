@@ -4,7 +4,6 @@ import '../../firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:injectable/injectable.dart';
 
-import '../env/env.dart';
 import '../logger/logger_service.dart';
 import '../platform.dart';
 
@@ -19,7 +18,7 @@ class FirebaseService {
       app = Firebase.app();
       L.i('Current FirebaseApp: ${app?.options}');
     } catch (e) {
-      FirebaseOptions options = DefaultFirebaseOptions.currentPlatform;
+      FirebaseOptions? options = DefaultFirebaseOptions.currentPlatform;
       try {
         final apps = Firebase.apps;
         for (final app in apps) {

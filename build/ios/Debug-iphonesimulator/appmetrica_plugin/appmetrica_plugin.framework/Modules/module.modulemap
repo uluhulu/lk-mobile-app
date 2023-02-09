@@ -1,0 +1,6 @@
+framework module appmetrica_plugin {
+  umbrella header "appmetrica_plugin-umbrella.h"
+
+  export *
+  module * { export * }
+}

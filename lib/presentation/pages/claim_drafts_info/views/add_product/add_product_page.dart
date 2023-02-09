@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mkk/generated/l10n.dart';
+import 'package:mkk/presentation/widgets/error/app_error_widget.dart';
+import 'package:mkk/presentation/widgets/image_picker/claims_files_cubit/claims_files_cubit.dart';
 import 'package:mkk/presentation/widgets/loading_widget.dart';
 import 'package:mkk/presentation/widgets/scaffold/screen_view.dart';
 
+import '../../../../../domain/repositories/repository.dart';
+import '../../../../../locator/locator.dart';
+import '../../../../widgets/modal/base_bottom_sheet_widget.dart';
+import '../../../create_claim/widgets/create_claim_product_save_content.dart';
 import '../../claim_draft_add_product_bloc/claim_draft_add_product_bloc.dart';
 import 'add_product_info_page.dart';
 import 'add_product_start_page.dart';
 
-class CreateClaimPage extends StatelessWidget {
+class CreateClaimPage extends StatefulWidget {
   final int draftId;
 
   const CreateClaimPage({
@@ -17,10 +23,27 @@ class CreateClaimPage extends StatelessWidget {
   });
 
   @override
+  State<CreateClaimPage> createState() => _CreateClaimPageState();
+}
+
+class _CreateClaimPageState extends State<CreateClaimPage> {
+  late ClaimDraftAddProductBloc bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    bloc = context.read<ClaimDraftAddProductBloc>();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ClaimDraftAddProductBloc, ClaimDraftAddProductState>(
-      builder: _builder,
-      listener: _listener,
+    return BlocProvider<ClaimsFilesCubit>(
+      create: (context) => ClaimsFilesCubit(repository: sl.get<Repository>())
+        ..setInitialClaimsDraftsAttachments([]),
+      child: BlocConsumer<ClaimDraftAddProductBloc, ClaimDraftAddProductState>(
+        builder: _builder,
+        listener: _listener,
+      ),
     );
   }
 
@@ -28,7 +51,7 @@ class CreateClaimPage extends StatelessWidget {
     if (state is ClaimDraftAddProductLoadingS) {
       return ScreenView(
         context: context,
-        title: S.of(context).claim_drafts,
+        title: S.of(context).claim_draft,
         child: const LoadingWidget(),
       );
     }
@@ -36,6 +59,8 @@ class CreateClaimPage extends StatelessWidget {
       return AddProductStartPage(entity: state.data);
     }
     if (state is ClaimDraftAddProductS) {
+      var cubit = BlocProvider.of<ClaimsFilesCubit>(context);
+      cubit.setInitialClaimsDraftsAttachments(state.attachmentsList);
       return WillPopScope(
         onWillPop: () => _onWillPop(context),
         child: AddProductInfoPage(
@@ -43,31 +68,35 @@ class CreateClaimPage extends StatelessWidget {
         ),
       );
     }
+    if (state is ClaimDraftAddProductErrorS) {
+      return ScreenView(
+          context: context,
+          title: S.of(context).claim_drafts,
+          child: AppErrorWidget(
+              callback: () => bloc.add(
+                    ClaimDraftAddProductStartE(),
+                  )));
+    }
 
     return const SizedBox.shrink();
   }
 
   Future<bool> _onWillPop(context) async {
-    return (await showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Text('Are you sure?'),
-              content: const Text('Do you want to exit an App'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text('No'),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(true),
-                  child: const Text('Yes'),
-                ),
-              ],
-            );
+    var cubit = BlocProvider.of<ClaimsFilesCubit>(context);
+    BaseBottomSheetWidget(
+        context: context,
+        child: CreateClaimProductSaveContent(
+          validation: bloc.quantityClaim,
+          onSaved: () async{
+            Navigator.of(context).pop();
+            await cubit.deleteImages(isSaved: true);
+            bloc.add(ClaimDraftAddProductSaveE());
           },
-        )) ??
-        false;
+          onCanceled: () async{
+            await cubit.deleteImages(isSaved: false);
+          },
+        )).show();
+    return Future.value(false);
   }
 
   void _listener(BuildContext context, ClaimDraftAddProductState state) {

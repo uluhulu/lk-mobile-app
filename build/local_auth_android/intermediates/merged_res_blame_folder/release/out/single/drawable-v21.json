@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/335101a8ebe7daf14fd5a8023660d07d/transformed/appcompat-1.2.0/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/drawable-v21/abc_list_divider_material.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/335101a8ebe7daf14fd5a8023660d07d/transformed/appcompat-1.2.0/res/drawable-v21/abc_list_divider_material.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/drawable-v21/notification_action_background.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/0fd89358a8dad79201b96080ed76b244/transformed/core-1.8.0/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/drawable-v21/abc_dialog_material_background.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/335101a8ebe7daf14fd5a8023660d07d/transformed/appcompat-1.2.0/res/drawable-v21/abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/335101a8ebe7daf14fd5a8023660d07d/transformed/appcompat-1.2.0/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/local_auth_android/intermediates/merged_res/release/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/araki/.gradle/caches/transforms-3/335101a8ebe7daf14fd5a8023660d07d/transformed/appcompat-1.2.0/res/drawable-v21/abc_edit_text_material.xml"
+    }
+]

@@ -2,9 +2,14 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 import 'package:connection_notifier/connection_notifier.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:mkk/presentation/app_screen.dart';
 import 'package:mkk/presentation/pages/banner/banner_widget.dart';
+import 'package:mkk/presentation/widgets/loading_widget.dart';
+import 'package:mkk/services/appmetrica/appmetrica_service.dart';
+import 'package:mkk/services/appmetrica/bloc/appmetrica_bloc.dart';
 import 'package:mkk/services/env/env.dart';
 import 'package:mkk/services/platform.dart';
 import 'app/initialize/initialize_page.dart';
@@ -29,8 +34,10 @@ import 'locator/locator.dart' as di;
 import 'locator/locator.dart';
 import 'observer.dart';
 import 'route_observer.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 var errorBloc = ErrorBloc();
+
 String joinPath(String p1, String p2) {
   if (Platform.isWindows) {
     return '$p1\\$p2';
@@ -50,12 +57,14 @@ class MyHttpOverrides extends HttpOverrides {
 
 Storage? storage;
 bool initialized = false;
+
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   di.configureDependencies();
-  sl.registerSingleton<Env>(EnvProduction());
+  sl.registerSingleton<Env>(EnvDevelopment());
   HttpOverrides.global = MyHttpOverrides();
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -152,36 +161,54 @@ class MyApp extends StatelessWidget {
             locale: const Locale('ru', 'RU'),
             child: LocalAuthProvider(
               child: BannerProvider(
-                child: MaterialApp(
-                  navigatorObservers: [
-                    routeObserver,
-                  ],
+                child: GestureDetector(
+                  onTap: () {
+                    // FocusScope.of(context).requestFocus(FocusNode());
 
-                  localizationsDelegates: const <
-                      LocalizationsDelegate<dynamic>>[
-                    S.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                  ],
-                  supportedLocales: S.delegate.supportedLocales,
-                  locale: const Locale('ru', 'RU'),
-                  debugShowCheckedModeBanner: false,
-                  title: 'ПУЛЬС. Личный кабинет',
-                  themeMode: theme.themeMode,
-                  onGenerateRoute: AppRoutes.onGenerateRoute,
-                  // darkTheme:
-                  //     ThemeManager.createTheme(const AppThemeDark(), ThemeMode.dark),
-                  theme: ThemeManager.createTheme(
-                      const AppThemeLight(), ThemeMode.light),
-                  home: InitializePage(
-                    child: BlocProvider<ErrorBloc>.value(
-                      value: errorBloc,
-                      child: const AppScreen(),
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                  behavior: HitTestBehavior.translucent,
+                  child: MaterialApp(
+                    navigatorObservers: [
+                      routeObserver,
+                    ],
+
+                    localizationsDelegates: const <
+                        LocalizationsDelegate<dynamic>>[
+                      S.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: S.delegate.supportedLocales,
+                    locale: const Locale('ru', 'RU'),
+                    debugShowCheckedModeBanner: false,
+                    title: 'ПУЛЬС. Личный кабинет',
+                    themeMode: theme.themeMode,
+                    onGenerateRoute: AppRoutes.onGenerateRoute,
+                    // darkTheme:
+                    //     ThemeManager.createTheme(const AppThemeDark(), ThemeMode.dark),
+                    theme: ThemeManager.createTheme(
+                        const AppThemeLight(), ThemeMode.light),
+                    home: BlocProvider<AppMetricaBloc>(
+                      create: (context) => AppMetricaBloc(
+                        appMetricaService: sl.get<AppMetricaService>(),
+                      ),
+                      child: InitializePage(
+                        child: BlocProvider<ErrorBloc>.value(
+                          value: errorBloc,
+                          child: LoaderOverlay(
+                            useDefaultLoading: false,
+                            overlayColor: Colors.white.withOpacity(0.8),
+                            overlayWidget: const LoadingWidget(),
+                            child: const AppScreen(),
+                          ),
+                        ),
+                      ),
                     ),
+                    //
+                    // home: const AppScreen(),
                   ),
-                  //
-                  // home: const AppScreen(),
                 ),
               ),
             ),

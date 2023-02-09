@@ -33,12 +33,29 @@ class OfficeManagerInfoWidget extends StatelessWidget {
           child: IconInfoWidget(
             bottomPadding: kBasePadding,
             content: profile.client.officeManager?.phoneOrg,
+            subtitle: profile.client.officeManager?.phoneShort,
+            subtitleText: 'доб.:',
             asset: SvgPicture.asset(
               'assets/icon/call.svg',
               color: myColors.phoneIconColor,
             ),
             onPressed: () => LaunchUrlHelper()
                 .phoneUrl(profile.client.officeManager?.phoneOrg ?? ''),
+          ),
+        ),
+        NullCheckWidget(
+          value: profile.client.officeManager?.phone,
+          child: IconInfoWidget(
+            bottomPadding: kBasePadding,
+            content: profile.client.officeManager?.phone,
+            subtitle: profile.client.officeManager?.phoneShort,
+            subtitleText: 'доб.:',
+            asset: SvgPicture.asset(
+              'assets/icon/call.svg',
+              color: myColors.phoneIconColor,
+            ),
+            onPressed: () => LaunchUrlHelper()
+                .phoneUrl(profile.client.officeManager?.phone ?? ''),
           ),
         ),
         NullCheckWidget(

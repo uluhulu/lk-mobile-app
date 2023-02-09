@@ -58,6 +58,10 @@ class _InvoicesSearchLoadedCardState extends State<InvoicesSearchLoadedCard> {
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         color: myColors.whiteColor,
                       )),
+              expandedTitle: Text(S.of(context).hide,
+                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                        color: myColors.whiteColor,
+                      )),
               children: [
                 SearchInvoiceCardOpened(data: item),
               ],

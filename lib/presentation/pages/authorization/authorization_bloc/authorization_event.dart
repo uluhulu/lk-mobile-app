@@ -9,17 +9,19 @@ abstract class AuthorizationEvent extends Equatable {
 }
 
 class AuthorizationLoginE extends AuthorizationEvent {
-  final AuthLoginEntity loginEntity;
-  final String login;
-  final int filial;
-  const AuthorizationLoginE({
-    required this.loginEntity,
-    required this.login,
-    required this.filial,
-  });
+  // final AuthLoginEntity loginEntity;
+  // final String login;
+  // final int filial;
+  // final String password;
+  // const AuthorizationLoginE({
+  //   required this.loginEntity,
+  //   required this.login,
+  //   required this.filial,
+  //   required this.password,
+  // });
 
-  @override
-  List<Object> get props => [loginEntity, login, filial];
+  // @override
+  // List<Object> get props => [loginEntity, login, filial, password];
 }
 
 class AuthorizationLogOutE extends AuthorizationEvent {}
@@ -31,3 +33,5 @@ class AuthorizationLogOutCallBack extends AuthorizationEvent {}
 class AuthorizationRightPinE extends AuthorizationEvent {}
 
 class AuthorizationDeleteLocalAuthE extends AuthorizationEvent {}
+
+class AuthorizationNewLocalAuthE extends AuthorizationEvent {}

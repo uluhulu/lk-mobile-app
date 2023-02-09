@@ -15,19 +15,37 @@ abstract class LocalAuthState extends Equatable {
   factory LocalAuthState.fromJson(Map<String, dynamic> json) {
     switch (json['stateName'] as String) {
       case 'LocalAuthInitialS':
-        return LocalAuthInitialS();
+        return const LocalAuthInitialS();
       case 'LocalAuthPinS':
         return LocalAuthPinS.fromJson(json);
 
       default:
-        return LocalAuthInitialS();
+        return const LocalAuthInitialS();
     }
   }
 }
 
 class LocalAuthInitialS extends LocalAuthState {
+  final bool? isSetPin;
+
+  const LocalAuthInitialS({
+    this.isSetPin,
+  });
+
   @override
   String get stateName => 'LocalAuthInitialS';
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'stateName': stateName,
+      'isSetPin': isSetPin,
+    };
+  }
+
+  factory LocalAuthInitialS.fromJson(Map<String, dynamic> json) {
+    return LocalAuthInitialS(isSetPin: json['isSetPin']);
+  }
 }
 
 class LocalAuthPinS extends LocalAuthState {

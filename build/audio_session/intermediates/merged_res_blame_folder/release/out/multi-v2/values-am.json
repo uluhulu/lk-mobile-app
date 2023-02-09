@@ -1,0 +1,68 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/incremental/mergeReleaseResources/merged.dir/values-am/values-am.xml",
+            "map": [
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/values-am/values-am.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,161,260,354,472",
+                        "endColumns": "105,98,93,117,122",
+                        "endOffsets": "156,255,349,467,590"
+                    }
+                },
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/b9bc6fe7e68b936078e9cb8cf0d38b93/transformed/core-1.6.0/res/values-am/values-am.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "595",
+                        "endColumns": "100",
+                        "endOffsets": "691"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/values-am/values-am.xml",
+            "map": [
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/values-am/values-am.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,161,260,354,472",
+                        "endColumns": "105,98,93,117,122",
+                        "endOffsets": "156,255,349,467,590"
+                    }
+                },
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/b9bc6fe7e68b936078e9cb8cf0d38b93/transformed/core-1.6.0/res/values-am/values-am.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "595",
+                        "endColumns": "100",
+                        "endOffsets": "691"
+                    }
+                }
+            ]
+        }
+    ]
+}

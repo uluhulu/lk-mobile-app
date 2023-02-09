@@ -39,25 +39,12 @@ class LaunchUrlHelper {
     }
   }
 
-  // void sendEmail(String email) {
-  //   final Uri emailLaunchUri = Uri(
-  //     scheme: 'mailto',
-  //     path: email,
-  //     queryParameters: {
-  //       'subject': 'CallOut user Profile',
-  //       'body': 'test',
-  //     },
-  //   );
-  //   launchUrl(emailLaunchUri);
-  // }
-
   Future<void> phoneUrl(String url) async {
-    final parsePhone = url.replaceAll(RegExp(r'[^0-9]'), '');
-    if (isAndroid()
-        ? !await canLaunch('tel://$parsePhone')
-        : await canLaunch('tel://$parsePhone')) {
-      await launch('tel://$parsePhone');
-    }
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: url,
+    );
+    await launchUrl(launchUri);
   }
 
   static String? deviceInfo() {

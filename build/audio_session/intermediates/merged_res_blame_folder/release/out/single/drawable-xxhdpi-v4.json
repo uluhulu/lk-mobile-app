@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-xxhdpi-v4/media_session_service_notification_ic_pause.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-xxhdpi-v4/media_session_service_notification_ic_pause.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-xxhdpi-v4/media_session_service_notification_ic_music_note.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-xxhdpi-v4/media_session_service_notification_ic_music_note.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-xxhdpi-v4/media_session_service_notification_ic_skip_to_next.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-xxhdpi-v4/media_session_service_notification_ic_skip_to_next.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-xxhdpi-v4/media_session_service_notification_ic_skip_to_previous.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-xxhdpi-v4/media_session_service_notification_ic_skip_to_previous.png"
+    },
+    {
+        "merged": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/drawable-xxhdpi-v4/media_session_service_notification_ic_play.png",
+        "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/drawable-xxhdpi-v4/media_session_service_notification_ic_play.png"
+    }
+]

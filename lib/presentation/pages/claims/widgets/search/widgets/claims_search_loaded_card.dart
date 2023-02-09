@@ -35,7 +35,7 @@ class _ClaimsLoadedHeaderCardState extends State<ClaimsLoadedHeaderCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextWithCopy('${S.of(context).claim} №${item.number}',
+            TextWithCopy('${S.of(context).claim} ${item.number}',
                 style: Theme.of(context).textTheme.headline2?.copyWith(
                       color: myColors.whiteColor,
                     )),

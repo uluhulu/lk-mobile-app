@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1098540645055-dqaf5f9bj3pjbsp8k3301im7nftm185r.apps.googleusercontent.com</string>
+	<string>518583580460-4l2tvula72q6ke1ist4vptrfu9h4mumo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1098540645055-dqaf5f9bj3pjbsp8k3301im7nftm185r</string>
+	<string>com.googleusercontent.apps.518583580460-4l2tvula72q6ke1ist4vptrfu9h4mumo</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>518583580460-ab5tl0s8bqntujrrhi690i4u0k54kr4l.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDS3U3xEG_KYp2zawZ94tyYmEk0XZU4RXY</string>
+	<string>AIzaSyCXIcDEMVhmpaXHxbJi142_wbGA9zGZYPI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1098540645055</string>
+	<string>518583580460</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.mkk</string>
+	<string>com.mkk.release</string>
 	<key>PROJECT_ID</key>
-	<string>lkk-mobile</string>
+	<string>puls--mobile-b2014</string>
 	<key>STORAGE_BUCKET</key>
-	<string>lkk-mobile.appspot.com</string>
+	<string>puls--mobile-b2014.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1098540645055:ios:91164edee283475439640a</string>
+	<string>1:518583580460:ios:d771d1adb52109d96c9e89</string>
 </dict>
 </plist>

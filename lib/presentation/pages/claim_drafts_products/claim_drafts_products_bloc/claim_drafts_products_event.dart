@@ -30,12 +30,16 @@ class ClaimDraftsProductsDeleteE extends ClaimDraftsProductsEvent {
 }
 
 class ClaimDraftsProductsSaveE extends ClaimDraftsProductsEvent {
-  final int productId;
+  // final int productId;
+  final ClaimDraftsProductsModel model;
 
   const ClaimDraftsProductsSaveE({
-    required this.productId,
+    //required this.productId,
+    required this.model,
   });
 
   @override
-  List<Object> get props => [productId];
+  List<Object> get props => [model];
 }
+
+class ClaimDraftsProductsReloadE extends ClaimDraftsProductsEvent {}

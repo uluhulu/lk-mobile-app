@@ -8,10 +8,30 @@ import '../../../../../data/api/claim_drafts/products/entity/claim_drafts_produc
 import '../../claim_draft_add_product_bloc/claim_draft_add_product_bloc.dart';
 import 'add_product_item_title.dart';
 
-class AddProductItemList extends StatelessWidget {
+class AddProductItemList extends StatefulWidget {
   const AddProductItemList({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<AddProductItemList> createState() => _AddProductItemListState();
+}
+
+class _AddProductItemListState extends State<AddProductItemList> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+    context.read<ClaimDraftAddProductBloc>().perPage = 25;
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +44,10 @@ class AddProductItemList extends StatelessWidget {
           if (state is ClaimDraftAddProductStartS) {
             return Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.only(bottom: kBasePadding * 4),
+                padding: const EdgeInsets.only(bottom: kBasePadding * 5),
                 shrinkWrap: true,
                 separatorBuilder: _separatorBuilder,
+                controller: _scrollController,
                 itemCount: state.data.data.length,
                 itemBuilder: ((context, index) {
                   final item = state.data.data[index];
@@ -56,5 +77,15 @@ class AddProductItemList extends StatelessWidget {
     return const Divider(
       height: 48,
     );
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent &&
+        !_scrollController.position.outOfRange) {
+      context
+          .read<ClaimDraftAddProductBloc>()
+          .add(ClaimDraftAddProductPaginationE());
+    }
   }
 }

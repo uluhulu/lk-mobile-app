@@ -14,7 +14,12 @@ class ErrorNotificationS extends ErrorState {
 class AuthErrorS extends ErrorState {
   final String? title;
   final String message;
-  AuthErrorS({required this.message, this.title});
+  final String? subtitle;
+  AuthErrorS({
+    required this.message,
+    this.title,
+    this.subtitle,
+  });
 }
 
 class ErrorServerS extends ErrorState {

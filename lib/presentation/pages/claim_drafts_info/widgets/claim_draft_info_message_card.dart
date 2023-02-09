@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkk/core/utils/constants.dart';
 import 'package:mkk/presentation/pages/claim_drafts_info/claim_drafts_bloc/claim_drafts_info_bloc.dart';
 import 'package:super_validation/text_form_field.dart';
+import 'package:super_validation/text_form_field_with_icon.dart';
 
 import '../../../../../config/theme/elements/theme_data.dart';
 import '../../../../generated/l10n.dart';
@@ -26,7 +28,7 @@ class ClaimDraftInfoMessageCard extends StatelessWidget {
                   color: myColors.whiteColor,
                 )),
         const SizedBox(height: kPadding),
-        TextFieldSuperValidation(
+        TextFieldSuperValidationWithIcon(
           superValidation: bloc.message,
           maxLines: 10,
           minLines: 1,
@@ -36,7 +38,7 @@ class ClaimDraftInfoMessageCard extends StatelessWidget {
           style: TextStyle(color: myColors.whiteColor),
           decoration: MessageInputDecoration(
             needOtherFocusColor: true,
-            hintText: 'Введите комментарий к претензии',
+            hintText: S.of(context).enter_claim_comment,
             myColors: MyTheme.of(context),
           ),
         ),

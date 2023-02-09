@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/araki/flutterProjects/mobile-lk/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rBR/values-pt-rBR.xml",
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rBR/values-pt-rBR.xml",
             "map": [
                 {
                     "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/values-pt-rBR/values-pt-rBR.xml",

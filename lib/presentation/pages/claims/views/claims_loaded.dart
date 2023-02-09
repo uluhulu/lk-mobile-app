@@ -18,11 +18,9 @@ class ClaimsLoaded extends StatefulWidget {
     required this.claims,
     required this.numberPages,
     required this.onPageChange,
-    this.claimDrafts,
   }) : super(key: key);
 
   final ClaimsEntity claims;
-  final ClaimDraftsListEntity? claimDrafts;
   final int numberPages;
   final Function(int index) onPageChange;
 
@@ -51,18 +49,21 @@ class _ClaimsLoadedState extends State<ClaimsLoaded> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ClaimsDraftsWidget(claims: widget.claimDrafts),
+        const ClaimDraftsCountProvider(),
         Container(
           padding: _bodyPadding(),
-          decoration: BoxDecoration(color: Colors.white, boxShadow: [
-            isVisible
-                ? const BoxShadow(color: Colors.transparent)
-                : BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
-                    blurRadius: 2,
-                    offset: const Offset(0, 1),
-                  )
-          ]),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              isVisible
+                  ? const BoxShadow(color: Colors.transparent)
+                  : BoxShadow(
+                      color: Colors.black.withOpacity(0.15),
+                      blurRadius: 2,
+                      offset: const Offset(0, 1),
+                    )
+            ],
+          ),
           child: ClaimsSearchSort(data: widget.claims),
         ),
         const SizedBox(height: kPadding / 2),

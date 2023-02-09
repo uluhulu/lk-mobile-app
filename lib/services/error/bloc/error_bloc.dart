@@ -2,11 +2,14 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import '../../../core/utils/resources/exception.dart';
 import '../../../data/providers/repositories/exceptions.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+
+import '../../../generated/l10n.dart';
 
 part 'error_event.dart';
 part 'error_state.dart';
@@ -21,15 +24,18 @@ class ErrorBloc extends Bloc<ErrorEvent, ErrorState> {
 
   FutureOr<void> _simple(ErrorSimpleE event, Emitter<ErrorState> emit) async {
     final error = event.error;
-    // if (error is LoginException) {
-    //   emit(ErrorNotificationS(message: 'Неверный логин или пароль'));
-    //   return;
-    // }
+
     final errorMessage = error.toString().split('(').last.split(')').first;
     if (error.runtimeType == HttpInternetFailure) {
       emit(ErrorNotificationS(
           title: 'Проблемы с интернетом',
           message: 'Подключитесь к другой сети или попробуйте еще раз'));
+      return;
+    }
+    if (error.runtimeType == UnexpectedFailure) {
+      emit(ErrorNotificationS(
+          title: 'Непредвиденная ошибка',
+          message: 'Неполадки на сервере, попробуйте позже'));
       return;
     }
     if (errorMessage != '') {
@@ -50,10 +56,39 @@ class ErrorBloc extends Bloc<ErrorEvent, ErrorState> {
   FutureOr<void> _authError(AuthErrorE event, Emitter<ErrorState> emit) async {
     final error = event.error;
     if (error is LoginException) {
-      emit(AuthErrorS(message: 'Неверный логин или пароль'));
+      if (error.error is DioError) {
+        final dioError = error.error as DioError;
+        if (dioError.response?.statusCode == 500) {
+          emit(AuthErrorS(
+            message: S.current.auth_server_error,
+            subtitle: S.current.auth_server_error_subtitle,
+          ));
+          return;
+        }
+        if (dioError.response?.statusCode == 403) {
+          emit(AuthErrorS(
+            message: S.current.auth_server_error_403,
+            subtitle: S.current.auth_server_error_subtitle,
+          ));
+          return;
+        }
+      }
+      emit(AuthErrorS(
+        message: S.current.auth_error_info,
+        subtitle: S.current.auth_error_info_2,
+      ));
       return;
     }
-    emit(ErrorNotificationS(message: event.error.toString()));
+    if (error is ServerFailure) {
+      emit(AuthErrorS(
+        message: S.current.auth_server_error,
+        subtitle: S.current.auth_server_error_subtitle,
+      ));
+      return;
+    }
+    final String parseErrorMesssage =
+        error.toString().split('(').last.split(')').first;
+    emit(ErrorNotificationS(message: parseErrorMesssage));
   }
 
   FutureOr<void> _serverError(ErrorServerE event, Emitter<ErrorState> emit) {

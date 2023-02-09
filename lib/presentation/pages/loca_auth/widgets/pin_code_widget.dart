@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkk/core/utils/constants.dart';
+import 'package:mkk/domain/repositories/user_repository.dart';
+import 'package:mkk/locator/locator.dart';
 import 'package:mkk/presentation/pages/authorization/authorization_bloc/authorization_bloc.dart';
 import 'package:mkk/presentation/pages/banner/banner_bloc/banner_bloc.dart';
 import 'package:mkk/presentation/pages/loca_auth/widgets/pin_code_error_sheet.dart';
@@ -76,6 +78,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
   int get maxPinLength => bloc.maxLength;
   bool fingerPrint = false;
   int pinLength = 0;
+  bool isFirstSetPin = false;
   @override
   void initState() {
     bloc = BlocProvider.of<ValidatePinBloc>(context);
@@ -86,6 +89,9 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
         pinEntered(pin);
       }
     });
+    final bool localAuthPinCode =
+        sl.get<UserRepository>().getLocalAuthPin() != null;
+    isFirstSetPin = localAuthPinCode;
     super.initState();
   }
 
@@ -251,26 +257,20 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
         ),
       ).show();
     }
-    if (state.showErrorBanner == true) {
-      showModalBottomSheet(
+
+    if (state.showErrorBanner == true && !widget.isFirstSetPin) {
+      BaseBottomSheetWidget(
         context: context,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(kSheetBorderRadius),
-            topRight: Radius.circular(kSheetBorderRadius),
+        needMenu: false,
+        isDismissible: false,
+        child: BlocProvider.value(
+          value: localAuthBloc,
+          child: PinCodeErrorSheet(
+            isSetPin: widget.isSetPin,
+            isFirstSetPin: isFirstSetPin,
           ),
         ),
-        constraints:
-            BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9),
-        builder: (currentContext) => BlocProvider.value(
-          value: bannerBloc,
-          child: BlocProvider.value(
-            value: localAuthBloc,
-            child: PinCodeErrorSheet(isSetPin: widget.isSetPin),
-          ),
-        ),
-      );
+      ).show();
     }
   }
 }

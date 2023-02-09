@@ -15,7 +15,13 @@ import 'package:retrofit/retrofit.dart';
 import '../api/auth/reset_password_code/entity/reset_password_code_entity.dart';
 import '../api/auth/reset_password_code/params/reset_password_code_params.dart';
 import '../api/auth/reset_password_code/params/reset_password_with_code_params.dart';
+import '../api/claim_draft_overages/add_overages/params/claim_drafts_add_overages_params.dart';
+import '../api/claim_draft_overages/find_overages/entity/claim_drafts_find_overages_entity.dart';
+import '../api/claim_draft_overages/find_overages/params/claim_drafts_find_overage_params.dart';
 import '../api/claim_drafts/add_products/entity/claim_drafts_add_products_entity.dart';
+import '../api/claim_drafts/claim_draft_attachment/entity/claim_draft_attachment_entity.dart';
+import '../api/claim_drafts/claim_draft_attachments/add_claim_draft_attachments/entity/add_claim_draft_attachments_entity.dart';
+import '../api/claim_drafts/claim_draft_attachments/add_claim_draft_attachments/params/add_claim_draft_attachments_params.dart';
 import '../api/claim_drafts/create/entity/claim_draft_create_entity.dart';
 import '../api/claim_drafts/create/params/claim_drafts_create_params.dart';
 import '../api/claim_drafts/delete_products/params/claim_drafts_delete_products_params.dart';
@@ -24,7 +30,6 @@ import '../api/claim_drafts/list/entity/claim_dratfs_list_entity.dart';
 import '../api/claim_drafts/list/params/claim_drafts_list_params.dart';
 import '../api/claim_drafts/products/entity/claim_drafts_products_entity.dart';
 import '../api/claim_drafts/products/params/claim_drafts_products_params.dart';
-import '../api/claim_drafts/save/entity/claim_drafts_save_entity.dart';
 import '../api/claim_drafts/save/params/claim_drafts_save_params.dart';
 import '../api/claim_drafts/send/entity/claim_drafts_send_entity.dart';
 import '../api/claims/detail/entity/claim_detail_entity.dart';
@@ -32,9 +37,13 @@ import '../api/claims/find/entity/search_claims_entity.dart';
 import '../api/claims/find/params/search_claims_params.dart';
 import '../api/claims/main/entity/claims_entity.dart';
 import '../api/claims/main/params/claims_params.dart';
+import '../api/claims/attachments/entity/claim_new_attachment_entity.dart';
+import '../api/claims/attachments/params/claim_new_attachment_params.dart';
 import '../api/claims/products/entity/claims_detail_products_entity.dart';
+import '../api/help/entity/help_entity.dart';
 import '../api/invoices/detail/entity/invoices_detail_entity.dart';
 import '../api/invoices/detail/products/entity/invoices_detail_products_entity.dart';
+import '../api/invoices/detail/products/params/invoices_detail_products_params.dart';
 import '../api/invoices/find/entity/invoices_find_entity.dart';
 import '../api/invoices/find/params/invoices_find_params.dart';
 import '../api/invoices/list/entity/invoices_entity.dart';
@@ -88,6 +97,16 @@ abstract class ApiProvider {
     @Body() ClaimUpdateParams params,
   );
 
+  @POST('/api/claims/attachments/product/base64')
+  Future<HttpResponse<ClaimsNewAttachmentsEntity>> updateClaimAttachments(
+    @Body() ClaimsNewAttachmentsParams params,
+  );
+
+  @GET('/api/claims/attachments/remote')
+  Future<HttpResponse<ImageData>> getClaimsImage(
+    @Query("path") String path,
+  );
+
   /// СПРАВОЧНИКИ
 
   // Список региональных компаний
@@ -110,6 +129,8 @@ abstract class ApiProvider {
   @POST('/api/auth/forgot-password')
   Future<HttpResponse<ResetPasswordCodeEntity>> forgotPassword(
     @Body() AuthForgotPasswordParams params,
+    @Header('Authorization') String token,
+    @Header('needRestore') String needRestore,
   );
 
   @POST('/api/auth/check-reset-password-code')
@@ -155,6 +176,7 @@ abstract class ApiProvider {
   @GET('/api/invoices/{uuid}/products')
   Future<HttpResponse<InvoicesDetailProductsEntity>> invoicesDetailProducts(
     @Path('uuid') String uuid,
+    @Queries() InvoicesDetailProductsParams params,
   );
 
   @GET('/api/invoices/find')
@@ -210,5 +232,44 @@ abstract class ApiProvider {
   @POST('/api/claim-drafts/create')
   Future<HttpResponse<ClaimDraftCreateEntity>> claimDraftsCreate(
     @Body() ClaimDraftsCreateParams params,
+  );
+
+  @GET('/api/help/list/{roleId}')
+  Future<HttpResponse<HelpEntity>> getHelp(
+    @Path('roleId') int roleId,
+  );
+
+  @GET('{icon}')
+  Future<HttpResponse<dynamic>> getHelpIcon(
+    @Path('icon') String icon,
+  );
+
+  @GET('/api/claim-drafts/find-overages')
+  Future<HttpResponse<ClaimDraftsFindOveragesEntity>> claimDraftsFindOverages(
+    @Queries() ClaimDraftsFindOveragesParams params,
+  );
+
+  @POST('/api/claim-drafts/{id}/add-overage')
+  Future<HttpResponse<dynamic>> claimDraftsAddOverages(
+    @Body() ClaimDraftAddOveragesParams params,
+    @Path('id') int id,
+  );
+
+  @POST('/api/claim-drafts/attachments/upload')
+  Future<HttpResponse<AddClaimDraftAttachmentsEntity>>
+      updateClaimDraftAttachments(
+    @Body() AddClaimDraftAttachmentsParams params,
+  );
+
+  @GET('/api/claim-drafts/attachments/{id}')
+  Future<HttpResponse<ClaimDraftAttachmentEntity>> getClaimDraftImage(
+    // @Query("path") String path,
+    @Path('id') int id,
+  );
+
+  @DELETE('/api/claim-drafts/attachments/{id}')
+  Future<HttpResponse<dynamic>> deleteClaimDraftImage(
+    // @Query("path") String path,
+    @Path('id') int id,
   );
 }

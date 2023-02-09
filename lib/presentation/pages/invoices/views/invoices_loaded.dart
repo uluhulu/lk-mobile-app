@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/app_routes.dart';
-import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/help/navigation_route_params.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:number_paginator/number_paginator.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../data/api/invoices/list/entity/invoices_entity.dart';
 import '../invoices_bloc/invoices_bloc.dart';
@@ -82,24 +79,6 @@ class _InvoicesLoadedState extends State<InvoicesLoaded> {
     );
   }
 
-  EdgeInsets _bodyPadding() {
-    return const EdgeInsets.only(
-      top: kPadding * 3,
-      left: kBasePadding,
-      right: kBasePadding,
-      bottom: kPadding,
-    );
-  }
-
-  EdgeInsets _padding() {
-    return const EdgeInsets.symmetric(
-        vertical: kPadding, horizontal: kBasePadding);
-  }
-
-  Widget _separatorBuilder(BuildContext context, int index) {
-    return const SizedBox(height: kBasePadding);
-  }
-
   Widget _itemBuilder(
     BuildContext context,
     int index,
@@ -150,5 +129,23 @@ class _InvoicesLoadedState extends State<InvoicesLoaded> {
         });
       }
     }
+  }
+
+  EdgeInsets _bodyPadding() {
+    return const EdgeInsets.only(
+      top: kPadding * 3,
+      left: kBasePadding,
+      right: kBasePadding,
+      bottom: kPadding,
+    );
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.symmetric(
+        vertical: kPadding, horizontal: kBasePadding);
+  }
+
+  Widget _separatorBuilder(BuildContext context, int index) {
+    return const SizedBox(height: kBasePadding);
   }
 }

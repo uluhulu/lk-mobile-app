@@ -24,10 +24,11 @@ class FilialTextField extends StatelessWidget {
         superValidation: loginBloc.filialValidation,
         altValidation: loginBloc.filialValid,
         autovalidateMode: AutovalidateMode.always,
-        transformer: (value) => loginBloc.getName(value ?? 0),
+        transformer: (value) => loginBloc.getNameById(value ?? 0),
         readOnly: true,
         decoration: CustomInputDecoration(
-            hintText: value == null ? 'Не выбрано' : loginBloc.getName(value),
+            hintText:
+                value == null ? 'Не выбрано' : loginBloc.getNameById(value),
             hintStyle: value == null
                 ? null
                 : TextStyle(

@@ -7,7 +7,7 @@ import '../../../../../config/theme/elements/theme_data.dart';
 import '../../../../../core/utils/constants.dart';
 import '../../../invoices/widgets/filter/invoices_filter_empty_field.dart';
 
-class AddProductClaimTypeList extends StatefulWidget {
+class AddProductClaimTypeList extends StatelessWidget {
   final Map<String, String> claimTypeData;
   const AddProductClaimTypeList({
     Key? key,
@@ -15,43 +15,13 @@ class AddProductClaimTypeList extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AddProductClaimTypeList> createState() =>
-      _AddProductClaimTypeListState();
-}
-
-class _AddProductClaimTypeListState extends State<AddProductClaimTypeList> {
-  @override
   Widget build(BuildContext context) {
-    final l10n = S.of(context);
     return BlocBuilder<ClaimDraftAddProductBloc, ClaimDraftAddProductState>(
       builder: (context, state) {
         if (state is ClaimDraftAddProductS) {
           final claimTypes = state.product.possibleClaimTypes;
           return claimTypes?.isNotEmpty ?? false
-              ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: _padding(),
-                      child: Text(
-                        'Тип претензии',
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                    ),
-                    Flexible(
-                      child: ListView.separated(
-                        padding:
-                            const EdgeInsets.only(bottom: kBasePadding * 2),
-                        shrinkWrap: true,
-                        separatorBuilder: _separator,
-                        itemCount: widget.claimTypeData.values.toList().length,
-                        itemBuilder: (context, index) =>
-                            _itemBuilder(context, index, state),
-                      ),
-                    )
-                  ],
-                )
+              ? _content(context, state)
               :
               //TODO: переделать
               FilterEmptyFieldWidget(
@@ -61,6 +31,33 @@ class _AddProductClaimTypeListState extends State<AddProductClaimTypeList> {
 
         return const SizedBox.shrink();
       },
+    );
+  }
+
+  Widget _content(BuildContext context, ClaimDraftAddProductS state) {
+    final l10n = S.of(context);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: _padding(),
+          child: Text(
+            l10n.claim_type,
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+        Flexible(
+          child: ListView.separated(
+            padding: const EdgeInsets.only(bottom: kBasePadding * 2),
+            shrinkWrap: true,
+            separatorBuilder: _separator,
+            itemCount: claimTypeData.values.toList().length,
+            itemBuilder: (context, index) =>
+                _itemBuilder(context, index, state),
+          ),
+        )
+      ],
     );
   }
 
@@ -74,16 +71,16 @@ class _AddProductClaimTypeListState extends State<AddProductClaimTypeList> {
           visualDensity: VisualDensity.comfortable,
           activeColor: MyTheme.of(context).primaryButtonColor,
           controlAffinity: ListTileControlAffinity.trailing,
-          value: widget.claimTypeData.values.toList()[index],
+          value: claimTypeData.values.toList()[index],
           groupValue: value,
           title: Text(
-            widget.claimTypeData.values.toList()[index],
+            claimTypeData.values.toList()[index],
           ),
           onChanged: (value) {
             if (value != null) {
               bloc.claimType.value = value;
               bloc.claimTypeNumber.value =
-                  int.tryParse(widget.claimTypeData.keys.toList()[index]);
+                  int.tryParse(claimTypeData.keys.toList()[index]);
               Navigator.pop(context);
             }
           },

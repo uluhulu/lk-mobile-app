@@ -45,15 +45,14 @@ class SearchEmptyInfo extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 TextSpan(
-                    text: 'Поиск накладной',
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                          color: MyTheme.of(context).primaryButtonColor,
-                        ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.of(context).pop();
-                        //TODO: добавить переход в справку
-                      }),
+                  text: 'Поиск накладной',
+                  style: Theme.of(context).textTheme.bodyText1,
+                  // recognizer: TapGestureRecognizer()
+                  //   ..onTap = () {
+                  //     Navigator.of(context).pop();
+                  //     //TODO: добавить переход в справку
+                  //   }
+                ),
               ],
             ),
           ),

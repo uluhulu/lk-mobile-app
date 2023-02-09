@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:mkk/services/npm/date_time_server.dart';
 import 'package:super_validation/text_form_field.dart';
 import 'package:mkk/presentation/pages/invoices/invoices_bloc/invoices_bloc.dart';
 import '../../../../../../config/theme/elements/theme_data.dart';
 import '../../../../../../core/utils/constants.dart';
+import '../../../../../../core/utils/time_zone.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../widgets/fields/custom_input_decoration.dart';
+import 'package:timezone/standalone.dart' as tz;
 
 class FilterPeriodField extends StatefulWidget {
   final InvoicesBloc bloc;
@@ -54,27 +57,14 @@ class _FilterPeriodFieldState extends State<FilterPeriodField> {
     DateTimeRange? dateTimeRange = await showDateRangePicker(
         context: context,
         firstDate: DateTime(2010),
-        lastDate: DateTime.now(),
-        //.add(const Duration(days: 365)),
+        lastDate: tz.TZDateTime.from(DateTime.now(), TimeZone.moscow).server,
+        currentDate: tz.TZDateTime.from(DateTime.now(), TimeZone.moscow).server,
         initialEntryMode: DatePickerEntryMode.calendarOnly);
 
     if (dateTimeRange != null) {
       bloc.dateRange.text =
           '${DateFormat('dd.MM.yyyy').format(dateTimeRange.start)} - ${DateFormat('dd.MM.yyyy').format(dateTimeRange.end)}';
       bloc.add(InvoicesApplyFiltersE());
-      // _searchInvoices();
     }
   }
-
-  // void _searchInvoices() {
-  //   final InvoicesListParams params = InvoicesListParams(
-  //     dateFrom: splitDates(bloc.dateRange.text).first.replaceAll('.', '-'),
-  //     dateTo: splitDates(bloc.dateRange.text).last.replaceAll('.', '-'),
-  //   );
-  //   bloc.add(InvoicesFetchE(params: params));
-  // }
-
-  // List<String> splitDates(String date) {
-  //   return date.split(' - ');
-  // }
 }

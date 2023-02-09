@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mkk/locator/locator.dart';
 
 import '../../../config/theme/elements/theme_data.dart';
 import '../../../core/help/launch_url_helper.dart';
 import '../../../core/utils/constants.dart';
 import '../../../generated/l10n.dart';
+import '../../../services/appmetrica/appmetrica_service.dart';
+import '../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 import '../buttons/secondary_elevated_button.dart';
 
 class ModalBottomSheetWidget extends StatelessWidget {
@@ -103,14 +107,27 @@ class ModalBottomSheetContent extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyText1,
         ),
         const SizedBox(height: kBasePadding * 3),
-        SecondaryElevatedButton(
-          onPressed: () {
-            LaunchUrlHelper.launchURL(
-              'https://puls.ru/',
-            );
-            Navigator.of(context).pop();
-          },
-          text: S.of(context).open_web_puls,
+        BlocProvider<AppMetricaBloc>(
+          create: (context) => AppMetricaBloc(
+            appMetricaService: sl.get<AppMetricaService>(),
+          ),
+          child: BlocBuilder<AppMetricaBloc, AppMetricaState>(
+            builder: (context, state) {
+              final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+              return SecondaryElevatedButton(
+                onPressed: () {
+                  LaunchUrlHelper.launchURL(
+                    'https://puls.ru/',
+                  );
+                  appMetricaBloc.add(AppmetricaOnEventE(
+                      eventName:
+                          "Экран регистрации ${S.of(context).button_on_pressed} ${S.of(context).open_web_puls}"));
+                  Navigator.of(context).pop();
+                },
+                text: S.of(context).open_web_puls,
+              );
+            },
+          ),
         )
       ],
     );

@@ -1,34 +1,50 @@
 {
   "project_info": {
-    "project_number": "1098540645055",
-    "project_id": "lkk-mobile",
-    "storage_bucket": "lkk-mobile.appspot.com"
+    "project_number": "518583580460",
+    "project_id": "puls--mobile-b2014",
+    "storage_bucket": "puls--mobile-b2014.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1098540645055:android:26c38014d46930cf39640a",
+        "mobilesdk_app_id": "1:518583580460:android:640b4304e687f8916c9e89",
         "android_client_info": {
-          "package_name": "com.example.mkk"
+          "package_name": "com.mkk.release"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1098540645055-r0qogb3h2db2ankipa8opbajju7fv2kn.apps.googleusercontent.com",
+          "client_id": "518583580460-dms6daqngn3r7i7k2b4a4ucfpbd2qpp6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mkk.release",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+          }
+        },
+        {
+          "client_id": "518583580460-8jd38oe6e48i99h44pitt8k9mo6j8ocj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCOvMhoCwSy-B8iVYDlBAcAX5AUAVGsVU"
+          "current_key": "AIzaSyC9LqQfxR4uunGZ6_d9v7qLZ4ZPweEkhVA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1098540645055-r0qogb3h2db2ankipa8opbajju7fv2kn.apps.googleusercontent.com",
+              "client_id": "518583580460-8jd38oe6e48i99h44pitt8k9mo6j8ocj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "518583580460-4l2tvula72q6ke1ist4vptrfu9h4mumo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mkk.release",
+                "app_store_id": "6444826104"
+              }
             }
           ]
         }

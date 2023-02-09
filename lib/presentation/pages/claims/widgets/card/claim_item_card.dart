@@ -63,6 +63,10 @@ class _ClaimItemCardState extends State<ClaimItemCard> {
                 style: Theme.of(context).textTheme.subtitle1?.copyWith(
                       color: myColors.primaryButtonColor,
                     )),
+            expandedTitle: Text(S.of(context).hide,
+                style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                      color: myColors.primaryButtonColor,
+                    )),
             children: [
               ClaimItemCardOpened(claim: item),
             ],

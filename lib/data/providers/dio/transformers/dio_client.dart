@@ -16,6 +16,7 @@ class DioClient extends DioForNative {
     ]);
 
     options = BaseOptions();
+    options.connectTimeout = 10000;
     _instance = this;
   }
 
@@ -38,7 +39,7 @@ class DioClient extends DioForNative {
   // Устанавливаем токен авторизации пользователя
   void setAuthInterceptor({
     required String accessToken,
-    VoidCallback? unauthorizedCallback,
+    required UnAuthCallBack unauthorizedCallback,
   }) {
     final DioAuthInterceptor interceptor = DioAuthInterceptor(
       unauthorizedCallback: unauthorizedCallback,

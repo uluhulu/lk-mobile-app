@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mkk/core/utils/constants.dart';
 import 'package:mkk/presentation/pages/claim_drafts_info/widgets/card/claim_draft_header_card.dart';
-import 'package:mkk/presentation/pages/claim_drafts_info/widgets/claim_draft_row_buttons.dart';
 import 'package:mkk/services/platform.dart';
 import '../../../../data/api/claim_drafts/info/entity/claim_drafts_info_entity.dart';
 import '../../../../data/api/claim_drafts/products/entity/claim_drafts_products_entity.dart';
@@ -36,15 +35,7 @@ class ClaimDraftsInfoLoaded extends StatelessWidget {
             child: ListView(
               children: [
                 ClaimDraftHeaderCard(item: item),
-                ClaimDraftRowButtons(
-                  draftId: id,
-                  data: claimProducts,
-                ),
                 ClaimDraftsProductsProvider(id: item.id),
-                ClaimDraftDeleteButton(id: id),
-                isAndroid()
-                    ? const SizedBox(height: kBasePadding)
-                    : const SizedBox(),
               ],
             ),
           ),
@@ -54,7 +45,7 @@ class ClaimDraftsInfoLoaded extends StatelessWidget {
     );
   }
 
-  void _listener(BuildContext context, ClaimDraftsInfoState state) {
+  void _listener(BuildContext context, ClaimDraftsInfoState state) async {
     if (state is ClaimDraftsSaveSuccess) {
       BaseBottomSheetWidget(
         context: context,

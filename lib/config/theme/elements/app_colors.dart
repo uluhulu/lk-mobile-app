@@ -37,4 +37,7 @@ abstract class AppColors {
   Color? textColor;
 
   Color? whiteTextColor;
+
+  Color? htmlDialogColor;
+  Color? htmlDialogBackGroundColor;
 }

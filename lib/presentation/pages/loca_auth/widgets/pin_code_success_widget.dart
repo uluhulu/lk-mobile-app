@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../generated/l10n.dart';
 import '../../../widgets/buttons/primary_elevated_button.dart';
 
 class PinCodeSuccessWidget extends StatelessWidget {
-  const PinCodeSuccessWidget({super.key});
+  final bool? isFirstEnter;
+  const PinCodeSuccessWidget({super.key, this.isFirstEnter});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,12 @@ class PinCodeSuccessWidget extends StatelessWidget {
       padding: _padding(),
       shrinkWrap: true,
       children: [
-        const _PinCodeSuccessIconTitle(),
+        _PinCodeSuccessIconTitle(isFirstEnter: isFirstEnter),
         const SizedBox(height: kBasePadding),
         Text(
-          S.of(context).change_code_info,
+          isFirstEnter ?? false
+              ? S.of(context).change_code_info
+              : S.of(context).change_code_info_new,
           style: Theme.of(context).textTheme.bodyText1,
         ),
         const SizedBox(height: kBasePadding * 3),
@@ -43,8 +47,10 @@ class PinCodeSuccessWidget extends StatelessWidget {
 }
 
 class _PinCodeSuccessIconTitle extends StatelessWidget {
+  final bool? isFirstEnter;
   const _PinCodeSuccessIconTitle({
     Key? key,
+    this.isFirstEnter,
   }) : super(key: key);
 
   @override
@@ -60,7 +66,9 @@ class _PinCodeSuccessIconTitle extends StatelessWidget {
         ),
         const SizedBox(height: kPadding),
         Text(
-          S.of(context).change_code_success,
+          isFirstEnter ?? false
+              ? S.of(context).change_code_success
+              : S.of(context).change_code_success_title,
           style: Theme.of(context).textTheme.headline2,
         ),
       ],

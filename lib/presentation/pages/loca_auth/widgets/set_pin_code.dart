@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mkk/presentation/pages/banner/banner_bloc/banner_bloc.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 import '../local_auth_bloc/local_auth_bloc.dart';
 import '../validate_pin_bloc/validate_pin_bloc.dart';
 import 'pin_code_widget.dart';
@@ -13,6 +14,7 @@ class SetPinCode extends StatelessWidget {
   final String? text;
   final VoidCallback? onPressed;
   final String? titleText;
+
   const SetPinCode({
     Key? key,
     this.onPressed,
@@ -44,6 +46,7 @@ class SetNewPinCodeWidget extends StatefulWidget {
   final VoidCallback? onPressed;
   final bool isSetPin;
   final String? titleText;
+
   const SetNewPinCodeWidget({
     Key? key,
     this.text,
@@ -59,21 +62,27 @@ class SetNewPinCodeWidget extends StatefulWidget {
 class _SetNewPinCodeWidgetState extends State<SetNewPinCodeWidget> {
   @override
   Widget build(BuildContext context) {
-    return PinCodeWidget(
-      isSetPin: widget.isSetPin,
-      titleText: widget.titleText ?? S.of(context).come_up_pin_code,
-      subTitleText:
-          widget.isSetPin == false ? S.of(context).come_up_pin_code_info : null,
-      buttonText:
-          widget.isSetPin == true ? widget.text : S.of(context).skip_step,
-      onPressed: widget.isSetPin == true
-          ? widget.onPressed
-          : () {
-              context.read<BannerBloc>().add(BannerSetPinShowedE());
-            },
-      rightButton: rightButton,
-      pinEntered: pinEntered,
-    );
+    return BlocBuilder<AppMetricaBloc, AppMetricaState>(
+        builder: (context, state) {
+          final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+          return PinCodeWidget(
+        isSetPin: widget.isSetPin,
+        titleText: widget.titleText ?? S.of(context).come_up_pin_code,
+        subTitleText: widget.isSetPin == false
+            ? S.of(context).come_up_pin_code_info
+            : null,
+        buttonText:
+            widget.isSetPin == true ? widget.text : S.of(context).skip_step,
+        onPressed: widget.isSetPin == true
+            ? widget.onPressed
+            : () {
+                context.read<BannerBloc>().add(BannerSetPinShowedE());
+                appMetricaBloc.add(AppmetricaOnEventE(eventName: "Экран придумайте 4-значный код ${ S.of(context).button_on_pressed} ${S.of(context).skip_step}" ));
+        },
+        rightButton: rightButton,
+        pinEntered: pinEntered,
+      );
+    });
   }
 
   Widget rightButton(String pin) {

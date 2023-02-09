@@ -9,17 +9,17 @@ import '../../banner/banner_bloc/banner_bloc.dart';
 
 class PinCodeErrorSheet extends StatelessWidget {
   final bool isSetPin;
-  const PinCodeErrorSheet({super.key, required this.isSetPin});
+  final bool isFirstSetPin;
+  const PinCodeErrorSheet({
+    super.key,
+    required this.isSetPin,
+    required this.isFirstSetPin,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(
-        top: kBasePadding * 2,
-        left: kBasePadding,
-        right: kBasePadding,
-        bottom: kBottomSheetBottomPadding,
-      ),
+      padding: _padding(),
       shrinkWrap: true,
       children: [
         Column(
@@ -31,56 +31,100 @@ class PinCodeErrorSheet extends StatelessWidget {
               color: Colors.red,
             ),
             const SizedBox(height: kBasePadding),
-            isSetPin == false
-                ? Text(
-                    S.of(context).pin_code_error_title,
-                    style: Theme.of(context).textTheme.headline2,
-                  )
-                : Text(
-                    S.of(context).change_code_error_title,
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
+            _titleTextWithPinCode(context),
           ],
         ),
         const SizedBox(height: kBasePadding),
-        isSetPin == false
-            ? Text(
-                S.of(context).pin_code_error_subtitle,
-                style: Theme.of(context).textTheme.bodyText1,
-              )
-            : Text(
-                S.of(context).change_code_error_subtitle,
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
+        _subtitleTextWithPinCode(context),
         const SizedBox(height: kBasePadding),
         const SizedBox(height: kBasePadding * 3),
         PrimaryElevatedButton(
           onPressed: () {
-            context.read<LocalAuthBloc>().add(LocalAuthInitializeE());
             Navigator.of(context).pop();
+            context.read<LocalAuthBloc>().add(LocalAuthInitializeE());
           },
           text: S.of(context).create_new_code,
         ),
         const SizedBox(height: kPadding * 3),
-        isSetPin == false
-            ? TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  context.read<BannerBloc>().add(BannerSetPinShowedE());
-                },
-                child: Text(S.of(context).skip_create_code),
-              )
-            : TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  S.of(context).leave_old_code,
-                ),
-              ),
+        _buildButtonWithPinCode(context),
         const SizedBox(height: kPadding * 3),
       ],
+    );
+  }
+
+  Widget _titleTextWithPinCode(BuildContext context) {
+    if (isSetPin && !isFirstSetPin) {
+      return Text(
+        S.of(context).pin_code_error_title,
+        style: Theme.of(context).textTheme.headline2,
+      );
+    } else if (isSetPin) {
+      return Text(
+        S.of(context).change_code_error_title,
+        style: Theme.of(context).textTheme.headline2,
+      );
+    }
+    return Text(
+      S.of(context).change_code_error_title,
+      style: Theme.of(context).textTheme.headline2,
+    );
+  }
+
+  Widget _subtitleTextWithPinCode(BuildContext context) {
+    if (isSetPin && !isFirstSetPin) {
+      return Text(
+        S.of(context).pin_code_error_subtitle_new,
+        style: Theme.of(context).textTheme.bodyText1,
+      );
+    } else if (isSetPin) {
+      return Text(
+        S.of(context).change_code_error_subtitle,
+        style: Theme.of(context).textTheme.bodyText1,
+      );
+    }
+    return Text(
+      S.of(context).pin_code_error_subtitle,
+      style: Theme.of(context).textTheme.bodyText1,
+    );
+  }
+
+  Widget _buildButtonWithPinCode(BuildContext context) {
+    if (isSetPin && !isFirstSetPin) {
+      return TextButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        },
+        child: Text(
+          S.of(context).cancel,
+        ),
+      );
+    } else if (isSetPin) {
+      return TextButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        },
+        child: Text(
+          S.of(context).leave_old_code,
+        ),
+      );
+    }
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+        context.read<BannerBloc>().add(BannerSetPinShowedE());
+      },
+      child: Text(S.of(context).skip_create_code),
+    );
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+      top: kBasePadding * 2,
+      left: kBasePadding,
+      right: kBasePadding,
+      bottom: kBottomSheetBottomPadding,
     );
   }
 }

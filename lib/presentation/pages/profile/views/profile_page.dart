@@ -8,7 +8,9 @@ import 'package:mkk/locator/locator.dart';
 import 'package:mkk/presentation/pages/profile/profile_bloc/profile_bloc.dart';
 import 'package:mkk/presentation/pages/profile/views/profile_data_card.dart';
 import 'package:mkk/presentation/pages/profile/views/settings_card.dart';
+import 'package:mkk/presentation/widgets/error/app_error_widget.dart';
 import 'package:mkk/presentation/widgets/loading_widget.dart';
+import '../../../../domain/repositories/user_repository.dart';
 import '../../../../services/error/bloc/error_bloc.dart';
 import '../../../widgets/scaffold/screen_view.dart';
 import 'company_contact_card.dart';
@@ -33,6 +35,7 @@ class ProfileProvider extends StatelessWidget {
   ProfileBloc _createBloc(BuildContext context) {
     return ProfileBloc(
       repository: sl.get<Repository>(),
+      userRepository: sl.get<UserRepository>(),
       errorBloc: context.read<ErrorBloc>(),
     );
   }
@@ -59,8 +62,15 @@ class ProfileContent extends StatelessWidget {
                 color: MyTheme.of(context).mainDividerColor,
               ),
               ProfileDataCard(profile: profile),
-              const SettingsCard()
+              const SettingsCard(),
             ],
+          );
+        }
+        if (state is ProfileErrorS) {
+          return AppErrorWidget(
+            callback: () {
+              context.read<ProfileBloc>().add(ProfileFetchE());
+            },
           );
         }
         return const SizedBox.shrink();

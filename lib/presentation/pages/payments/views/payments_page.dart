@@ -47,6 +47,12 @@ class PaymentsContent extends StatelessWidget {
           return PaymentsLoadedPage(data: data);
         }
         if (state is PaymentsErrorS) {
+          //TODO: переделать под ролевую модель
+          // return const AppErrorWidget(
+          //   title: 'Внимание!',
+          //   message: 'Извините, данный раздел Вам недоступен',
+          //   hideUpdateButton: true,
+          // );
           return AppErrorWidget(
             callback: () {
               context.read<PaymentsBloc>().add(PaymentsFetchE());

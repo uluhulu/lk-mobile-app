@@ -40,7 +40,7 @@ class ManagerInfoWidget extends StatelessWidget {
     );
   }
 
-  IconInfoWidget _email(MyThemeData myColors) {
+  Widget _email(MyThemeData myColors) {
     return IconInfoWidget(
       bottomPadding: kPadding,
       content: profile.client.manager?.email,
@@ -53,10 +53,12 @@ class ManagerInfoWidget extends StatelessWidget {
     );
   }
 
-  IconInfoWidget _phoneOrg(MyThemeData myColors) {
+  Widget _phoneOrg(MyThemeData myColors) {
     return IconInfoWidget(
       bottomPadding: kBasePadding,
       content: profile.client.manager?.phoneOrg,
+      subtitle: profile.client.manager?.phoneShort,
+      subtitleText: 'доб.:',
       asset: SvgPicture.asset(
         'assets/icon/call.svg',
         color: myColors.phoneIconColor,

@@ -26,36 +26,14 @@ class _AddressListWidgetState extends State<AddressListWidget> {
         if (state is InvoicesLoadedS) {
           final addresses = state.data.filter.addresses;
           return addresses.isNotEmpty
-              ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: kBasePadding * 2,
-                          left: kBasePadding,
-                          right: kBasePadding,
-                          bottom: kBasePadding),
-                      child: Text(l10n.delivery_address,
-                          style: Theme.of(context).textTheme.headline2),
-                    ),
-                    Flexible(
-                      child: ListView.separated(
-                        padding:
-                            const EdgeInsets.only(bottom: kBasePadding * 2),
-                        shrinkWrap: true,
-                        separatorBuilder: _separator,
-                        itemCount: addresses.length,
-                        itemBuilder: (context, index) =>
-                            _itemBuilder(context, index, state),
-                      ),
-                    )
-                  ],
-                )
+              ? _addressList(context, l10n, addresses)
               : const FilterEmptyFieldWidget();
         }
         if (state is InvoicesEmptyS) {
-          return const FilterEmptyFieldWidget();
+          final addresses = state.data.filter.addresses;
+          return addresses.isNotEmpty
+              ? _addressList(context, l10n, addresses)
+              : const FilterEmptyFieldWidget();
         } else {
           return const SizedBox.shrink();
         }
@@ -63,13 +41,11 @@ class _AddressListWidgetState extends State<AddressListWidget> {
     );
   }
 
-  Widget _separator(BuildContext context, int index) => const Divider(
-        indent: kBasePadding,
-        endIndent: kBasePadding,
-      );
-
-  Widget _itemBuilder(BuildContext context, int index, InvoicesLoadedS state) {
-    final addresses = state.data.filter.addresses;
+  Widget _itemBuilder(
+    BuildContext context,
+    int index,
+    List<Addresses> addresses,
+  ) {
     final bloc = context.read<InvoicesBloc>();
     return SuperValidationEnumBuilder<Addresses?>(
         superValidation: bloc.address,
@@ -91,4 +67,47 @@ class _AddressListWidgetState extends State<AddressListWidget> {
           );
         });
   }
+
+  Widget _addressList(
+    BuildContext context,
+    S l10n,
+    List<Addresses> addresses,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: _padding(),
+          child: Text(
+            l10n.delivery_address,
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+        Flexible(
+          child: ListView.separated(
+            padding: const EdgeInsets.only(bottom: kBasePadding * 2),
+            shrinkWrap: true,
+            separatorBuilder: _separator,
+            itemCount: addresses.length,
+            itemBuilder: (context, index) =>
+                _itemBuilder(context, index, addresses),
+          ),
+        )
+      ],
+    );
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+        top: kBasePadding * 2,
+        left: kBasePadding,
+        right: kBasePadding,
+        bottom: kBasePadding);
+  }
+
+  Widget _separator(BuildContext context, int index) => const Divider(
+        indent: kBasePadding,
+        endIndent: kBasePadding,
+      );
 }

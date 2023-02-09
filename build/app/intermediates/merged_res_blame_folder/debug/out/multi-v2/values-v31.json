@@ -1,25 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/araki/flutterProjects/mobile-lk/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v31/values-v31.xml",
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v31/values-v31.xml",
             "map": [
                 {
-                    "source": "/Users/araki/flutterProjects/mobile-lk/android/app/src/main/res/values-v31/styles.xml",
+                    "source": "/Users/araki/flutterProjects/lk-mobile-app/android/app/src/main/res/values-v31/styles.xml",
                     "from": {
-                        "startLines": "3,14",
+                        "startLines": "3,19",
                         "startColumns": "4,4",
-                        "startOffsets": "173,807",
-                        "endLines": "7,16",
+                        "startOffsets": "173,1156",
+                        "endLines": "12,21",
                         "endColumns": "12,12",
-                        "endOffsets": "456,971"
+                        "endOffsets": "805,1303"
                     },
                     "to": {
-                        "startLines": "2,7",
+                        "startLines": "2,12",
                         "startColumns": "4,4",
-                        "startOffsets": "55,343",
-                        "endLines": "6,9",
+                        "startOffsets": "55,692",
+                        "endLines": "11,14",
                         "endColumns": "12,12",
-                        "endOffsets": "338,507"
+                        "endOffsets": "687,839"
                     }
                 }
             ]

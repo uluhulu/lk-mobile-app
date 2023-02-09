@@ -8,7 +8,7 @@ class VibrationService {
   Future<void> vibrate() async {
     if (!isMobile()) return;
     if (await Vibration.hasVibrator() ?? true) {
-      return Vibration.vibrate(duration: 400);
+      return Vibration.vibrate(duration: 350);
     }
   }
 

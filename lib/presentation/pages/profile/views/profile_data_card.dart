@@ -7,6 +7,7 @@ import '../../../../core/help/launch_url_helper.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../data/api/profile/info/entity/profile_info_entity.dart';
 import '../../../widgets/buttons/secondary_elevated_button.dart';
+import '../../../widgets/ui/helpers/widget_or_null_column_helper.dart';
 import '../widgets/title_info_widget.dart';
 
 class ProfileDataCard extends StatelessWidget {
@@ -37,13 +38,17 @@ class ProfileDataCard extends StatelessWidget {
             title: S.of(context).inn,
             subtitle: profile.client.inn,
           ),
-          TitleInfoWidget(
-            title: S.of(context).email,
-            subtitle: profile.client.email,
-            onTap: () => LaunchUrlHelper.launchEmail(profile.client.email),
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                  color: MyTheme.of(context).primaryButtonColor,
-                ),
+          WidgetOrNull(
+            value: profile.client.email,
+            child: TitleInfoWidget(
+              title: S.of(context).email,
+              subtitle: profile.client.email,
+              onTap: () =>
+                  LaunchUrlHelper.launchEmail(profile.client.email ?? ''),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    color: MyTheme.of(context).primaryButtonColor,
+                  ),
+            ),
           ),
           const SizedBox(height: kBasePadding),
           SecondaryElevatedButton(

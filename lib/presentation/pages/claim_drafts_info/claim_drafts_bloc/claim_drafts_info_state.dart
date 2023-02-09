@@ -4,7 +4,7 @@ abstract class ClaimDraftsInfoState extends Equatable {
   const ClaimDraftsInfoState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class ClaimDraftsInfoInitialS extends ClaimDraftsInfoState {}
@@ -47,14 +47,16 @@ class ClaimDraftsSendSuccess extends ClaimDraftsInfoState {
 }
 
 class ClaimDraftsSendErrorS extends ClaimDraftsInfoState {
-  final String message;
+  final String? message;
+  final ClaimsDraftSendError? data;
 
   const ClaimDraftsSendErrorS({
-    required this.message,
+    this.message,
+    this.data,
   });
 
   @override
-  List<Object> get props => [message];
+  List<Object?> get props => [message, data];
 }
 
 class ClaimDraftsSaveSuccess extends ClaimDraftsInfoState {}

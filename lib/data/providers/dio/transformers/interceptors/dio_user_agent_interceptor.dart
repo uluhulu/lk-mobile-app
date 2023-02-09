@@ -16,7 +16,6 @@ class DioUserAgentInterceptor extends Interceptor {
   }
 }
 
-///Средство защиты от спама смс
 String generateSecretCode() {
   final date = DateTime.now().toUtc();
   final day = date.day;

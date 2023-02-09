@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import '../../app_loader/app_loader_bloc/app_loader_bloc.dart';
 import '../../claims/views/claims_page.dart';
 import '../../invoices/views/invoices_page.dart';
 import '../../payments/views/payments_page.dart';
@@ -29,11 +32,14 @@ class _MainContentState extends State<MainContent> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeNavigationBarBloc, HomeNavigationBarState>(
-      builder: _builder,
-      buildWhen: _buildWhen,
-      listener: _listener,
-      listenWhen: _listenWhen,
+    return BlocListener<AppLoaderBloc, AppLoaderState>(
+      listener: _loaderListener,
+      child: BlocConsumer<HomeNavigationBarBloc, HomeNavigationBarState>(
+        builder: _builder,
+        buildWhen: _buildWhen,
+        listener: _listener,
+        listenWhen: _listenWhen,
+      ),
     );
   }
 
@@ -57,6 +63,15 @@ class _MainContentState extends State<MainContent> {
     HomeNavigationBarState current,
   ) =>
       current.index >= MainContent._pages.length;
+
+  void _loaderListener(BuildContext context, AppLoaderState state) {
+    if (state.isLoading) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
+      context.loaderOverlay.show();
+    } else {
+      context.loaderOverlay.hide();
+    }
+  }
 
   void _listener(
     BuildContext context,

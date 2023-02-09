@@ -13,9 +13,15 @@ class InvoicesProductsLoadingS extends InvoicesProductsState {}
 
 class InvoicesProductsLoadedS extends InvoicesProductsState {
   final InvoicesDetailProductsEntity products;
+  final int numberPages;
+  final int currentPage;
+  final InvoicesDetailProductsParams params;
 
   const InvoicesProductsLoadedS({
     required this.products,
+    required this.numberPages,
+    required this.currentPage,
+    required this.params,
   });
 
   @override

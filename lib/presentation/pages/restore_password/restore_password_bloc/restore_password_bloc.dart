@@ -42,20 +42,12 @@ class RestorePasswordBloc
   late StreamSubscription<String?> newPasswordRepeatSubscription;
   late DictionaryFilialEntity copyData;
 
-  @override
-  Future<void> close() {
-    loginSubscription.cancel();
-    codeSubscription.cancel();
-    newPasswordSubscription.cancel();
-    newPasswordRepeatSubscription.cancel();
-    return super.close();
-  }
-
   FutureOr<void> _fetchFilial(
       RestorePasswordFilialE event, Emitter<RestorePasswordState> emit) async {
     try {
       emit(RestorePasswordLoadingS());
       final result = await repository.dictionaryFilialList();
+      result.data.sort((a, b) => a.name.compareTo(b.name));
       copyData = result;
       emit(RestorePasswordLoadedS(data: result));
     } catch (e) {
@@ -189,5 +181,23 @@ class RestorePasswordBloc
 
   void _newPasswordRepeatListener(String event) {
     reEnterPasswordValid.value = true;
+  }
+
+  @override
+  Future<void> close() {
+    loginSubscription.cancel();
+    codeSubscription.cancel();
+    newPasswordSubscription.cancel();
+    newPasswordRepeatSubscription.cancel();
+    reEnterPasswordValid.dispose();
+    passwordValid.dispose();
+    loginValid.dispose();
+    codeValid.dispose();
+    filialValidation.dispose();
+    reEnterPassword.dispose();
+    password.dispose();
+    code.dispose();
+    login.dispose();
+    return super.close();
   }
 }

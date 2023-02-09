@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../models/user_role_model.dart';
+
 part 'profile_info_entity.g.dart';
 
 @JsonSerializable(createToJson: false)
@@ -18,15 +20,14 @@ class ProfileInfoEntity {
 class ProfileData {
   final int id;
   final String name;
-
-  final String email;
+  final String? email;
   final String role;
   final Client client;
 
   ProfileData({
     required this.id,
     required this.name,
-    required this.email,
+    this.email,
     required this.role,
     required this.client,
   });
@@ -58,11 +59,14 @@ class Client {
   final String name;
   @JsonKey(name: 'short_name')
   final String shortName;
+  @JsonKey(name: 'access_groups')
+  final List<UserAccess> accessGroups;
   final String sid;
   @JsonKey(name: 'super_short_name')
   final String superShortName;
   final String inn;
-  final String email;
+  @JsonKey(defaultValue: '')
+  final String? email;
   @JsonKey(name: 'is_main')
   final bool isMain;
   @JsonKey(name: 'company_group_guid')
@@ -83,12 +87,13 @@ class Client {
     required this.sid,
     required this.superShortName,
     required this.inn,
-    required this.email,
+    this.email,
     required this.isMain,
     required this.companyGroupGuid,
     required this.companyGroupName,
     required this.manager,
     required this.officeManager,
+    required this.accessGroups,
     this.cargo,
   });
 
@@ -109,6 +114,7 @@ class Client {
         companyGroupName: '',
         manager: null,
         officeManager: null,
+        accessGroups: [],
         cargo: {},
       );
 }

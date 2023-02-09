@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mkk/presentation/widgets/image_picker/claims_files_cubit/claims_files_cubit.dart';
 import 'package:mkk/presentation/widgets/modal/base_bottom_sheet_widget.dart';
 import 'package:mkk/services/platform.dart';
+import 'package:super_validation/validation_builder.dart';
 
 import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
@@ -71,20 +73,27 @@ class CreateClaimSaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<CreateClaimBloc>(context);
+    final cubit = BlocProvider.of<ClaimsFilesCubit>(context);
     return Expanded(
-      child: PrimaryElevatedButton(
-        onPressed: () {
-          bloc.add(CreateClaimSaveE());
-          // BaseBottomSheetWidget(
-          //   context: context,
-          //   child: BlocProvider.value(
-          //     value: bloc,
-          //     child: CreateClaimProductSaveContent(id: id),
-          //   ),
-          // ).show();
-        },
-        text: S.of(context).save,
-      ),
+      child: SuperValidationBuilder(
+          superValidation: bloc.quantityClaim,
+          builder: (context, validation, isValid) {
+            return PrimaryElevatedButton(
+              canPress: isValid,
+              onPressed: () async{
+                await cubit.deleteImages(isSaved: true);
+                bloc.add(CreateClaimSaveE());
+                // BaseBottomSheetWidget(
+                //   context: context,
+                //   child: BlocProvider.value(
+                //     value: bloc,
+                //     child: CreateClaimProductSaveContent(id: id),
+                //   ),
+                // ).show();
+              },
+              text: S.of(context).save,
+            );
+          }),
     );
   }
 }
@@ -102,6 +111,7 @@ class CreateClaimDeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<CreateClaimBloc>();
+    final width = MediaQuery.of(context).size.width;
     return Expanded(
       child: TextButton(
         onPressed: () {
@@ -119,30 +129,29 @@ class CreateClaimDeleteButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _icon(),
+            _icon(width),
             const SizedBox(width: kPadding),
-            _btText(context),
+            _btText(context, width),
           ],
         ),
       ),
     );
   }
 
-  Widget _btText(BuildContext context) {
+  Widget _btText(BuildContext context, double width) {
     return Text(
-      'Удалить товар',
+      S.of(context).delete_product,
       style: Theme.of(context).textTheme.headline4?.copyWith(
-            color: myColors.errorColor,
-          ),
+          color: myColors.errorColor, fontSize: width < 322 ? 15 : null),
     );
   }
 
-  Widget _icon() {
+  Widget _icon(double width) {
     return SvgPicture.asset(
       'assets/icon/trash_empty.svg',
       color: myColors.errorColor,
-      width: 24,
-      height: 24,
+      width: width < 322 ? 22 : 24,
+      height: width < 322 ? 22 : 24,
     );
   }
 }

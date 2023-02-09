@@ -5,6 +5,7 @@ import 'package:super_validation/super_validation.dart';
 import '../../../../../../config/theme/elements/theme_data.dart';
 import '../../../../../../core/utils/constants.dart';
 import '../../../../../../domain/enums/invoices/invoices_search_type.dart';
+import '../../../../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 import '../../../invoices_search_bloc/invoices_search_bloc.dart';
 
 class InvoicesSearchTypePicker extends StatelessWidget {
@@ -24,25 +25,32 @@ class InvoicesSearchTypePicker extends StatelessWidget {
 
   Widget _itemBuilder(BuildContext context, int index) {
     final bloc = context.read<InvoicesSearchBloc>();
-    return SuperValidationEnumBuilder<InvoicesSearchType?>(
-      superValidation: bloc.type,
-      builder: (context, value) {
-        return RadioListTile<InvoicesSearchType>(
-          contentPadding: const EdgeInsets.all(0),
-          visualDensity: VisualDensity.comfortable,
-          activeColor: MyTheme.of(context).primaryButtonColor,
-          controlAffinity: ListTileControlAffinity.trailing,
-          value: InvoicesSearchType.values[index],
-          groupValue: value ?? InvoicesSearchType.invoice,
-          title: InvoicesSearchType.values[index].name,
-          onChanged: (value) {
-            if (value != null) {
-              bloc.type.value = value;
-            }
-          },
-        );
-      },
-    );
+    return BlocBuilder<AppMetricaBloc, AppMetricaState>(
+        builder: (context, state) {
+      final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+
+      return SuperValidationEnumBuilder<InvoicesSearchType?>(
+        superValidation: bloc.type,
+        builder: (context, value) {
+          return RadioListTile<InvoicesSearchType>(
+            contentPadding: const EdgeInsets.all(0),
+            visualDensity: VisualDensity.comfortable,
+            activeColor: MyTheme.of(context).primaryButtonColor,
+            controlAffinity: ListTileControlAffinity.trailing,
+            value: InvoicesSearchType.values[index],
+            groupValue: value ?? InvoicesSearchType.invoice,
+            title: InvoicesSearchType.values[index].name,
+            onChanged: (value) {
+              if (value != null) {
+                bloc.type.value = value;
+                appMetricaBloc.add(AppmetricaOnEventE(
+                    eventName: "Претензии тип поиска $value"));
+              }
+            },
+          );
+        },
+      );
+    });
   }
 
   Widget _separator(BuildContext context, int index) => const Divider(

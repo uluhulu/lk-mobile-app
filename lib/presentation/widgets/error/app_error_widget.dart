@@ -8,11 +8,13 @@ class AppErrorWidget extends StatelessWidget {
   final String? title;
   final String? message;
   final VoidCallback? callback;
+  final bool? hideUpdateButton;
   const AppErrorWidget({
     Key? key,
     this.callback,
     this.title,
     this.message,
+    this.hideUpdateButton,
   }) : super(key: key);
 
   @override
@@ -44,13 +46,15 @@ class AppErrorWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyText1,
           ),
           const SizedBox(height: kBasePadding),
-          TextButton(
-              onPressed: callback,
-              child: Text(
-                'Обновить',
-                style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    color: theme.primaryColor, fontWeight: FontWeight.w500),
-              )),
+          hideUpdateButton == null
+              ? TextButton(
+                  onPressed: callback,
+                  child: Text(
+                    'Обновить',
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: theme.primaryColor, fontWeight: FontWeight.w500),
+                  ))
+              : const SizedBox.shrink(),
         ],
       ),
     );

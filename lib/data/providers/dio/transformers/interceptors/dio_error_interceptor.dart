@@ -37,7 +37,7 @@ class DioErrorInterceptor extends Interceptor {
         return UnexpectedException();
       case DioErrorType.response:
         if (error.response == null) {
-          return ServerException('');
+          return ServerException(error.response?.data.toString() ?? '');
         }
 
         switch (error.response!.statusCode) {

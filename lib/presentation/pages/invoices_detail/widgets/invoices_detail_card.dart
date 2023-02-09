@@ -53,7 +53,12 @@ class _InvoicesDetailCardState extends State<InvoicesDetailCard> {
               initiallyExpanded: initiallyExpanded,
               childrenPadding: EdgeInsets.zero,
               tilePadding: EdgeInsets.zero,
+              expandedAlignment: Alignment.centerLeft,
               title: Text(S.of(context).details,
+                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                        color: myColors.whiteColor,
+                      )),
+              expandedTitle: Text(S.of(context).hide,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         color: myColors.whiteColor,
                       )),

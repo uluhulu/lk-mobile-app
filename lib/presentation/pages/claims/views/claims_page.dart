@@ -4,6 +4,7 @@ import 'package:mkk/data/api/claims/main/params/claims_params.dart';
 import 'package:mkk/domain/repositories/repository.dart';
 import 'package:mkk/generated/l10n.dart';
 import 'package:mkk/locator/locator.dart';
+import 'package:mkk/presentation/pages/claim_drafts_observer/claim_drafts_observer_bloc/claim_drafts_observer.dart';
 import 'package:mkk/presentation/pages/claims/claims_bloc/claims_bloc.dart';
 import 'package:mkk/presentation/pages/claims/views/claims_empty.dart';
 import 'package:mkk/presentation/widgets/error/app_error_widget.dart';
@@ -32,6 +33,7 @@ class ClaimsProvider extends StatelessWidget {
   ClaimsBloc _createClaimsBloc(BuildContext context) {
     return ClaimsBloc(
       repository: sl.get<Repository>(),
+      observerBloc: context.read<ClaimDraftsObserverBloc>(),
     );
   }
 }
@@ -50,7 +52,6 @@ class ClaimsContent extends StatelessWidget {
         if (state is ClaimsLoadedS) {
           return ClaimsLoaded(
             claims: state.data,
-            claimDrafts: state.drafts,
             numberPages: state.numberPages,
             onPageChange: (index) => claimsBloc.add(
               ClaimsFetchE(
@@ -67,7 +68,6 @@ class ClaimsContent extends StatelessWidget {
         if (state is ClaimsEmptyS) {
           return ClaimsEmpty(
             data: state.data,
-            claimDrafts: state.drafts,
           );
         }
         if (state is ClaimsErrorS) {

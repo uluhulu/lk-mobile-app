@@ -13,6 +13,7 @@ ClaimDraftsProductsEntity _$ClaimDraftsProductsEntityFromJson(
           .map((e) =>
               ClaimDraftsProductsData.fromJson(e as Map<String, dynamic>))
           .toList(),
+      meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
 ClaimDraftsProductsData _$ClaimDraftsProductsDataFromJson(

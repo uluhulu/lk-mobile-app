@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -46,4 +45,11 @@ class ClaimsSearchBloc extends Bloc<ClaimsSearchEvent, ClaimsSearchState> {
   final SuperValidationEnum<ClaimsSearchType> type = SuperValidationEnum(
     validateFunc: ClaimsValidator.validateSearchType,
   );
+
+  @override
+  Future<void> close() {
+    number.dispose();
+    type.dispose();
+    return super.close();
+  }
 }

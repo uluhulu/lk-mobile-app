@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mkk/core/utils/constants.dart';
+import 'package:mkk/generated/l10n.dart';
 import 'package:mkk/presentation/widgets/buttons/primary_elevated_button.dart';
 
 import '../../../../config/app_routes.dart';
@@ -21,33 +22,40 @@ class InvoicesEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<InvoicesBloc>();
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: _bodyPadding(),
-      child: Column(
+      child: ListView(
         children: [
           InvoicesSearchSort(data: data),
-          const Spacer(),
-          //TODO: переписать под маленькие экраны
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 230),
-            child: Lottie.asset(
-              'assets/lottie/searching_animation.json',
-            ),
-          ),
-          const SizedBox(height: kPadding),
-          Text('В выбранном периоде данных нет',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  ?.copyWith(color: MyTheme.of(context).greyIconColor)),
-          const SizedBox(height: kPadding * 3),
-          PrimaryElevatedButton(
-              btnWidth: 250,
-              onPressed: () {
-                _filterOnPressed(context, bloc);
-              },
-              text: 'Изменить период'),
-          const Spacer(),
+          Column(
+            children: [
+              _topPadding(height),
+              ConstrainedBox(
+                constraints: width < 322
+                    ? const BoxConstraints(maxHeight: 150)
+                    : const BoxConstraints(maxHeight: 210),
+                child: Lottie.asset(
+                  'assets/lottie/searching_animation.json',
+                ),
+              ),
+              const SizedBox(height: kPadding),
+              Text(S.of(context).no_data,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(color: MyTheme.of(context).greyIconColor)),
+              const SizedBox(height: kPadding * 3),
+              PrimaryElevatedButton(
+                btnWidth: 250,
+                onPressed: () {
+                  _filterOnPressed(context, bloc);
+                },
+                text: S.of(context).change_period,
+              ),
+            ],
+          )
         ],
       ),
     );
@@ -67,5 +75,19 @@ class InvoicesEmpty extends StatelessWidget {
       right: kBasePadding,
       bottom: kPadding,
     );
+  }
+
+  Widget _topPadding(double height) {
+    if (height < 600) {
+      return const SizedBox(height: kBasePadding);
+    } else if (height > 600 && height < 700) {
+      return const SizedBox(height: kBasePadding * 2);
+    } else if (height > 700 && height < 800) {
+      return const SizedBox(height: kBasePadding * 4);
+    } else if (height > 800) {
+      return const SizedBox(height: kBasePadding * 5);
+    } else {
+      return const SizedBox(height: kBasePadding);
+    }
   }
 }

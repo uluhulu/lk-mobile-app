@@ -31,9 +31,12 @@ class InvoicesDetailBloc
       final InvoicesDetailParams detailParams =
           InvoicesDetailParams(uuid: event.uuid);
 
-      final detailResult = await repository.invoicesDetail(detailParams);
+      final InvoicesDetailEntity detailResult =
+          await repository.invoicesDetail(detailParams);
 
-      emit(InvoicesDetailLoadedS(detail: detailResult));
+      emit(InvoicesDetailLoadedS(
+        detail: detailResult,
+      ));
     } catch (e) {
       emit(InvoicesDetailErrorS(message: e.toString()));
     }
@@ -41,6 +44,7 @@ class InvoicesDetailBloc
 
   FutureOr<void> _refreshDetail(
       InvoicesDetailRefreshE event, Emitter<InvoicesDetailState> emit) {
-    add(InvoicesDetailFetchE(uuid: uuid));
+    final InvoicesDetailParams detailParams = InvoicesDetailParams(uuid: uuid);
+    add(InvoicesDetailFetchE(uuid: uuid, params: detailParams));
   }
 }

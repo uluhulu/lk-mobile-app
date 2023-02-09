@@ -13,7 +13,7 @@ class ClaimsLoadingS extends ClaimsState {}
 
 class ClaimsLoadedS extends ClaimsState {
   final ClaimsEntity data;
-  final ClaimDraftsListEntity? drafts;
+
   final ClaimsSorting sortType;
   final int numberPages;
   final int currentPage;
@@ -21,7 +21,6 @@ class ClaimsLoadedS extends ClaimsState {
 
   const ClaimsLoadedS({
     required this.data,
-    this.drafts,
     required this.numberPages,
     required this.currentPage,
     required this.params,
@@ -34,12 +33,11 @@ class ClaimsLoadedS extends ClaimsState {
 
 class ClaimsEmptyS extends ClaimsState {
   final ClaimsEntity data;
-  final ClaimDraftsListEntity? drafts;
+
   final ClaimsSorting sortType;
 
   const ClaimsEmptyS({
     required this.data,
-    this.drafts,
     this.sortType = ClaimsSorting.desk,
   });
 

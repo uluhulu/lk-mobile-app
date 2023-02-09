@@ -9,6 +9,8 @@ abstract class CreateClaimEvent extends Equatable {
 
 class CreateClaimStartE extends CreateClaimEvent {}
 
+class CreateClaimPaginationE extends CreateClaimEvent {}
+
 class CreateClaimProductE extends CreateClaimEvent {}
 
 class CreateClaimDeleteProductE extends CreateClaimEvent {
@@ -23,3 +25,7 @@ class CreateClaimDeleteProductE extends CreateClaimEvent {
 }
 
 class CreateClaimSaveE extends CreateClaimEvent {}
+
+class CreateClaimSearchE extends CreateClaimEvent {}
+
+class CreateClaimInitializeE extends CreateClaimEvent {}

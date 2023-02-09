@@ -8,26 +8,24 @@ import 'package:mkk/presentation/widgets/buttons/primary_elevated_button.dart';
 import '../../../../config/app_routes.dart';
 import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/help/navigation_claims_filter_page_params.dart';
-import '../../../../data/api/claim_drafts/list/entity/claim_dratfs_list_entity.dart';
 import '../claims_bloc/claims_bloc.dart';
 import '../widgets/claims_drafts_widget.dart';
 import '../widgets/sorting/claims_search_sort.dart';
 
 class ClaimsEmpty extends StatelessWidget {
   final ClaimsEntity data;
-  final ClaimDraftsListEntity? claimDrafts;
   const ClaimsEmpty({
     Key? key,
     required this.data,
-    this.claimDrafts,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ClaimsBloc>();
+    final double width = MediaQuery.of(context).size.width;
     return ListView(
       children: [
-        ClaimsDraftsWidget(claims: claimDrafts),
+        const ClaimDraftsCountProvider(),
         Padding(
           padding: _bodyPadding(),
           child: Column(
@@ -40,7 +38,9 @@ class ClaimsEmpty extends StatelessWidget {
                 children: [
                   const SizedBox(height: kBasePadding * 2),
                   ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 230),
+                    constraints: width < 322
+                        ? const BoxConstraints(maxHeight: 150)
+                        : const BoxConstraints(maxHeight: 210),
                     child: Lottie.asset(
                       'assets/lottie/searching_animation.json',
                     ),

@@ -17,12 +17,7 @@ class PinCodeNewErrorContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(
-        top: kBasePadding * 2,
-        left: kBasePadding,
-        right: kBasePadding,
-        bottom: kBottomSheetBottomPadding,
-      ),
+      padding: _padding(),
       shrinkWrap: true,
       children: [
         Column(
@@ -36,7 +31,7 @@ class PinCodeNewErrorContent extends StatelessWidget {
             const SizedBox(height: kBasePadding),
             isSetPin == false
                 ? Text(
-                    'Не получилось войти',
+                    S.of(context).local_auth_error,
                     style: Theme.of(context).textTheme.headline2,
                   )
                 : Text(
@@ -48,7 +43,7 @@ class PinCodeNewErrorContent extends StatelessWidget {
         const SizedBox(height: kBasePadding),
         isSetPin == false
             ? Text(
-                'Вы неверно ввели код 4 раза подряд.\n\nВам нужно войти в приложение заново по логину и паролю.',
+                'Вы неверно ввели код 3 раза подряд.\n\nВам нужно войти в приложение заново по логину и паролю.',
                 style: Theme.of(context).textTheme.bodyText1,
               )
             : Text(
@@ -60,15 +55,24 @@ class PinCodeNewErrorContent extends StatelessWidget {
         PrimaryElevatedButton(
           onPressed: () {
             Navigator.of(context).pop();
-            context.read<AuthorizationBloc>().add(
-                  AuthorizationDeleteLocalAuthE(),
-                );
+            //context.read<AuthorizationBloc>().isEnterForLogin = 0;
+            context.read<AuthorizationBloc>().add(AuthorizationNewLocalAuthE());
+
             context.read<BannerBloc>().add(BannerInitializeE());
           },
           text: 'Войти по логину',
         ),
         const SizedBox(height: kPadding * 3),
       ],
+    );
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+      top: kBasePadding * 2,
+      left: kBasePadding,
+      right: kBasePadding,
+      bottom: kBottomSheetBottomPadding,
     );
   }
 }

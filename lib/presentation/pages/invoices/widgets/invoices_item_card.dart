@@ -62,6 +62,10 @@ class _InvoicesItemCardState extends State<InvoicesItemCard> {
                 style: Theme.of(context).textTheme.subtitle1?.copyWith(
                       color: MyTheme.of(context).primaryButtonColor,
                     )),
+            expandedTitle: Text(S.of(context).hide,
+                style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                      color: MyTheme.of(context).primaryButtonColor,
+                    )),
             children: [
               InvoicesItemCardOpened(data: item),
             ],

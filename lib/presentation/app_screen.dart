@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mkk/presentation/pages/authorization/authorization_page.dart';
 import 'package:mkk/presentation/pages/banner/banner_widget.dart';
 import 'package:mkk/presentation/pages/main/main_screen.dart';
+import 'package:mkk/presentation/pages/upgrade_app/views/upgrader_widget.dart';
 import 'package:mkk/presentation/views/app_injection.dart';
 import 'package:mkk/presentation/views/app_provider.dart';
 
@@ -20,8 +21,12 @@ class AppScreen extends StatelessWidget {
   Widget _buildBody() {
     return const AppInjection(
       child: AppProvider(
-        child: AuthorizationBuilderWidget(
-          child: BannerBuilder(child: MainScreen()),
+        child: UpgraderWidget(
+          child: AuthorizationBuilderWidget(
+            child: BannerBuilder(
+              child: MainScreen(),
+            ),
+          ),
         ),
       ),
     );

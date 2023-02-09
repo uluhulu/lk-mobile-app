@@ -1,12 +1,16 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mkk/config/theme/elements/theme_data.dart';
 import 'package:mkk/core/utils/constants.dart';
+import 'package:mkk/domain/repositories/user_repository.dart';
 import 'package:mkk/generated/l10n.dart';
+import 'package:mkk/locator/locator.dart';
 
 import 'package:mkk/presentation/pages/main/navigation_bar_bloc/home_navigation_bar.dart';
+
+import '../../../../data/api/profile/info/entity/profile_info_entity.dart';
+import '../../../../data/models/user_role_model.dart';
 
 class MainNavigationBar extends StatelessWidget {
   const MainNavigationBar({Key? key}) : super(key: key);
@@ -20,7 +24,6 @@ class MainNavigationBar extends StatelessWidget {
   }
 
   Widget _builder(BuildContext context, HomeNavigationBarState state) {
-    final activeColor = Theme.of(context).primaryColor;
     return Container(
       decoration: const BoxDecoration(
         boxShadow: [
@@ -36,41 +39,7 @@ class MainNavigationBar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         onTap: (_) => _onTap(context, _),
         currentIndex: state.index,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const BottomBarIconWidget(path: 'assets/icon/user.svg'),
-            label: S.of(context).profile,
-            activeIcon: BottomBarIconWidget(
-              path: 'assets/icon/user.svg',
-              color: activeColor,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: const BottomBarIconWidget(
-              path: 'assets/icon/tick-square.svg',
-            ),
-            label: S.of(context).overhead,
-            activeIcon: BottomBarIconWidget(
-              path: 'assets/icon/tick-square.svg',
-              color: activeColor,
-            ),
-          ),
-          BottomNavigationBarItem(
-              icon: const BottomBarIconWidget(
-                  path: 'assets/icon/note-remove.svg'),
-              label: S.of(context).claims,
-              activeIcon: BottomBarIconWidget(
-                path: 'assets/icon/note-remove.svg',
-                color: activeColor,
-              )),
-          BottomNavigationBarItem(
-              icon: const BottomBarIconWidget(path: 'assets/icon/payments.svg'),
-              label: S.of(context).payments,
-              activeIcon: BottomBarIconWidget(
-                path: 'assets/icon/payments.svg',
-                color: activeColor,
-              )),
-        ],
+        items: _navBarItems(context),
       ),
     );
   }
@@ -85,6 +54,84 @@ class MainNavigationBar extends StatelessWidget {
     context.read<HomeNavigationBarBloc>().add(
           HomeNavigationBarChanged(value),
         );
+  }
+
+  List<BottomNavigationBarItem> _navBarItems(BuildContext context) {
+    final activeColor = Theme.of(context).primaryColor;
+    final List<UserAccess> userRole = sl.get<UserRepository>().getUserAccess();
+    if (userRole.isReceivable) {
+      return _clientReceivables(context, activeColor);
+    }
+    return _clientNotReceivables(context);
+  }
+
+  List<BottomNavigationBarItem> _clientReceivables(
+      BuildContext context, Color activeColor) {
+    return <BottomNavigationBarItem>[
+      BottomNavigationBarItem(
+        icon: const BottomBarIconWidget(path: 'assets/icon/user.svg'),
+        label: S.of(context).profile,
+        activeIcon: BottomBarIconWidget(
+          path: 'assets/icon/user.svg',
+          color: activeColor,
+        ),
+      ),
+      BottomNavigationBarItem(
+        icon: const BottomBarIconWidget(
+          path: 'assets/icon/tick-square.svg',
+        ),
+        label: S.of(context).overhead,
+        activeIcon: BottomBarIconWidget(
+          path: 'assets/icon/tick-square.svg',
+          color: activeColor,
+        ),
+      ),
+      BottomNavigationBarItem(
+          icon: const BottomBarIconWidget(path: 'assets/icon/note-remove.svg'),
+          label: S.of(context).claims,
+          activeIcon: BottomBarIconWidget(
+            path: 'assets/icon/note-remove.svg',
+            color: activeColor,
+          )),
+      BottomNavigationBarItem(
+          icon: const BottomBarIconWidget(path: 'assets/icon/payments.svg'),
+          label: S.of(context).payments,
+          activeIcon: BottomBarIconWidget(
+            path: 'assets/icon/payments.svg',
+            color: activeColor,
+          )),
+    ];
+  }
+
+  List<BottomNavigationBarItem> _clientNotReceivables(BuildContext context) {
+    final activeColor = Theme.of(context).primaryColor;
+    return <BottomNavigationBarItem>[
+      BottomNavigationBarItem(
+        icon: const BottomBarIconWidget(path: 'assets/icon/user.svg'),
+        label: S.of(context).profile,
+        activeIcon: BottomBarIconWidget(
+          path: 'assets/icon/user.svg',
+          color: activeColor,
+        ),
+      ),
+      BottomNavigationBarItem(
+        icon: const BottomBarIconWidget(
+          path: 'assets/icon/tick-square.svg',
+        ),
+        label: S.of(context).overhead,
+        activeIcon: BottomBarIconWidget(
+          path: 'assets/icon/tick-square.svg',
+          color: activeColor,
+        ),
+      ),
+      BottomNavigationBarItem(
+          icon: const BottomBarIconWidget(path: 'assets/icon/note-remove.svg'),
+          label: S.of(context).claims,
+          activeIcon: BottomBarIconWidget(
+            path: 'assets/icon/note-remove.svg',
+            color: activeColor,
+          )),
+    ];
   }
 }
 

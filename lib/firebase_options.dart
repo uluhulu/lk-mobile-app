@@ -15,7 +15,7 @@ import 'package:flutter/foundation.dart'
 /// );
 /// ```
 class DefaultFirebaseOptions {
-  static FirebaseOptions get currentPlatform {
+  static FirebaseOptions? get currentPlatform {
     if (kIsWeb) {
       return web;
     }
@@ -26,57 +26,52 @@ class DefaultFirebaseOptions {
         return ios;
       case TargetPlatform.macOS:
         return macos;
-      case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+
       default:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions are not supported for this platform.',
-        );
+        return null;
     }
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAHikpk9hSUFgROvXqTDqJz3xxhqB5TW_4',
-    appId: '1:1098540645055:web:6fb4d2ce6cb23f0e39640a',
-    messagingSenderId: '1098540645055',
-    projectId: 'lkk-mobile',
-    authDomain: 'lkk-mobile.firebaseapp.com',
-    storageBucket: 'lkk-mobile.appspot.com',
+    apiKey: 'AIzaSyDsHvlARvfXtPKFbcm4y-soIL2pS8ua8xI',
+    appId: '1:518583580460:web:0392a77316056dca6c9e89',
+    messagingSenderId: '518583580460',
+    projectId: 'puls--mobile-b2014',
+    authDomain: 'puls--mobile-b2014.firebaseapp.com',
+    storageBucket: 'puls--mobile-b2014.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBCOvMhoCwSy-B8iVYDlBAcAX5AUAVGsVU',
-    appId: '1:1098540645055:android:26c38014d46930cf39640a',
-    messagingSenderId: '1098540645055',
-    projectId: 'lkk-mobile',
-    storageBucket: 'lkk-mobile.appspot.com',
+    apiKey: 'AIzaSyC9LqQfxR4uunGZ6_d9v7qLZ4ZPweEkhVA',
+    appId: '1:518583580460:android:640b4304e687f8916c9e89',
+    messagingSenderId: '518583580460',
+    projectId: 'puls--mobile-b2014',
+    storageBucket: 'puls--mobile-b2014.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDS3U3xEG_KYp2zawZ94tyYmEk0XZU4RXY',
-    appId: '1:1098540645055:ios:91164edee283475439640a',
-    messagingSenderId: '1098540645055',
-    projectId: 'lkk-mobile',
-    storageBucket: 'lkk-mobile.appspot.com',
-    iosClientId: '1098540645055-dqaf5f9bj3pjbsp8k3301im7nftm185r.apps.googleusercontent.com',
-    iosBundleId: 'com.example.mkk',
+    apiKey: 'AIzaSyCXIcDEMVhmpaXHxbJi142_wbGA9zGZYPI',
+    appId: '1:518583580460:ios:d771d1adb52109d96c9e89',
+    messagingSenderId: '518583580460',
+    projectId: 'puls--mobile-b2014',
+    storageBucket: 'puls--mobile-b2014.appspot.com',
+    androidClientId:
+        '518583580460-ab5tl0s8bqntujrrhi690i4u0k54kr4l.apps.googleusercontent.com',
+    iosClientId:
+        '518583580460-4l2tvula72q6ke1ist4vptrfu9h4mumo.apps.googleusercontent.com',
+    iosBundleId: 'com.mkk.release',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDS3U3xEG_KYp2zawZ94tyYmEk0XZU4RXY',
-    appId: '1:1098540645055:ios:91164edee283475439640a',
-    messagingSenderId: '1098540645055',
-    projectId: 'lkk-mobile',
-    storageBucket: 'lkk-mobile.appspot.com',
-    iosClientId: '1098540645055-dqaf5f9bj3pjbsp8k3301im7nftm185r.apps.googleusercontent.com',
-    iosBundleId: 'com.example.mkk',
+    apiKey: 'AIzaSyCXIcDEMVhmpaXHxbJi142_wbGA9zGZYPI',
+    appId: '1:518583580460:ios:d771d1adb52109d96c9e89',
+    messagingSenderId: '518583580460',
+    projectId: 'puls--mobile-b2014',
+    storageBucket: 'puls--mobile-b2014.appspot.com',
+    androidClientId:
+        '518583580460-ab5tl0s8bqntujrrhi690i4u0k54kr4l.apps.googleusercontent.com',
+    iosClientId:
+        '518583580460-4l2tvula72q6ke1ist4vptrfu9h4mumo.apps.googleusercontent.com',
+    iosBundleId: 'com.mkk.release',
   );
 }

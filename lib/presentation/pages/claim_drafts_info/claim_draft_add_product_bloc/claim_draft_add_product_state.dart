@@ -25,14 +25,18 @@ class ClaimDraftAddProductStartS extends ClaimDraftAddProductState {
 class ClaimDraftAddProductS extends ClaimDraftAddProductState {
   final int id;
   final ClaimDraftsProductsData product;
+  final bool isLoadingGallery;
+  final List<ClaimDraftFile> attachmentsList;
 
   const ClaimDraftAddProductS({
     required this.id,
     required this.product,
+    required this.isLoadingGallery,
+    required this.attachmentsList,
   });
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [id,product,isLoadingGallery,];
 }
 
 class ClaimDraftAddProductSaveSuccesS extends ClaimDraftAddProductState {

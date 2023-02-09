@@ -8,9 +8,12 @@ import 'invoices_product_list.dart';
 
 class InvoicesDetailLoaded extends StatelessWidget {
   final InvoicesDetailEntity detailData;
+  final String uuid;
+
   const InvoicesDetailLoaded({
     Key? key,
     required this.detailData,
+    required this.uuid,
   }) : super(key: key);
 
   @override
@@ -25,7 +28,7 @@ class InvoicesDetailLoaded extends StatelessWidget {
           uuid: detailData.data.invoice.uuid,
         ),
         const SizedBox(height: kBasePadding),
-        const InvoicesProductsList(),
+        InvoicesProductsList(uuid: uuid),
         const SizedBox(height: kBasePadding),
       ],
     );

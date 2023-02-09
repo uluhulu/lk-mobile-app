@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
 
 class SettingsItemWidget extends StatelessWidget {
@@ -9,6 +10,7 @@ class SettingsItemWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool? needIconNext;
   final bool? needDivider;
+  final Widget? widget;
   const SettingsItemWidget({
     Key? key,
     required this.icon,
@@ -16,6 +18,7 @@ class SettingsItemWidget extends StatelessWidget {
     this.onPressed,
     this.needIconNext,
     this.needDivider = true,
+    this.widget,
   }) : super(key: key);
 
   @override
@@ -26,17 +29,23 @@ class SettingsItemWidget extends StatelessWidget {
           onTap: onPressed,
           child: _button(context),
         ),
-        needDivider == true
-            ? const Divider(thickness: 2, indent: 50)
-            : const SizedBox(height: 2),
+        if (needDivider == true)
+          Divider(
+            thickness: 1,
+            height: 0,
+            indent: 56,
+            color: MyTheme.of(context).mainDividerColor,
+          )
+        else
+          const SizedBox(height: 2),
       ],
     );
   }
 
   Widget _button(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: kBasePadding, vertical: kPadding * 3),
+      padding:
+          const EdgeInsets.symmetric(horizontal: kBasePadding, vertical: 22),
       child: Row(
         children: [
           icon,
@@ -47,9 +56,12 @@ class SettingsItemWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
-          needIconNext == null
-              ? SvgPicture.asset('assets/icon/arrow-right.svg')
-              : const SizedBox.shrink()
+          if (needIconNext == null)
+            SvgPicture.asset('assets/icon/arrow-right.svg')
+          else if (needIconNext == false)
+            widget ?? const SizedBox.shrink()
+          else
+            const SizedBox.shrink()
         ],
       ),
     );

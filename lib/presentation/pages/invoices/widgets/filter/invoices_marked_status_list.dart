@@ -25,43 +25,57 @@ class _MarkedStatusListWidgetState extends State<MarkedStatusListWidget> {
         if (state is InvoicesLoadedS) {
           final markingStatuses = state.data.filter.markingStatuses;
           if (markingStatuses != null && markingStatuses.isNotEmpty) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: kBasePadding * 2,
-                      left: kBasePadding,
-                      right: kBasePadding,
-                      bottom: kBasePadding),
-                  child: Text(l10n.marking_status,
-                      style: Theme.of(context).textTheme.headline2),
-                ),
-                ListView.separated(
-                  padding: const EdgeInsets.only(bottom: kBasePadding * 2),
-                  shrinkWrap: true,
-                  separatorBuilder: _separator,
-                  itemCount: markingStatuses.length,
-                  itemBuilder: (context, index) =>
-                      _itemBuilder(context, index, state),
-                )
-              ],
-            );
+            return _content(l10n, context, markingStatuses);
           } else {
             return const FilterEmptyFieldWidget();
           }
         }
         if (state is InvoicesEmptyS) {
-          return const FilterEmptyFieldWidget();
+          final markingStatuses = state.data.filter.markingStatuses;
+          if (markingStatuses != null && markingStatuses.isNotEmpty) {
+            return _content(l10n, context, markingStatuses);
+          } else {
+            return const FilterEmptyFieldWidget();
+          }
         }
         return const SizedBox.shrink();
       },
     );
   }
 
-  Widget _itemBuilder(BuildContext context, int index, InvoicesLoadedS state) {
-    final markingStatuses = state.data.filter.markingStatuses;
+  Widget _content(
+    S l10n,
+    BuildContext context,
+    List<String> markingStatuses,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: _padding(),
+          child: Text(
+            l10n.status_marking,
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+        ListView.separated(
+          padding: const EdgeInsets.only(bottom: kBasePadding * 2),
+          shrinkWrap: true,
+          separatorBuilder: _separator,
+          itemCount: markingStatuses.length,
+          itemBuilder: (context, index) =>
+              _itemBuilder(context, index, markingStatuses),
+        )
+      ],
+    );
+  }
+
+  Widget _itemBuilder(
+    BuildContext context,
+    int index,
+    List<String>? markingStatuses,
+  ) {
     final bloc = context.read<InvoicesBloc>();
     return SuperValidationEnumBuilder<String>(
         superValidation: bloc.markedStatus,
@@ -82,6 +96,14 @@ class _MarkedStatusListWidgetState extends State<MarkedStatusListWidget> {
             },
           );
         });
+  }
+
+  EdgeInsets _padding() {
+    return const EdgeInsets.only(
+        top: kBasePadding * 2,
+        left: kBasePadding,
+        right: kBasePadding,
+        bottom: kBasePadding);
   }
 
   Widget _separator(BuildContext context, int index) => const Divider(

@@ -23,7 +23,7 @@ class ClaimsSearchContent extends StatelessWidget {
         const ClaimsSearchTypePicker(),
         const SizedBox(height: kBasePadding),
         ClaimSearchTextField(searchValidation: bloc.number),
-        const SizedBox(height: kBasePadding),
+        const SizedBox(height: kBasePadding * 4),
       ],
     );
   }

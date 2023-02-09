@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v31/values-night-v31.xml",
+            "map": [
+                {
+                    "source": "/Users/araki/flutterProjects/lk-mobile-app/android/app/src/main/res/values-night-v31/styles.xml",
+                    "from": {
+                        "startLines": "3,19",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,1156",
+                        "endLines": "12,21",
+                        "endColumns": "12,12",
+                        "endOffsets": "805,1320"
+                    },
+                    "to": {
+                        "startLines": "2,12",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,692",
+                        "endLines": "11,14",
+                        "endColumns": "12,12",
+                        "endOffsets": "687,856"
+                    }
+                }
+            ]
+        }
+    ]
+}

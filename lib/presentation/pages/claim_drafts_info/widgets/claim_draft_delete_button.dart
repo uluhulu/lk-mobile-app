@@ -5,12 +5,14 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../config/theme/elements/theme_data.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../services/appmetrica/bloc/appmetrica_bloc.dart';
 import '../../../widgets/modal/base_bottom_sheet_widget.dart';
 import '../claim_drafts_bloc/claim_drafts_info_bloc.dart';
 import 'claim_draft_delete_content.dart';
 
 class ClaimDraftDeleteButton extends StatelessWidget {
   final int id;
+
   const ClaimDraftDeleteButton({
     super.key,
     required this.id,
@@ -19,34 +21,44 @@ class ClaimDraftDeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ClaimDraftsInfoBloc>();
-    return GestureDetector(
-      onTap: () {
-        BaseBottomSheetWidget(
-          context: context,
-          child: BlocProvider.value(
-            value: bloc,
-            child: ClaimDraftDeleteContent(id: id),
-          ),
-        ).show();
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-            vertical: kBasePadding, horizontal: kBasePadding),
-        child: Row(
-          children: [
-            SvgPicture.asset('assets/icon/trash_empty.svg',
-                width: 24, height: 24, color: MyTheme.of(context).errorColor),
-            const SizedBox(width: kPadding),
-            Text(
-              S.of(context).delete_draft,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline3
-                  ?.copyWith(color: MyTheme.of(context).errorColor),
+    return BlocBuilder<AppMetricaBloc, AppMetricaState>(
+        builder: (context, state) {
+      final appMetricaBloc = BlocProvider.of<AppMetricaBloc>(context);
+      return GestureDetector(
+        onTap: () {
+          BaseBottomSheetWidget(
+            context: context,
+            child: BlocProvider.value(
+              value: bloc,
+              child: ClaimDraftDeleteContent(id: id),
             ),
-          ],
+          ).show();
+          appMetricaBloc.add(
+            AppmetricaOnEventE(
+              eventName:
+                  "Черновик претензии ${S.of(context).button_on_pressed} ${S.of(context).open_web_puls}",
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              vertical: kBasePadding, horizontal: kBasePadding),
+          child: Row(
+            children: [
+              SvgPicture.asset('assets/icon/trash_empty.svg',
+                  width: 24, height: 24, color: MyTheme.of(context).errorColor),
+              const SizedBox(width: kPadding),
+              Text(
+                S.of(context).delete_draft,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline3
+                    ?.copyWith(color: MyTheme.of(context).errorColor),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

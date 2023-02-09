@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mkk/data/api/claims/products/entity/claims_detail_products_entity.dart';
 import 'package:mkk/presentation/widgets/ui/card/expanded_card_widget.dart';
@@ -9,10 +11,12 @@ import 'claim_detail_item_card_opened.dart';
 
 class ClaimDetailItemCard extends StatefulWidget {
   final ClaimsProductsData data;
+  final String status;
 
   const ClaimDetailItemCard({
     Key? key,
     required this.data,
+    required this.status,
   }) : super(key: key);
 
   @override
@@ -21,6 +25,11 @@ class ClaimDetailItemCard extends StatefulWidget {
 
 class _ClaimDetailItemCardState extends State<ClaimDetailItemCard> {
   var initiallyExpanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +63,15 @@ class _ClaimDetailItemCardState extends State<ClaimDetailItemCard> {
           style: Theme.of(context).textTheme.subtitle1?.copyWith(
                 color: MyTheme.of(context).primaryButtonColor,
               )),
+      expandedTitle: Text(S.of(context).hide,
+          style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                color: MyTheme.of(context).primaryButtonColor,
+              )),
       children: [
-        ClaimDetailItemCardOpened(data: widget.data),
+        ClaimDetailItemCardOpened(
+          data: widget.data,
+          status: widget.status,
+        ),
       ],
     );
   }
@@ -75,7 +91,7 @@ class _ClaimDetailItemCardState extends State<ClaimDetailItemCard> {
                   style: Theme.of(context)
                       .textTheme
                       .subtitle2
-                      ?.copyWith(fontSize: 14)),
+                      ?.copyWith(fontSize: 16)),
               const SizedBox(height: kBasePadding),
               Text(S.of(context).decision,
                   style: Theme.of(context).textTheme.subtitle2),

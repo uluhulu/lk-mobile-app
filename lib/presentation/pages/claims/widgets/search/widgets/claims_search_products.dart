@@ -17,7 +17,7 @@ class SearchClaimProductsProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<ClaimProductsBloc>(
       create: _createProductsBloc,
-      child: const ClaimProductsList(),
+      child:  ClaimProductsList(),
     );
   }
 

@@ -143,7 +143,7 @@ class AppDataThemeImpl implements AppDataTheme {
     textTheme: TextTheme(
       headline3: TextStyle(
         color: Color.fromARGB(255, 46, 46, 46),
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
         fontSize: 16,
       ),
       headline4: TextStyle(

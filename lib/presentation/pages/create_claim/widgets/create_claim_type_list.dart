@@ -27,37 +27,44 @@ class _CreateClaimTypeListState extends State<CreateClaimTypeList> {
         if (state is CreateClaimProductS) {
           final claimTypes = state.product.possibleClaimTypes;
           return claimTypes?.isNotEmpty ?? false
-              ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: _padding(),
-                      child: Text(
-                        'Тип претензии',
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                    ),
-                    Flexible(
-                      child: ListView.separated(
-                        padding:
-                            const EdgeInsets.only(bottom: kBasePadding * 2),
-                        shrinkWrap: true,
-                        separatorBuilder: _separator,
-                        itemCount: widget.claimTypeData.values.toList().length,
-                        itemBuilder: (context, index) =>
-                            _itemBuilder(context, index, state),
-                      ),
-                    )
-                  ],
-                )
+              ? _content(context, l10n, state)
               : FilterEmptyFieldWidget(
-                  message: S.of(context).no_claims,
+                  message: l10n.no_claims,
                 );
         }
 
         return const SizedBox.shrink();
       },
+    );
+  }
+
+  Widget _content(
+    BuildContext context,
+    S l10n,
+    CreateClaimProductS state,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: _padding(),
+          child: Text(
+            l10n.claim_type,
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+        Flexible(
+          child: ListView.separated(
+            padding: const EdgeInsets.only(bottom: kBasePadding * 2),
+            shrinkWrap: true,
+            separatorBuilder: _separator,
+            itemCount: widget.claimTypeData.values.toList().length,
+            itemBuilder: (context, index) =>
+                _itemBuilder(context, index, state),
+          ),
+        )
+      ],
     );
   }
 

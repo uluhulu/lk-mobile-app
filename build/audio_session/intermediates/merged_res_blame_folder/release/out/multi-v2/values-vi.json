@@ -1,0 +1,68 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/incremental/mergeReleaseResources/merged.dir/values-vi/values-vi.xml",
+            "map": [
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/b9bc6fe7e68b936078e9cb8cf0d38b93/transformed/core-1.6.0/res/values-vi/values-vi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "609",
+                        "endColumns": "100",
+                        "endOffsets": "705"
+                    }
+                },
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/values-vi/values-vi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,157,257,351,479",
+                        "endColumns": "101,99,93,127,129",
+                        "endOffsets": "152,252,346,474,604"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/araki/flutterProjects/lk-mobile-app/build/audio_session/intermediates/merged_res/release/values-vi/values-vi.xml",
+            "map": [
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/b9bc6fe7e68b936078e9cb8cf0d38b93/transformed/core-1.6.0/res/values-vi/values-vi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "609",
+                        "endColumns": "100",
+                        "endOffsets": "705"
+                    }
+                },
+                {
+                    "source": "/Users/araki/.gradle/caches/transforms-3/1d3b6a762876b8fb44d45bed349a7f9c/transformed/jetified-media2-session-1.2.0/res/values-vi/values-vi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,157,257,351,479",
+                        "endColumns": "101,99,93,127,129",
+                        "endOffsets": "152,252,346,474,604"
+                    }
+                }
+            ]
+        }
+    ]
+}

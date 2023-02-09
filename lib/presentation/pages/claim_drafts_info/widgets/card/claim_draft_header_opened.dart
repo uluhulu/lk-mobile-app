@@ -20,7 +20,7 @@ class ClaimDraftHeaderOpened extends StatelessWidget {
       children: [
         WidgetOrNullColumnHelper(
           isDetail: true,
-          title: 'Дата черновика',
+          title: S.of(context).draft_date,
           value: DateFormats.isoDateFormatter(item.claimDate),
         ),
         WidgetOrNullColumnHelper(

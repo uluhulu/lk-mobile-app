@@ -16,9 +16,7 @@ InvoicesDetailProductsEntity _$InvoicesDetailProductsEntityFromJson(
       links: json['links'] == null
           ? null
           : Links.fromJson(json['links'] as Map<String, dynamic>),
-      meta: json['meta'] == null
-          ? null
-          : Meta.fromJson(json['meta'] as Map<String, dynamic>),
+      meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
       filter: json['filter'] == null
           ? null
           : InvoicesProductsFilter.fromJson(

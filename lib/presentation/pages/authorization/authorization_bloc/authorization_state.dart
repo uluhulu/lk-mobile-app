@@ -18,7 +18,7 @@ abstract class AuthorizationState extends Equatable {
   factory AuthorizationState.fromJson(Map<String, dynamic> json) {
     switch (json['stateName'] as String) {
       case 'AuthorizationSuccesS':
-        return AuthorizationSuccesS.fromJson(json);
+        return AuthorizationSuccesS();
       // case 'AuthorizationLocalAuthS':
       //   return AuthorizationLocalAuthS();
       case 'AuthorizationNeedLoginS':
@@ -38,32 +38,8 @@ class AuthorizationLoadingS extends AuthorizationState {
 }
 
 class AuthorizationSuccesS extends AuthorizationState {
-  final String token;
-  final bool isLogin;
-
-  const AuthorizationSuccesS({
-    required this.token,
-    required this.isLogin,
-  });
   @override
   String get stateName => 'AuthorizationSuccesS';
-
-  @override
-  factory AuthorizationSuccesS.fromJson(Map<String, dynamic> json) {
-    return AuthorizationSuccesS(
-      token: json['token'] as String,
-      isLogin: json['isLogin'] as bool,
-    );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'stateName': stateName,
-      'token': token,
-      'isLogin': isLogin,
-    };
-  }
 }
 
 class AuthorizationNeedLoginS extends AuthorizationState {
@@ -93,7 +69,7 @@ class AuthorizationLocalSuccesS extends AuthorizationState {
   factory AuthorizationLocalSuccesS.fromJson(Map<String, dynamic> json) {
     return AuthorizationLocalSuccesS(
       pinCode: json['pinCode'] as String,
-      data: AuthorizationSuccesS.fromJson(json['data'] as Map<String, dynamic>),
+      data: AuthorizationSuccesS(),
     );
   }
 }
@@ -120,7 +96,7 @@ class AuthorizationLocalNeedS extends AuthorizationState {
   factory AuthorizationLocalNeedS.fromJson(Map<String, dynamic> json) {
     return AuthorizationLocalNeedS(
       pinCode: json['pinCode'] as String,
-      data: AuthorizationSuccesS.fromJson(json['data'] as Map<String, dynamic>),
+      data: AuthorizationSuccesS(),
     );
   }
 }

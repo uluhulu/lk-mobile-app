@@ -9,6 +9,8 @@ abstract class ClaimDraftAddProductEvent extends Equatable {
 
 class ClaimDraftAddProductStartE extends ClaimDraftAddProductEvent {}
 
+class ClaimDraftAddProductPaginationE extends ClaimDraftAddProductEvent {}
+
 class ClaimDraftAddProductE extends ClaimDraftAddProductEvent {}
 
 class ClaimDraftAddProductDeleteE extends ClaimDraftAddProductEvent {
@@ -23,3 +25,7 @@ class ClaimDraftAddProductDeleteE extends ClaimDraftAddProductEvent {
 }
 
 class ClaimDraftAddProductSaveE extends ClaimDraftAddProductEvent {}
+
+class ClaimDraftSearchE extends ClaimDraftAddProductEvent {}
+
+class ClaimDraftInitializeE extends ClaimDraftAddProductEvent {}

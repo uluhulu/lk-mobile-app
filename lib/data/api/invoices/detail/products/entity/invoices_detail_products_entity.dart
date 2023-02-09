@@ -9,13 +9,13 @@ part 'invoices_detail_products_entity.g.dart';
 class InvoicesDetailProductsEntity {
   final List<InvoicesDetailProductData> data;
   final Links? links;
-  final Meta? meta;
+  final Meta meta;
   final InvoicesProductsFilter? filter;
 
   InvoicesDetailProductsEntity({
     required this.data,
     this.links,
-    this.meta,
+    required this.meta,
     this.filter,
   });
 

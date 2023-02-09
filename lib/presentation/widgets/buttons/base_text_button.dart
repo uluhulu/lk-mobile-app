@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../config/theme/elements/theme_data.dart';
+
 class BaseTextButton extends StatelessWidget {
-  final IconData icon;
+  final Widget icon;
   final String title;
   final VoidCallback onPressed;
   final bool canPress;
@@ -19,12 +21,16 @@ class BaseTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.blue, width: 2),
+          // border: Border.all(color: Colors.blue, width: 2),
           borderRadius: BorderRadius.circular(2)),
       child: TextButton.icon(
         onPressed: _enabled == true ? onPressed : null,
-        icon: Icon(icon),
-        label: Text(title),
+        icon: icon,
+        label: Text(title, style: TextStyle(
+          color: MyTheme.of(context).primaryButtonColor,
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+        )),
       ),
     );
   }

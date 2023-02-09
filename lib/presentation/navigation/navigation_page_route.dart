@@ -18,6 +18,11 @@ class NavigationPageRoute<T> extends MaterialPageRoute<T> {
           fullscreenDialog: fullscreenDialog,
         );
 
+  // @override
+  // bool get hasScopedWillPopCallback {
+  //   return false;
+  // }
+
   @override
   Widget buildContent(BuildContext context) {
     final Widget widget = super.buildContent(context);
