@@ -67,3 +67,5 @@ class StaticSplashPage extends StatelessWidget {
     );
   }
 }
+
+
